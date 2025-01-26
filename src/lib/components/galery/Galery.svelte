@@ -37,7 +37,9 @@
     <h3 class="text-center font-bold text-3xl">{title}</h3>
 
     <div class="px-16">
-        <Carousel.Root class="w-full">
+        <Carousel.Root class="w-full" opts={{
+			loop: true,
+		  }}>
             <Carousel.Content class="-ml-2">
                 {#each mockEstablecimientos as establecimiento}
                     <Carousel.Item class="pl-2 md:basis-1/2 lg:basis-1/3">

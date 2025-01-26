@@ -98,7 +98,9 @@
     <h3 class="text-center font-bold text-3xl">{title}</h3>
 
     <div class="px-16">
-        <Carousel.Root class="w-full">
+        <Carousel.Root class="w-full" opts={{
+			loop: true,
+		  }}>
             <Carousel.Content class="-ml-8">
                 {#each mockEventos as evento}
                     <Carousel.Item class="pl-8 md:basis-1/2 lg:basis-1/5">
