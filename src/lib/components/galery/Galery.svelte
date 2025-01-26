@@ -33,9 +33,8 @@
 	];
 </script>
 
-<div class="w-full space-y-6">
-    <h3 class="text-center font-bold text-2xl">{title}</h3>
-
+<div class="w-full space-y-8">
+    <h3 class="text-center font-bold text-3xl">{title}</h3>
 
     <div class="px-16">
         <Carousel.Root class="w-full">
