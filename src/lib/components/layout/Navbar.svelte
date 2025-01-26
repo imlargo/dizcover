@@ -19,14 +19,14 @@
 				</div>
 			</div>
             
-            <form class="relative">
+            <form class="relative hidden md:block">
 				<Input type="search" placeholder="Buscar..." class="w-64 pl-10 rounded-full" />
 				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-muted-foreground"></i>
 			</form>
 		</div>
         
-		<div class="hidden md:flex md:items-center md:space-x-4">
-			<div class="hidden md:ml-10 md:flex md:items-center md:space-x-4">
+		<div class="hidden md:flex md:items-center md:space-x-12">
+			<div class="hidden md:ml-10 md:flex md:items-center md:space-x-12">
 				<a
 					href="/multimedia"
 					class="text-sm font-medium text-muted-foreground hover:text-primary"
@@ -55,6 +55,10 @@
 					<DropdownMenu.Item>Cerrar sesión</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
+
+            <Button variant="ghost" size="icon" onclick={() => (isOpenMenu = true)}>
+                <span><i class="bi bi-list"></i></span>
+            </Button>
 		</div>
 	</div>
 	{#if isOpenMenu}
