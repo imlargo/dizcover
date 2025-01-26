@@ -40,9 +40,9 @@
         <Carousel.Root class="w-full" opts={{
 			loop: true,
 		  }}>
-            <Carousel.Content class="-ml-2">
+            <Carousel.Content class="-ml-8">
                 {#each mockEstablecimientos as establecimiento}
-                    <Carousel.Item class="pl-2 md:basis-1/2 lg:basis-1/3">
+                    <Carousel.Item class="pl-8 md:basis-1/2 lg:basis-1/3">
                         <CardEstablecimiento {establecimiento} />
                     </Carousel.Item>
                 {/each}
