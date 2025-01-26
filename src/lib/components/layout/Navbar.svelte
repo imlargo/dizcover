@@ -11,7 +11,7 @@
 	
 </script>
 
-<nav class="{isHome ? "w-full absolute text-white": "border-b"} ">
+<nav class="z-40 {isHome ? "w-full absolute text-white": "border-b"}">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
