@@ -7,7 +7,7 @@
 
 <Hero />
 
-<div class="mt-24 space-y-24">
+<div class="mt-12 space-y-24">
 	<GalerySale />
 	<Galery title="Para ti" />
 	<GaleryEvento title="Eventos" />
