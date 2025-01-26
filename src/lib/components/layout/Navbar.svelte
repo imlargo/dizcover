@@ -91,7 +91,7 @@
 				<div class="flex items-center px-4">
 					<div class="flex-shrink-0">
 						<Avatar.Root class="h-8 w-8">
-							<Avatar.Image src="/avatars/01.png" alt="@usuario" />
+							<Avatar.Image src="https://avatars.githubusercontent.com/u/124599?v=4" alt="@usuario" />
 							<Avatar.Fallback>U</Avatar.Fallback>
 						</Avatar.Root>
 					</div>
