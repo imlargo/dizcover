@@ -44,8 +44,8 @@
 
 			<DropdownMenu.Root>
 				<DropdownMenu.Trigger>
-					<Button variant="ghost" size="icon" class="relative h-8 w-8 rounded-full">
-						<Avatar.Root class="h-8 w-8">
+					<Button variant="ghost" size="icon" class="relative size-10 rounded-full">
+						<Avatar.Root class="size-10">
 							<Avatar.Image src="https://avatars.githubusercontent.com/u/124599?v=4" alt="@usuario" />
 							<Avatar.Fallback>U</Avatar.Fallback>
 						</Avatar.Root>
