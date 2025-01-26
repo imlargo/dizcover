@@ -95,7 +95,7 @@
 </script>
 
 <div class="w-full space-y-8">
-    <h3 class="text-center font-bold text-3xl">{title}</h3>
+    <h3 class="text-center font-bold text-3xl px-16">{title}</h3>
 
     <div class="">
         <Carousel.Root class="w-full" opts={{
