@@ -12,6 +12,7 @@
 				destructive:
 					"bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent",
 				outline: "text-foreground",
+				purple: "bg-purple-600/50 text-purple-100 ring-1 border-purple-700",
 			},
 		},
 		defaultVariants: {

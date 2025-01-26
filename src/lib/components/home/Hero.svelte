@@ -21,7 +21,7 @@
 
         <div class="flex space-x-4">
             {#each establecimiento.tags as tag}
-                <Badge variant="secondary" class="text-base">{ tag}</Badge>
+                <Badge variant="purple" class="text-base">{ tag}</Badge>
             {/each}
         </div>
     </div>

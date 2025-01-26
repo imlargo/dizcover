@@ -22,7 +22,7 @@
 
     <div class="absolute bottom-0 left-0 p-3 flex space-x-2 items-center justify-center bg-black bg-opacity-40 w-full">
         {#each establecimiento.tags as tag}
-            <Badge variant="secondary">{ tag }</Badge>
+            <Badge variant="purple">{ tag }</Badge>
         {/each}
     </div>
 </div>
