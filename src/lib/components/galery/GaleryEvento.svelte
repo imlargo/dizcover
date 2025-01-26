@@ -99,7 +99,7 @@
 
     <div class="px-16">
         <Carousel.Root class="w-full">
-            <Carousel.Content class="-ml-1">
+            <Carousel.Content class="-ml-8">
                 {#each mockEventos as evento}
                     <Carousel.Item class="pl-8 md:basis-1/2 lg:basis-1/5">
                         <CardEvento {evento} />

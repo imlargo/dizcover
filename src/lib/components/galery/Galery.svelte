@@ -38,7 +38,7 @@
 
     <div class="px-16">
         <Carousel.Root class="w-full">
-            <Carousel.Content class="-ml-1">
+            <Carousel.Content class="-ml-2">
                 {#each mockEstablecimientos as establecimiento}
                     <Carousel.Item class="pl-2 md:basis-1/2 lg:basis-1/3">
                         <CardEstablecimiento {establecimiento} />
