@@ -3,15 +3,19 @@
 	import { Input } from '$lib/components/ui/input/index';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import { page } from '$app/stores';  
 
 	let isOpenMenu = $state(false);
+	const currentRoute = $state($page.url.pathname);
+	const isHome = $derived(currentRoute === "/")
+	
 </script>
 
-<nav class="border-b">
+<nav class="{isHome ? "w-full absolute text-white": "border-b"} ">
 	<div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
-				<a href="/" class="text-2xl font-bold text-primary"> MiLanding </a>
+				<a href="/" class="text-2xl font-bold text-white"> MiLanding </a>
 				<div class="flex items-center md:hidden">
 					<Button variant="ghost" size="icon" class="md:hidden" onclick={() => (isOpenMenu = true)}>
 						<span><i class="bi bi-list"></i></span>
@@ -20,8 +24,8 @@
 			</div>
             
             <form class="relative hidden md:block">
-				<Input type="search" placeholder="Buscar..." class="w-64 pl-10 rounded-full" />
-				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-muted-foreground"></i>
+				<Input type="search" placeholder="Buscar..." class="w-64 pl-10 rounded-full bg-transparent" />
+				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-gray-200"></i>
 			</form>
 		</div>
         
@@ -29,11 +33,11 @@
 			<div class="hidden md:ml-10 md:flex md:items-center md:space-x-12">
 				<a
 					href="/multimedia"
-					class="text-sm font-medium text-muted-foreground hover:text-primary"
+					class="text-sm font-medium text-gray-200 hover:text-white"
 				>
 					Multimedia
 				</a>
-				<a href="/mapa" class="text-sm font-medium text-muted-foreground hover:text-primary">
+				<a href="/mapa" class="text-sm font-medium text-gray-200 hover:text-white">
 					Mapa
 				</a>
 			</div>
@@ -66,19 +70,19 @@
 			<div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
 				<a
 					href="/caracteristicas"
-					class="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary"
+					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
 				>
 					Características
 				</a>
 				<a
 					href="/precios"
-					class="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary"
+					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
 				>
 					Precios
 				</a>
 				<a
 					href="/contacto"
-					class="block px-3 py-2 text-base font-medium text-muted-foreground hover:text-primary"
+					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
 				>
 					Contacto
 				</a>
@@ -93,7 +97,7 @@
 					</div>
 					<div class="ml-3">
 						<div class="text-base font-medium">Usuario</div>
-						<div class="text-sm font-medium text-muted-foreground">usuario@ejemplo.com</div>
+						<div class="text-sm font-medium text-gray-200">usuario@ejemplo.com</div>
 					</div>
 				</div>
 				<div class="mt-3 space-y-1 px-2">
