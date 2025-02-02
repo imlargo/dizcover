@@ -1,43 +1,51 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import { Input } from '$lib/components/ui/input/index';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import * as Avatar from '$lib/components/ui/avatar/index.js';
-	import { page } from '$app/stores';  
+	import { Button } from '$components/ui/button';
+	import { Input } from '$components/ui/input/index';
+	import * as DropdownMenu from '$components/ui/dropdown-menu/index.js';
+	import * as Avatar from '$components/ui/avatar/index.js';
+	import { page } from '$app/stores';
 
 	let isOpenMenu = $state(false);
 	const currentRoute = $state($page.url.pathname);
-	const isHome = $derived(currentRoute === "/")
-	
+	const isHome = $derived(currentRoute === '/');
 </script>
 
-<nav class="z-40 {isHome ? "w-full absolute text-white": "border-b"}">
-	<div class="flex w-full items-center justify-between px-10 py-3">
+<nav class="z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
+	<div class="flex w-full items-center justify-between px-10 py-6">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
-				<a href="/" class="text-2xl font-bold text-white"> MiLanding </a>
+				<a data-sveltekit-reload href="/" class="text-3xl font-bold text-white">Dizcover</a>
 				<div class="flex items-center md:hidden">
 					<Button variant="ghost" size="icon" class="md:hidden" onclick={() => (isOpenMenu = true)}>
 						<span><i class="bi bi-list"></i></span>
 					</Button>
 				</div>
 			</div>
-            
-            <form class="relative hidden md:block">
-				<Input type="search" placeholder="Buscar..." class="w-64 pl-10 rounded-full bg-transparent" />
+
+			<form class="relative hidden md:block">
+				<Input
+					type="search"
+					placeholder="Buscar..."
+					class="w-96 rounded-full bg-transparent pl-10"
+				/>
 				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-gray-200"></i>
 			</form>
 		</div>
-        
+
 		<div class="hidden md:flex md:items-center md:space-x-12">
 			<div class="hidden md:ml-10 md:flex md:items-center md:space-x-12">
 				<a
+					data-sveltekit-reload
 					href="/multimedia"
 					class="text-sm font-medium text-gray-200 hover:text-white"
 				>
 					Multimedia
 				</a>
-				<a href="/mapa" class="text-sm font-medium text-gray-200 hover:text-white">
+				<a
+					data-sveltekit-reload
+					href="/mapa"
+					class="text-sm font-medium text-gray-200 hover:text-white"
+				>
 					Mapa
 				</a>
 			</div>
@@ -46,7 +54,10 @@
 				<DropdownMenu.Trigger>
 					<Button variant="ghost" size="icon" class="relative size-10 rounded-full">
 						<Avatar.Root class="size-10">
-							<Avatar.Image src="https://avatars.githubusercontent.com/u/124599?v=4" alt="@usuario" />
+							<Avatar.Image
+								src="https://avatars.githubusercontent.com/u/124599?v=4"
+								alt="@usuario"
+							/>
 							<Avatar.Fallback>U</Avatar.Fallback>
 						</Avatar.Root>
 					</Button>
@@ -60,9 +71,9 @@
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 
-            <Button variant="ghost" size="icon" onclick={() => (isOpenMenu = true)}>
-                <span><i class="bi bi-list"></i></span>
-            </Button>
+			<Button variant="ghost" size="icon" onclick={() => (isOpenMenu = true)}>
+				<span><i class="bi bi-list"></i></span>
+			</Button>
 		</div>
 	</div>
 	{#if isOpenMenu}
@@ -91,7 +102,10 @@
 				<div class="flex items-center px-4">
 					<div class="flex-shrink-0">
 						<Avatar.Root class="h-8 w-8">
-							<Avatar.Image src="https://avatars.githubusercontent.com/u/124599?v=4" alt="@usuario" />
+							<Avatar.Image
+								src="https://avatars.githubusercontent.com/u/124599?v=4"
+								alt="@usuario"
+							/>
 							<Avatar.Fallback>U</Avatar.Fallback>
 						</Avatar.Root>
 					</div>

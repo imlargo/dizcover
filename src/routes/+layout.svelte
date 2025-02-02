@@ -2,8 +2,8 @@
 	import '../app.css';
 	let { children } = $props();
 
-	import Navbar from '$lib/components/layout/Navbar.svelte';
-	import Footer from '$lib/components/layout/Footer.svelte';
+	import Navbar from '$components/layout/Navbar.svelte';
+	import Footer from '$components/layout/Footer.svelte';
 </script>
 
 <Navbar />
