@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Establecimiento } from '$lib/types/establecimiento';
-	import * as Carousel from '$lib/components/ui/carousel/index.js';
+	import * as Carousel from '$components/ui/carousel/index.js';
 	import CardEstablecimiento from './CardEstablecimiento.svelte';
 
 	const mockEstablecimientos = [
@@ -22,7 +22,11 @@
 				{#each mockEstablecimientos as establecimiento}
 					<Carousel.Item class="pl-4 md:basis-1/2 lg:basis-1/3">
 						<div>
-							<img class="h-[137px] w-[695px] object-cover rounded-sm" src={establecimiento} alt="" />
+							<img
+								class="h-[137px] w-[695px] rounded-sm object-cover"
+								src={establecimiento}
+								alt=""
+							/>
 						</div>
 					</Carousel.Item>
 				{/each}
