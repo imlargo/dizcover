@@ -1,9 +1,11 @@
 export type Evento = {
-    nombre: string;
-    fecha: string;
-    lugar: string;
-    hora: {
-        inicio: string;
-        fin: string;
-    }
-}
+	id?: string | number;
+	nombre: string;
+	fecha: string;
+	lugar: string;
+	imagen: string;
+	hora: {
+		inicio: string;
+		fin: string;
+	};
+};
