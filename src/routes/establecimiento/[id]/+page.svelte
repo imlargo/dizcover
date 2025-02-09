@@ -40,11 +40,11 @@
 					<Breadcrumb.Item>
 						<Breadcrumb.Link class="text-white" href="/">Home</Breadcrumb.Link>
 					</Breadcrumb.Item>
-					<Breadcrumb.Separator />
+					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
 						<Breadcrumb.Link class="text-white">Establecimiento</Breadcrumb.Link>
 					</Breadcrumb.Item>
-					<Breadcrumb.Separator />
+					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
 						<Breadcrumb.Page class="text-white">{establecimiento.nombre}</Breadcrumb.Page>
 					</Breadcrumb.Item>
