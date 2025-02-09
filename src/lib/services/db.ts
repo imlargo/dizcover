@@ -90,7 +90,7 @@ export class DatabaseController {
 				nombre: 'BOOK FAIR',
 				fecha: 'Martes 28 de septiembre',
 				imagen:
-					'https://s3-alpha-sig.figma.com/img/bbb3/befc/bd3812f6dfd19214d49a0ab8935ffd5f?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=g5Jx6jHcwCPeQCmmRJpTCzmTid6jsC3jlw0lzJODAxYNB0kkbDVoN8zIOqSBpaCKOooqVomeJEUZFwo-RIKdG4Da8lSJ7Q9-0UuQ1xx5Hf0ZcZjm3Airt6sAyAzLj5C3E9S2gcGb37UuDxnkts88CY2g1rUVJ7INz~YuSnuMS~skC6QQMzQK4DVOT4T4nAw7vGitK43ZP11BCsIP6GrL5HEYqRMr6FohO4eh9HZ8Rb6TjKhqCuw-xQMsvCaUPezA0PkpkKvxiHrJ1XSde162kXagJKfeUbEl5NAQKdC2QKI03FDDUDuiENANFfayCEe30GCupU2vup5jawO8BOWVUw__',
+					'https://s3-alpha-sig.figma.com/img/bbb3/befc/bd3812f6dfd19214d49a0ab8935ffd5f?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h-DqnS4KbDtrWBInPRD8B2dvvQkJAwYx4v5sqXFqwnvS9kVv2JREOlVMA1lo7uPg3Nvgp3KXnp-IoqXXVD6ysAt3qNbeO1DYVl5wxTDbUeCPZKyLYAfSPTkyxTa4v22LrFUita5hHiOVbcpXyrvdCq8lAcykdTCN44PKtNJFgiZ5LAXH88WzjR8ahxY~X2sJZZDP6OdK7Q222cMYvCQTYGYyQklPYYs8DMRjVyI0TqygG1alLf7YnzmHq2zZHScr3lS4JA~QC8F2N6JU4bcLtmHo2jOtjmzwUIfj66wDr-0EoalaMqAoEhuUiTYu5Zw7Tb2JT9Zh5TFiHO8FGBY1Jg__',
 				lugar: 'Biblioteca Nacional',
 				hora: {
 					inicio: '9:00 AM',
@@ -134,7 +134,7 @@ export class DatabaseController {
 				nombre: 'TECH CONFERENCE',
 				fecha: 'Miércoles 29 de septiembre',
 				imagen:
-					'https://s3-alpha-sig.figma.com/img/bbb3/befc/bd3812f6dfd19214d49a0ab8935ffd5f?Expires=1738540800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=g5Jx6jHcwCPeQCmmRJpTCzmTid6jsC3jlw0lzJODAxYNB0kkbDVoN8zIOqSBpaCKOooqVomeJEUZFwo-RIKdG4Da8lSJ7Q9-0UuQ1xx5Hf0ZcZjm3Airt6sAyAzLj5C3E9S2gcGb37UuDxnkts88CY2g1rUVJ7INz~YuSnuMS~skC6QQMzQK4DVOT4T4nAw7vGitK43ZP11BCsIP6GrL5HEYqRMr6FohO4eh9HZ8Rb6TjKhqCuw-xQMsvCaUPezA0PkpkKvxiHrJ1XSde162kXagJKfeUbEl5NAQKdC2QKI03FDDUDuiENANFfayCEe30GCupU2vup5jawO8BOWVUw__',
+					'https://s3-alpha-sig.figma.com/img/bbb3/befc/bd3812f6dfd19214d49a0ab8935ffd5f?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h-DqnS4KbDtrWBInPRD8B2dvvQkJAwYx4v5sqXFqwnvS9kVv2JREOlVMA1lo7uPg3Nvgp3KXnp-IoqXXVD6ysAt3qNbeO1DYVl5wxTDbUeCPZKyLYAfSPTkyxTa4v22LrFUita5hHiOVbcpXyrvdCq8lAcykdTCN44PKtNJFgiZ5LAXH88WzjR8ahxY~X2sJZZDP6OdK7Q222cMYvCQTYGYyQklPYYs8DMRjVyI0TqygG1alLf7YnzmHq2zZHScr3lS4JA~QC8F2N6JU4bcLtmHo2jOtjmzwUIfj66wDr-0EoalaMqAoEhuUiTYu5Zw7Tb2JT9Zh5TFiHO8FGBY1Jg__',
 				lugar: 'Centro de Convenciones',
 				hora: {
 					inicio: '9:00 AM',
