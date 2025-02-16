@@ -11,7 +11,7 @@
 
 <div>
 	<a data-sveltekit-reload href="/evento/{evento.id}" class="h-[466px] w-[315px] overflow-hidden rounded-md">
-		<img src={evento.imagen} alt="" class="h-full w-full rounded-md object-cover" />
+		<img src={evento.primera_imagen} alt="" class="h-full w-full rounded-md object-cover" />
 	</a>
 
 	<div class="text-center">

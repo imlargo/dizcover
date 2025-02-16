@@ -8,7 +8,7 @@ export type Evento = {
 	nombre: string;
 	fecha: string;
 	lugar: string;
-	imagen: string;
+	primera_imagen: string;
 	hora: {
 		inicio: string;
 		fin: string;
