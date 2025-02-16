@@ -63,7 +63,7 @@
 					<span>{establecimiento.nombre}</span>
 					<span class="text-[#D400FE]">
 						<i class="bi bi-star-fill"></i>
-						<span>{establecimiento.score}</span>
+						<span>{establecimiento.calificacion_promedio}</span>
 					</span>
 				</h5>
 			</div>
@@ -80,7 +80,7 @@
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
 		<h3 class="text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{establecimiento.description}</p>
+		<p class="text-lg">{establecimiento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
