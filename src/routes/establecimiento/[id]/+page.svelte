@@ -28,7 +28,7 @@
 
 <div class="relative h-[90vh]">
 	<img
-		src={establecimiento.imagen}
+		src={establecimiento.primera_imagen}
 		class="absolute -z-10 h-full w-full object-cover"
 		alt={establecimiento.nombre}
 	/>
@@ -69,7 +69,7 @@
 			</div>
 
 			<div class="flex gap-4">
-				{#each establecimiento.tags as tag}
+				{#each establecimiento.etiquetas as tag}
 					<Badge variant="purple">{tag}</Badge>
 				{/each}
 			</div>

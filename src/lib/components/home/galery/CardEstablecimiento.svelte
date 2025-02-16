@@ -16,7 +16,7 @@
 			href="/establecimiento/1"
 			class="h-[349px] w-[695px] overflow-hidden rounded-md"
 		>
-			<img src={establecimiento.imagen} alt="" class="max-w-full rounded-md object-cover hover:scale-105 transition-all duration-300" />
+			<img src={establecimiento.primera_imagen} alt="" class="max-w-full rounded-md object-cover hover:scale-105 transition-all duration-300" />
 		</a>
 	</div>
 
@@ -29,7 +29,7 @@
 	<div
 		class="absolute bottom-0 left-0 flex w-full items-center justify-center space-x-2 bg-black bg-opacity-50 py-5"
 	>
-		{#each establecimiento.tags as tag}
+		{#each establecimiento.etiquetas as tag}
 			<Badge variant="purple">{tag}</Badge>
 		{/each}
 	</div>

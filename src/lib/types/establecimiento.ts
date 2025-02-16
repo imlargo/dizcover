@@ -6,10 +6,10 @@ export type Coordinates = {
 export type Establecimiento = {
 	id?: string | number;
 	nombre: string;
-	score: number;
-	tags: string[];
+	calificacion_promedio: number;
+	etiquetas: string[];
 	description: string;
 	imagenes: string[];
-	imagen: string;
+	primera_imagen: string;
 	ubicacion: Coordinates;
 };
