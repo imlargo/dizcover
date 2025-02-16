@@ -1,12 +1,12 @@
 <script lang="ts">
-	import type { Establecimiento } from '$lib/types/establecimiento';
 	import type { Coordinates } from '$lib/types/establecimiento';
 
 	type Props = {
-		establecimiento: Establecimiento;
+		coords: Coordinates;
+		title: string;
 	};
 
-	const { establecimiento }: Props = $props();
+	const { coords, title }: Props = $props();
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
@@ -24,13 +24,13 @@
 		return `${baseUrl}?${queryParams.toString()}`;
 	}
 
-	const iframeSrc = getGoogleMapsIframe(establecimiento.ubicacion);
+	const iframeSrc = getGoogleMapsIframe(coords);
 </script>
 
 <div class="relative flex w-full overflow-hidden rounded-md">
 	<iframe
 		class="w-full"
-		title={establecimiento.nombre}
+		title={title}
 		width="100%"
 		height="600"
 		frameborder="0"
@@ -46,7 +46,7 @@
 	<a
 		data-sveltekit-reload
 		aria-label="Google Maps link"
-		href={getGoogleMapsLink(establecimiento.ubicacion)}
+		href={getGoogleMapsLink(coords)}
 		target="_blank"
 		class="absolute right-4 top-4 flex size-12 items-center justify-center rounded-full bg-black"
 	>
