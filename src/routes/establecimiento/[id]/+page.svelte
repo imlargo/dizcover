@@ -4,6 +4,7 @@
 	import Galery from '$components/establecimiento/Galery.svelte';
 	import Events from '$components/establecimiento/Events.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
+	import DialogReserva from '$components/kit/DialogReserva.svelte';
 	import GaleryEstablecimientos from '$components/home/galery/Galery.svelte';
 	import { DatabaseController } from '$lib/services/db';
 	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
@@ -112,7 +113,7 @@
 				href={getGoogleMapsLink(establecimiento.ubicacion)}
 				target="_blank">Ir ahora</Button
 			>
-			<Button class="px-12 py-8 text-xl ">Reservar</Button>
+			<DialogReserva />
 		</div>
 	</div>
 
