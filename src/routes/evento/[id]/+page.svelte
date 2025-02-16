@@ -15,7 +15,7 @@
 	const evento: Evento = data.evento as Evento;
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
-		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
 	};
 

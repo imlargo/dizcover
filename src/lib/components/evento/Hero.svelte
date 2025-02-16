@@ -41,7 +41,7 @@
 
 			<span class="flex items-center gap-2">
 				<i class="bi bi-clock"></i>
-				<span>{evento.hora.inicio} - {evento.hora.fin}</span>
+				<span>{evento.hora?.inicio} - {evento.hora?.fin}</span>
 			</span>
 		</div>
 

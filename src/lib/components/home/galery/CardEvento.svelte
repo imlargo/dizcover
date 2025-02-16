@@ -18,6 +18,6 @@
 		<h5 class="mt-4 text-xl font-bold">{evento.nombre}</h5>
 		<span class="block">{evento.fecha}</span>
 		<span class="block">{evento.lugar}</span>
-		<span class="block">{evento.hora.inicio} - {evento.hora.fin}</span>
+		<span class="block">{evento.hora?.inicio} - {evento.hora?.fin}</span>
 	</div>
 </div>
