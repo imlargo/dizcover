@@ -8,7 +8,7 @@ export type Establecimiento = {
 	nombre: string;
 	calificacion_promedio: number;
 	etiquetas: string[];
-	description: string;
+	descripcion: string;
 	imagenes: string[];
 	primera_imagen: string;
 	ubicacion: Coordinates;
