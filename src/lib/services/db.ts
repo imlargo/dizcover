@@ -26,6 +26,32 @@ export class DatabaseController {
 		};
 	}
 
+	async getEvento(id: string | number): Promise<Evento> {
+		return {
+			nombre: 'BOOK FAIR',
+			fecha: 'Martes 28 de septiembre',
+			imagen:
+				'https://s3-alpha-sig.figma.com/img/bbb3/befc/bd3812f6dfd19214d49a0ab8935ffd5f?Expires=1739750400&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=h-DqnS4KbDtrWBInPRD8B2dvvQkJAwYx4v5sqXFqwnvS9kVv2JREOlVMA1lo7uPg3Nvgp3KXnp-IoqXXVD6ysAt3qNbeO1DYVl5wxTDbUeCPZKyLYAfSPTkyxTa4v22LrFUita5hHiOVbcpXyrvdCq8lAcykdTCN44PKtNJFgiZ5LAXH88WzjR8ahxY~X2sJZZDP6OdK7Q222cMYvCQTYGYyQklPYYs8DMRjVyI0TqygG1alLf7YnzmHq2zZHScr3lS4JA~QC8F2N6JU4bcLtmHo2jOtjmzwUIfj66wDr-0EoalaMqAoEhuUiTYu5Zw7Tb2JT9Zh5TFiHO8FGBY1Jg__',
+			lugar: 'Biblioteca Nacional',
+			hora: {
+				inicio: '9:00 AM',
+				fin: '6:00 PM'
+			},
+			ubicacion: {
+				lat: 6.2095012,
+				lng: -75.5688671
+			},
+			description: 'Noise Pop Festival es un festival de música y arte que se celebra en varios lugares del área de la Bahía de San Francisco. El festival está producido por Noise Pop Industries, el promotor independiente de música y arte más antiguo del área de la Bahía de San Francisco. Desde 1993, el festival homónimo de Noise Pop ha sido pionero en el panorama de festivales en múltiples sedes y se ha centrado en mostrar actuaciones de artistas emergentes en sus inicios como ...',
+			imagenes: [
+				'https://s3-alpha-sig.figma.com/img/0c7b/1e4c/f7822a7c1e87b180e5918e03cc04a2cd?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=uGMwKmT7VLFnc3j9g4-9AS0EwVOPko5BIgLwhZ5THGXIrUsjcQe-YLvE1hv0~kG0CLLw-XA6WuDTZvy7wSkcp8Sh~nr8bq1YRwL8qjXadX8EzigsRVFP6c5sQNq65Y69NFDveGAW9iz0qG0YjhzY5bjpCPckyQd9cWm38Jug0GJsJ7Vo0y0gGsCGmPMod6Ysy030a2EjamSqQyG5d1VoJxmkfHQN-8O8vll9sTJtsRUma9nWebL2b5ofngFYbvwaRk1k2FstcCIKMAkKGE13kyNs-1gtxY6tikmBepZVUP~SnL~UZLwQpW-3f~Xs9scq3Hp6bhhLHY0zNmq5MqWNTQ__',
+				'https://s3-alpha-sig.figma.com/img/3e0b/2fa7/24d404e4b4c5f31a9279cb83abf862eb?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=XKNOG7~ylt9KQWO0DeqneOYmcW9MK4Jj0oUSC-PpWEfFviW~Lk139sMturo4ceg4Jr9NZiXe22L803IL348dw~XsApgRoN3~TBYry7hLV~lZP0v7SKOFtIIeOV5qUrmAmLwhysLOpziS9bZB5clyruMQqrL7JWeHVpmg2P09hve2LR9-Jxk9gc7Y3Ief9iV4051RLHCJslbnDffm4O3hRpK6MyUc~w~qxjDL4KyiEaZTZdch5ylJssagyrX5LQWzX-V0Z4J8v14x0OzQfW-R3HydeSNiLw7n-4dOBcEClGzzLJYtjFFRA8SczKD1MqtRce9nkmzkraSEPAdKuK0EFg__',
+				'https://s3-alpha-sig.figma.com/img/cf1f/deb2/14ee29e9f06d59da0cb59c5edb13f88a?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=b8qR6K8iwThmPosbjMfmfoVtxSwcl5oqFE1O75iMFSRAeWhE2BNEXWXwYuryEHwlEv~7AjoNeZK7B8114EIP0Ol6x8mOVFs67AuzjzI363xhTv7yCe0sH6Z18QafVE0tliriNRm5xGEuYm7iZEZID7fjTsqoPXZ7DB30loonolaZMPZbffDtQ9bJbFV0Y0quxMqlnT~sL325oXgsn-bL-ZdsWaEJ5dSNWkQcFm8Jk~3NnmgXWvqeeU8Z9Yx0h5PAWhGV0xLr3-UAMjASkJTX0HkS922YJhQFh79dsrgwwM2565~R4clqIL265UH7zq5QqRDEdktQJZ1-OhwGgaKJKw__',
+				'https://s3-alpha-sig.figma.com/img/6060/c0aa/29c740bdf6145d9c99dd9a5b71cb22f5?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=AsiZ6obXQ7cWzCklurmGWeYa1GI~V6kgtc-UxVS5WpwzyJ-XL~fAi8cI4F3AB5c0rKpcgIjjX4kngl~huVL0Z9yzTi21-GBQAyNLEWyF4NEs~9jdXAGoOGlcbqbb7lOoEU6N4T73RqtAwS3qhfj8WHRRU11snJiU72PY2bZvNBSlB~qKnWjJ2qccTT0dueu5cUZ98PTs9cLsyEU-FGyQcGhQ~TsGCd-4ix90kWR7Lw7aT-GVko5B7THJn9GkijZPH24bus1VgOAwSg7CtoRAybSR49Ba2GZBa46Zul4WqxOTTYwmVG2kC47YqxZN3GAv216sLPcLZSFNOKM3PR6Tww__',
+				'https://s3-alpha-sig.figma.com/img/8a54/444f/385c96c9c663822b80c1c4e71aa382b1?Expires=1739145600&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=FWPaiR4tKW2ud~UkuBDlgS8Ej2Va2xz4GzRwuEVRut2~S~QQXr5Qf2VyetR48pEZQVLNVO9TT5nN9PSdq9lwCK0prWO~9dbPa6dM8yIVYDDDk5O8QAzLqWe5cHZfO2r3Gw1WKye~0QmrADuO9aOnLS4gD1QGVk2-pWbN~iBrS2rs-K-94TxssPszNQZJvDUST3LgbbP1GB9uQphy9-kIp8iSbVfCtg~MQ9CKbsGNJWBnJbDCQ8zp2ytCTFPc1SoXKEsisTijB2sg7E3VWX5wOx~SGE2ew6uC56ubo6~lR3dCVIyB03Jqc02PIqcreuTzqFSDKDnEUjxLkLWo0QpHiA__'
+			],
+		}
+	}
+
 	async getEstablecimientos(): Promise<Establecimiento[]> {
 		return [
 			{
@@ -87,6 +113,7 @@ export class DatabaseController {
 	async getEventos(): Promise<Evento[]> {
 		return [
 			{
+				id: 1,
 				nombre: 'BOOK FAIR',
 				fecha: 'Martes 28 de septiembre',
 				imagen:
@@ -95,9 +122,14 @@ export class DatabaseController {
 				hora: {
 					inicio: '9:00 AM',
 					fin: '6:00 PM'
+				},
+				ubicacion: {
+					lat: 6.2095012,
+					lng: -75.5688671
 				}
 			},
 			{
+				id: 1,
 				nombre: 'MUSIC FESTIVAL 1',
 				fecha: 'Sábado 25 de septiembre',
 				lugar: 'Dulcinea',
@@ -106,9 +138,14 @@ export class DatabaseController {
 				hora: {
 					inicio: '8:00 PM',
 					fin: '3:00 AM'
+				},
+				ubicacion: {
+					lat: 6.2095012,
+					lng: -75.5688671
 				}
 			},
 			{
+				id: 1,
 				nombre: 'ART EXHIBITION',
 				fecha: 'Domingo 26 de septiembre',
 				imagen:
@@ -117,9 +154,14 @@ export class DatabaseController {
 				hora: {
 					inicio: '10:00 AM',
 					fin: '5:00 PM'
+				},
+				ubicacion: {
+					lat: 6.2095012,
+					lng: -75.5688671
 				}
 			},
 			{
+				id: 1,
 				nombre: 'FOOD FESTIVAL',
 				fecha: 'Lunes 27 de septiembre',
 				imagen:
@@ -128,9 +170,15 @@ export class DatabaseController {
 				hora: {
 					inicio: '12:00 PM',
 					fin: '8:00 PM'
+				},
+				ubicacion: {
+					lat: 6.2095012,
+					lng: -75.5688671
 				}
 			},
+			
 			{
+				id: 1,
 				nombre: 'TECH CONFERENCE',
 				fecha: 'Miércoles 29 de septiembre',
 				imagen:
@@ -139,6 +187,10 @@ export class DatabaseController {
 				hora: {
 					inicio: '9:00 AM',
 					fin: '5:00 PM'
+				},
+				ubicacion: {
+					lat: 6.2095012,
+					lng: -75.5688671
 				}
 			}
 		];

@@ -1,3 +1,8 @@
+export type Coordinates = {
+	lat: number;
+	lng: number;
+};
+
 export type Evento = {
 	id?: string | number;
 	nombre: string;
@@ -8,4 +13,5 @@ export type Evento = {
 		inicio: string;
 		fin: string;
 	};
+	ubicacion: Coordinates;
 };

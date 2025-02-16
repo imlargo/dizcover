@@ -2,7 +2,6 @@
 	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
 	import { Badge } from '$components/ui/badge/index.js';
 	import Galery from '$components/establecimiento/Galery.svelte';
-	import Events from '$components/establecimiento/Events.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
 	import GaleryEstablecimientos from '$components/home/galery/Galery.svelte';
 	import { DatabaseController } from '$lib/services/db';
@@ -13,8 +12,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	const establecimiento: Establecimiento = data.establecimiento as Establecimiento;
-	const eventos: Evento[] = data.eventos as Evento[];
+	const evento: Evento = data.evento as Evento;
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
@@ -22,15 +20,17 @@
 	};
 
 	const dbController = new DatabaseController();
-	let recomendados: Establecimiento[] = $state([])
+	let recomendados: Establecimiento[] = $state([]);
 	dbController.getEstablecimientos().then((data) => (recomendados = data));
+
+	import Hero from '$lib/components/evento/Hero.svelte';
 </script>
 
-<div class="relative h-[90vh]">
+<div class="relative h-[90vh] overflow-hidden">
 	<img
-		src={establecimiento.imagen}
-		class="absolute -z-10 h-full w-full object-cover"
-		alt={establecimiento.nombre}
+		src={evento.imagen}
+		class="cover-image absolute -z-10 h-full w-full object-cover blur-xl"
+		alt={evento.nombre}
 	/>
 
 	<div class="flex h-full w-full flex-col justify-between p-12">
@@ -42,36 +42,26 @@
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white">Establecimiento</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white">Evento</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
-						<Breadcrumb.Page class="text-white">{establecimiento.nombre}</Breadcrumb.Page>
+						<Breadcrumb.Page class="text-white">{evento.nombre}</Breadcrumb.Page>
 					</Breadcrumb.Item>
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 
-			<span class="flex gap-2 items-center justify-center px-6 py-1.5 rounded-full text-[#FF0000] bg-[#3C0101] border border-[#FF0000]">
-				<span class="size-3 rounded-full  bg-[#FF0000] "></span>
-				<span>Cerrado</span>
+			<span
+				class="flex items-center justify-center gap-2 rounded-full border border-[#FF0000] bg-[#3C0101] px-6 py-1.5 text-[#FF0000]"
+			>
+				<span class="size-3 rounded-full bg-[#FF0000]"></span>
+				<span>Agotado</span>
 			</span>
 		</div>
 
-		<div class="flex flex-col gap-8">
-			<div class="flex gap-4">
-				<h5 class="text-6xl font-bold">
-					<span>{establecimiento.nombre}</span>
-					<span class="text-[#D400FE]">
-						<i class="bi bi-star-fill"></i>
-						<span>{establecimiento.score}</span>
-					</span>
-				</h5>
-			</div>
-
-			<div class="flex gap-4">
-				{#each establecimiento.tags as tag}
-					<Badge variant="purple">{tag}</Badge>
-				{/each}
+		<div class="flex h-full w-full items-center justify-center">
+			<div class="flex px-12">
+				<Hero {evento} />
 			</div>
 		</div>
 	</div>
@@ -80,21 +70,14 @@
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
 		<h3 class="text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{establecimiento.description}</p>
+		<p class="text-lg">{evento.description}</p>
 	</div>
 
 	<div class="space-y-6">
 		<h3 class="text-3xl font-bold">Galeria</h3>
 
 		<div>
-			<Galery images={establecimiento.imagenes} />
-		</div>
-	</div>
-
-	<div class="space-y-6">
-		<h3 class="text-center text-3xl font-bold">Eventos</h3>
-		<div>
-			<Events events={eventos.slice(0, 3)} />
+			<Galery images={evento.imagenes} />
 		</div>
 	</div>
 
@@ -102,22 +85,21 @@
 		<h3 class="text-3xl font-bold">Ubicacion</h3>
 
 		<div>
-			<Map coords={establecimiento.ubicacion} title={establecimiento.nombre} />
+			<Map coords={evento.ubicacion} title={evento.nombre} />
 		</div>
 
 		<div class="flex justify-around">
 			<Button
 				class="px-12 py-8 text-xl "
 				variant="secondary"
-				href={getGoogleMapsLink(establecimiento.ubicacion)}
+				href={getGoogleMapsLink(evento.ubicacion)}
 				target="_blank">Ir ahora</Button
 			>
 			<Button class="px-12 py-8 text-xl ">Reservar</Button>
 		</div>
 	</div>
 
-
-	<hr>
+	<hr />
 
 	<div class="space-y-6">
 		<GaleryEstablecimientos title="Recomendados" establecimientos={recomendados} />
@@ -125,7 +107,7 @@
 </main>
 
 <style>
-	img {
-		filter: grayscale(100%) brightness(50%);
+	.cover-image {
+		filter: brightness(50%);
 	}
 </style>
