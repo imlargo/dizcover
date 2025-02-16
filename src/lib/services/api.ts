@@ -25,7 +25,7 @@ interface ApiOptions extends RequestInit {
 	headers?: HeadersInit;
 }
 
-async function $api(endpoint: string, options: ApiOptions = {}): Promise<any> {
+export async function $api(endpoint: string, options: ApiOptions = {}): Promise<any> {
 	const headers = createHeaders(options);
 	const response = await fetch(`${apiBaseUrl}${endpoint}`, {
 		...options,
@@ -33,5 +33,3 @@ async function $api(endpoint: string, options: ApiOptions = {}): Promise<any> {
 	});
 	return handleResponse(response);
 }
-
-export default $api;
