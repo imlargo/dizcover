@@ -20,9 +20,9 @@
 	/>
 
 	<div class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-8 text-white">
-		<h5 class="text-6xl font-bold">{establecimiento.nombre}</h5>
+		<h5 class="text-6xl font-display">{establecimiento.nombre}</h5>
 
-		<p class="text-lg">{establecimiento.descripcion}</p>
+		<p class="text-xl max-w-screen-xl">{establecimiento.descripcion}</p>
 
 		<div class="flex space-x-4">
 			{#each establecimiento.tags as tag}
