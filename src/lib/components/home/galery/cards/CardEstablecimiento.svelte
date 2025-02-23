@@ -30,7 +30,7 @@
 	>
 
 	<div
-		class="absolute bottom-0 left-0 flex w-full items-center justify-center space-x-2 bg-black bg-opacity-50 py-5"
+		class="absolute bottom-0 left-0 flex w-full items-center justify-center gap-2 bg-black bg-opacity-50 py-5 overflow-x-auto"
 	>
 		{#each establecimiento.etiquetas as tag}
 			<Badge variant="purple">{tag}</Badge>
