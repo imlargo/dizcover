@@ -31,7 +31,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		@apply rounded-lg;
+		@apply rounded-lg bg-white/5 animate-pulse;
 		filter: grayscale(100%) brightness(50%);
 		transition: filter 0.4s;
 	}
