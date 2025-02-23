@@ -8,7 +8,7 @@
 
 <div class="grid grid-cols-5 gap-4 overflow-hidden">
 	<div class="col-span-2">
-		<img src={images ? images[0] : ''} alt="" />
+		<img src={images ? images[0] : ''} class="h-[537px]" alt="" />
 	</div>
 
 	<div>
