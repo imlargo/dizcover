@@ -8,6 +8,7 @@ export type Evento = {
 	nombre: string;
 	fecha: string;
 	lugar: string;
+	descripcion: string;
 	primera_imagen: string;
 	hora: {
 		inicio: string;

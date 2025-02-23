@@ -16,7 +16,8 @@
 	let { data }: { data: PageData } = $props();
 
 	const evento: Evento = data.evento as Evento;
-
+	const imagenesEvento = data.imagenes.map((img) => img.imagen);
+	
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
@@ -73,14 +74,14 @@
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
 		<h3 class="text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{evento.description}</p>
+		<p class="text-lg">{evento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
 		<h3 class="text-3xl font-bold">Galeria</h3>
 
 		<div>
-			<BentoGalery images={evento.imagenes} />
+			<BentoGalery images={imagenesEvento} />
 		</div>
 	</div>
 
