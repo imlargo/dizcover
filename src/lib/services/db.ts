@@ -22,4 +22,14 @@ export class DatabaseController {
 		const response = await $api(`/api/evento/`)
 		return response
 	}
+
+	async getImagenesEstablecimiento(id: string | number): Promise<string[]> {
+		const response = await $api(`/api/establecimiento/${id}/imagenes`)
+		return response
+	}
+
+	async getImagenesEvento(id: string | number): Promise<string[]> {
+		const response = await $api(`/api/evento/${id}/imagenes`)
+		return response
+	}
 }
