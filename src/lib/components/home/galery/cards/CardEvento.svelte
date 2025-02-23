@@ -9,7 +9,7 @@
 	const { evento }: Props = $props();
 </script>
 
-<div class="">
+<div class="flex flex-col items-center justify-center w-[315px]">
 	<div class="overflow-hidden rounded-md h-[466px] w-[315px]">
 		<a data-sveltekit-reload href="/evento/{evento.id}" class="overflow-hidden rounded-md">
 			<img src={evento.primera_imagen} alt="" class="h-full w-full rounded-md object-cover" />

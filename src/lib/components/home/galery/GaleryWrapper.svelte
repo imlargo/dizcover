@@ -20,7 +20,7 @@
 
 	const mapTipoToSpacing: Record<TipoGaleria, string> = {
 		establecimiento: 'pl-8 md:basis-1/2 lg:basis-1/3',
-		evento: 'pl-8 md:basis-1/2 lg:basis-1/5'
+		evento: 'pl-8 md:basis-1/3 lg:basis-1/5'
 	};
 
 	const galeryConfig: GaleryConfig = {
