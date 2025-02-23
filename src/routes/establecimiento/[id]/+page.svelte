@@ -4,7 +4,6 @@
 	import Events from '$components/establecimiento/Events.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
 	import DialogReserva from '$components/kit/DialogReserva.svelte';
-	import GaleryEstablecimientos from '$components/home/galery/Galery.svelte';
 	import { DatabaseController } from '$lib/services/db';
 	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
 	import type { PageData } from './$types';
