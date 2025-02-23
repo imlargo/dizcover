@@ -4,10 +4,12 @@ import { DatabaseController } from '$lib/services/db';
 export const load = (async ({ params }) => {
 	const dbController = new DatabaseController();
 	const establecimiento = await dbController.getEstablecimiento(params.id);
-	const eventos = await dbController.getEventos();
+	const eventos = await dbController.getEventos(); 
+	const imagenes = await dbController.getImagenesEstablecimiento(establecimiento.id as number);
 
 	return {
 		establecimiento: establecimiento,
-		eventos: eventos
+		eventos: eventos,
+		imagenes: imagenes
 	};
 }) satisfies PageServerLoad;

@@ -19,6 +19,7 @@
 
 	const establecimiento: Establecimiento = data.establecimiento as Establecimiento;
 	const eventos: Evento[] = data.eventos as Evento[];
+	const imagenesEstablecimiento = data.imagenes.map((img) => img.imagen);
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
@@ -91,7 +92,7 @@
 		<h3 class="text-3xl font-bold font-display">Galeria</h3>
 
 		<div>
-			<BentoGalery images={establecimiento.imagenes} />
+			<BentoGalery images={imagenesEstablecimiento} />
 		</div>
 	</div>
 
