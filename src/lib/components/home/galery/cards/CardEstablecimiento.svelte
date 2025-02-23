@@ -13,23 +13,26 @@
 	<div class="h-[349px] w-[695px]">
 		<a
 			data-sveltekit-reload
-			href="/establecimiento/1"
+			href="/establecimiento/{establecimiento.id}"
 			class="h-[349px] w-[695px] overflow-hidden rounded-md"
 		>
-			<img src={establecimiento.imagen} alt="" class="max-w-full rounded-md object-cover hover:scale-105 transition-all duration-300" />
+			<img
+				src={establecimiento.primera_imagen}
+				alt=""
+				class="max-w-full rounded-md object-cover transition-all duration-300 hover:scale-105"
+			/>
 		</a>
 	</div>
 
-	<div
-		class="absolute left-0 top-0 rounded-br-md bg-black bg-opacity-70 px-5 py-3 text-lg font-semibold text-white"
+	<span
+		class="absolute left-0 top-0 rounded-br-md bg-black bg-opacity-70 px-5 py-3 text-lg font-bold text-white"
+		>{establecimiento.nombre}</span
 	>
-		<span>{establecimiento.nombre}</span>
-	</div>
 
 	<div
-		class="absolute bottom-0 left-0 flex w-full items-center justify-center space-x-2 bg-black bg-opacity-50 py-5"
+		class="flex w-full absolute bottom-0 left-0 items-center gap-2 bg-black bg-opacity-50 py-5 overflow-x-auto px-4"
 	>
-		{#each establecimiento.tags as tag}
+		{#each establecimiento.etiquetas as tag}
 			<Badge variant="purple">{tag}</Badge>
 		{/each}
 	</div>

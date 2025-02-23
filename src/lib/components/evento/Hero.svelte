@@ -22,7 +22,7 @@
 
 <div class="grid grid-cols-12 gap-x-12">
 	<div class="col-span-6">
-		<img src={evento.imagen} alt={evento.nombre} class="h-[560px] w-[380px] object-cover" />
+		<img src={evento.primera_imagen} alt={evento.nombre} class="h-[560px] w-[380px] object-cover" />
 	</div>
 
 	<div class="col-span-6 flex flex-col gap-4">
@@ -41,7 +41,7 @@
 
 			<span class="flex items-center gap-2">
 				<i class="bi bi-clock"></i>
-				<span>{evento.hora.inicio} - {evento.hora.fin}</span>
+				<span>{evento.hora?.inicio} - {evento.hora?.fin}</span>
 			</span>
 		</div>
 

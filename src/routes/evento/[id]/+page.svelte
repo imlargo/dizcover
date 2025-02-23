@@ -1,21 +1,24 @@
 <script lang="ts">
 	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
 	import { Badge } from '$components/ui/badge/index.js';
-	import Galery from '$components/establecimiento/Galery.svelte';
+	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
-	import GaleryEstablecimientos from '$components/home/galery/Galery.svelte';
 	import { DatabaseController } from '$lib/services/db';
 	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
 	import type { PageData } from './$types';
 	import type { Evento } from '$lib/types/evento';
 	import { Button } from '$components/ui/button';
 
+	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
+	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
+	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
+
 	let { data }: { data: PageData } = $props();
 
 	const evento: Evento = data.evento as Evento;
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
-		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
 	};
 
@@ -28,7 +31,7 @@
 
 <div class="relative h-[90vh] overflow-hidden">
 	<img
-		src={evento.imagen}
+		src={evento.primera_imagen}
 		class="cover-image absolute -z-10 h-full w-full object-cover blur-xl"
 		alt={evento.nombre}
 	/>
@@ -77,7 +80,7 @@
 		<h3 class="text-3xl font-bold">Galeria</h3>
 
 		<div>
-			<Galery images={evento.imagenes} />
+			<BentoGalery images={evento.imagenes} />
 		</div>
 	</div>
 
@@ -102,7 +105,13 @@
 	<hr />
 
 	<div class="space-y-6">
-		<GaleryEstablecimientos title="Recomendados" establecimientos={recomendados} />
+		<GaleryWrapper title="Recomendados" tipo="establecimiento">
+			{#each recomendados as establecimiento}
+				<GaleryItem>
+					<CardEstablecimiento {establecimiento} />
+				</GaleryItem>
+			{/each}
+		</GaleryWrapper>
 	</div>
 </main>
 

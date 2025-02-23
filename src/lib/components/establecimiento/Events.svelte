@@ -16,7 +16,7 @@
 			class="col-span-1 h-[620] w-[418] overflow-hidden rounded-md"
 		>
 			<img
-				src={event.imagen}
+				src={event.primera_imagen}
 				alt={event.nombre}
 				class="h-full w-full object-cover transition-all duration-300 hover:scale-110"
 			/>

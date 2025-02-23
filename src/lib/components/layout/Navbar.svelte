@@ -14,7 +14,9 @@
 	<div class="flex w-full items-center justify-between px-10 py-6">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
-				<a data-sveltekit-reload href="/" class="text-3xl font-bold text-white">Dizcover</a>
+				<a data-sveltekit-reload href="/" class="text-3xl font-bold text-white">
+					<img src="/dizcover-logo.png" alt="" />
+				</a>
 				<div class="flex items-center md:hidden">
 					<Button variant="ghost" size="icon" class="md:hidden" onclick={() => (isOpenMenu = true)}>
 						<span><i class="bi bi-list"></i></span>

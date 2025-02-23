@@ -1,7 +1,6 @@
 <script lang="ts">
 	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
 	import { Badge } from '$components/ui/badge/index.js';
-	import Galery from '$components/establecimiento/Galery.svelte';
 	import Events from '$components/establecimiento/Events.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
 	import DialogReserva from '$components/kit/DialogReserva.svelte';
@@ -11,6 +10,11 @@
 	import type { PageData } from './$types';
 	import type { Evento } from '$lib/types/evento';
 	import { Button } from '$components/ui/button';
+	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
+
+	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
+	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
+	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -18,7 +22,7 @@
 	const eventos: Evento[] = data.eventos as Evento[];
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
-		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
 	};
 
@@ -29,7 +33,7 @@
 
 <div class="relative h-[90vh]">
 	<img
-		src={establecimiento.imagen}
+		src={establecimiento.primera_imagen}
 		class="absolute -z-10 h-full w-full object-cover"
 		alt={establecimiento.nombre}
 	/>
@@ -39,11 +43,11 @@
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white" href="/">Home</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white hover:text-white/60" href="/">Home</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white">Establecimiento</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white hover:text-white/60">Establecimiento</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
@@ -59,18 +63,18 @@
 		</div>
 
 		<div class="flex flex-col gap-8">
-			<div class="flex gap-4">
-				<h5 class="text-6xl font-bold">
-					<span>{establecimiento.nombre}</span>
-					<span class="text-[#D400FE]">
-						<i class="bi bi-star-fill"></i>
-						<span>{establecimiento.score}</span>
-					</span>
+			<div class="flex gap-4 items-center">
+				<h5 class="text-6xl font-display">
+					{establecimiento.nombre}
 				</h5>
+				<span class="text-5xl font-bold text-[#D400FE]">
+					<i class="bi bi-star-fill"></i>
+					<span>{typeof establecimiento.calificacion_promedio === 'string' ? establecimiento.calificacion_promedio : establecimiento.calificacion_promedio.toFixed(1)}</span>
+				</span>
 			</div>
 
 			<div class="flex gap-4">
-				{#each establecimiento.tags as tag}
+				{#each establecimiento.etiquetas as tag}
 					<Badge variant="purple">{tag}</Badge>
 				{/each}
 			</div>
@@ -80,15 +84,15 @@
 
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{establecimiento.description}</p>
+		<h3 class="text-3xl font-bold font-display">Descripcion</h3>
+		<p class="text-lg">{establecimiento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Galeria</h3>
+		<h3 class="text-3xl font-bold font-display">Galeria</h3>
 
 		<div>
-			<Galery images={establecimiento.imagenes} />
+			<BentoGalery images={establecimiento.imagenes} />
 		</div>
 	</div>
 
@@ -100,7 +104,7 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Ubicacion</h3>
+		<h3 class="text-3xl font-bold font-display">Ubicacion</h3>
 
 		<div>
 			<Map coords={establecimiento.ubicacion} title={establecimiento.nombre} />
@@ -121,7 +125,13 @@
 	<hr>
 
 	<div class="space-y-6">
-		<GaleryEstablecimientos title="Recomendados" establecimientos={recomendados} />
+		<GaleryWrapper title="Recomendados" tipo="establecimiento">
+			{#each recomendados as establecimiento}
+				<GaleryItem>
+					<CardEstablecimiento {establecimiento} />
+				</GaleryItem>
+			{/each}
+		</GaleryWrapper>
 	</div>
 </main>
 

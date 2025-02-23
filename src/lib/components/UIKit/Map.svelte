@@ -9,14 +9,14 @@
 	const { coords, title }: Props = $props();
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
-		const mapsUrl = `https://www.google.com/maps?q=${coords.lat},${coords.lng}`;
+		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
 	};
 
 	function getGoogleMapsIframe(coords: Coordinates, zoom = 16) {
 		const baseUrl = 'https://www.google.com/maps';
 		const queryParams = new URLSearchParams({
-			q: `${coords.lat},${coords.lng}`,
+			q: `${coords?.lat},${coords?.lng}`,
 			z: zoom.toString(),
 			output: 'embed'
 		});
