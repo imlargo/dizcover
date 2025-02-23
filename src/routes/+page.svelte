@@ -16,7 +16,7 @@
 <div class="mt-12 space-y-24">
 	<GalerySale />
 	
-	<GaleryWrapper title="Para ti" tipo="establecimiento" size={establecimientos.length}>
+	<GaleryWrapper title="Para ti" tipo="establecimiento">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>
 				<CardEstablecimiento {establecimiento} />
@@ -24,7 +24,7 @@
 		{/each}
 	</GaleryWrapper>
 
-	<GaleryWrapper title="Eventos" tipo="evento" size={establecimientos.length}>
+	<GaleryWrapper title="Eventos" tipo="evento">
 		{#each eventos as evento}
 			<GaleryItem>
 				<CardEvento {evento} />
@@ -32,7 +32,7 @@
 		{/each}
 	</GaleryWrapper>
 
-	<GaleryWrapper title="Recomendados" tipo="establecimiento" size={establecimientos.length}>
+	<GaleryWrapper title="Recomendados" tipo="establecimiento">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>
 				<CardEstablecimiento {establecimiento} />
@@ -40,7 +40,7 @@
 		{/each}
 	</GaleryWrapper>
 
-	<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento" size={establecimientos.length}>
+	<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>
 				<CardEstablecimiento {establecimiento} />

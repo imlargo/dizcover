@@ -123,7 +123,7 @@
 	<hr>
 
 	<div class="space-y-6">
-		<GaleryWrapper title="Recomendados" tipo="establecimiento" size={recomendados.length}>
+		<GaleryWrapper title="Recomendados" tipo="establecimiento">
 			{#each recomendados as establecimiento}
 				<GaleryItem>
 					<CardEstablecimiento {establecimiento} />
