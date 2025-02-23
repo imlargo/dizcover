@@ -19,7 +19,7 @@ const config = {
 			$utils: './src/lib/utils',
 			$actions: './src/lib/actions',
 			$server: './src/lib/server',
-			$types: './src/lib/types',
+			$types: './src/lib/types'
 		}
 	}
 };

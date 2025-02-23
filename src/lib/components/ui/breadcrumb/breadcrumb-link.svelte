@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { HTMLAnchorAttributes } from "svelte/elements";
-	import type { Snippet } from "svelte";
-	import type { WithElementRef } from "bits-ui";
-	import { cn } from "$lib/utils.js";
+	import type { HTMLAnchorAttributes } from 'svelte/elements';
+	import type { Snippet } from 'svelte';
+	import type { WithElementRef } from 'bits-ui';
+	import { cn } from '$lib/utils.js';
 
 	let {
 		ref = $bindable(null),
@@ -16,16 +16,16 @@
 	} = $props();
 
 	const attrs = $derived({
-		class: cn("hover:text-foreground transition-colors", className),
+		class: cn('hover:text-foreground transition-colors', className),
 		href,
-		...restProps,
+		...restProps
 	});
 </script>
 
 {#if child}
 	{@render child({ props: attrs })}
 {:else}
-	<a bind:this={ref} {...attrs}>
+	<a data-sveltekit-reload bind:this={ref} {...attrs}>
 		{@render children?.()}
 	</a>
 {/if}
