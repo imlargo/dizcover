@@ -9,9 +9,11 @@
 
 	let { data }: { data: PageData } = $props();
 	const { establecimientos, eventos } = data;
+
+	const featuredEstablecimiento = establecimientos[Math.floor(Math.random() * establecimientos.length)];
 </script>
 
-<Hero />
+<Hero establecimiento={featuredEstablecimiento} />
 
 <div class="mt-12 space-y-24">
 	<GalerySale />
