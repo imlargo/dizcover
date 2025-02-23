@@ -41,11 +41,11 @@
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white" href="/">Home</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white hover:text-white/60" href="/">Home</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white">Establecimiento</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white hover:text-white/60">Establecimiento</Breadcrumb.Link>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
