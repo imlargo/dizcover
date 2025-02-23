@@ -1,15 +1,18 @@
 <script lang="ts">
 	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
 	import { Badge } from '$components/ui/badge/index.js';
-	import Galery from '$components/establecimiento/Galery.svelte';
 	import Events from '$components/establecimiento/Events.svelte';
 	import Map from '$lib/components/UIKit/Map.svelte';
-	import GaleryEstablecimientos from '$components/home/galery/Galery.svelte';
 	import { DatabaseController } from '$lib/services/db';
 	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
 	import type { PageData } from './$types';
 	import type { Evento } from '$lib/types/evento';
 	import { Button } from '$components/ui/button';
+	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
+
+	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
+	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
+	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -87,7 +90,7 @@
 		<h3 class="text-3xl font-bold">Galeria</h3>
 
 		<div>
-			<Galery images={establecimiento.imagenes} />
+			<BentoGalery images={establecimiento.imagenes} />
 		</div>
 	</div>
 
@@ -120,7 +123,13 @@
 	<hr>
 
 	<div class="space-y-6">
-		<GaleryEstablecimientos title="Recomendados" establecimientos={recomendados} />
+		<GaleryWrapper title="Recomendados" tipo="establecimiento">
+			{#each recomendados as establecimiento}
+				<GaleryItem>
+					<CardEstablecimiento {establecimiento} />
+				</GaleryItem>
+			{/each}
+		</GaleryWrapper>
 	</div>
 </main>
 
