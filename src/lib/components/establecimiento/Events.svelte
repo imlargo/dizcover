@@ -13,7 +13,7 @@
 		<a
 			data-sveltekit-reload
 			href="/evento/{event.id}"
-			class="col-span-1 h-[620] w-[418] overflow-hidden rounded-md"
+			class="col-span-1 h-[620px] w-auto overflow-hidden rounded-md aspect-w-16 aspect-h-9"
 		>
 			<img
 				src={event.primera_imagen}
