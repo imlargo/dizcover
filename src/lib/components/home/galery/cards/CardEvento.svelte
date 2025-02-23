@@ -9,10 +9,13 @@
 	const { evento }: Props = $props();
 </script>
 
-<div>
-	<a data-sveltekit-reload href="/evento/{evento.id}" class="h-[466px] w-[315px] overflow-hidden rounded-md">
-		<img src={evento.primera_imagen} alt="" class="h-full w-full rounded-md object-cover" />
-	</a>
+<div class="">
+	<div class="overflow-hidden rounded-md h-[466px] w-[315px]">
+		<a data-sveltekit-reload href="/evento/{evento.id}" class="overflow-hidden rounded-md">
+			<img src={evento.primera_imagen} alt="" class="h-full w-full rounded-md object-cover" />
+		</a>
+	</div>
+	
 
 	<div class="text-center">
 		<h5 class="mt-4 text-xl font-bold">{evento.nombre}</h5>
