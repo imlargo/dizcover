@@ -10,7 +10,7 @@
 	const isHome = $derived(currentRoute === '/');
 </script>
 
-<nav class="z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
+<nav class="navbar z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
 	<div class="flex w-full items-center justify-between px-10 py-6">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
@@ -125,3 +125,13 @@
 		</div>
 	{/if}
 </nav>
+
+<style>
+	.navbar {
+		--bg-color: rgb(39, 39, 39, 0.2) !important;
+		--blur: 4px;
+		background-color: var(--bg-color) !important;
+		backdrop-filter: blur(var(--blur)) !important;
+		-webkit-backdrop-filter: blur(var(--blur)) !important;
+	}
+</style>
