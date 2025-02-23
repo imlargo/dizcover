@@ -67,7 +67,7 @@
 				</h5>
 				<span class="text-5xl font-bold text-[#D400FE]">
 					<i class="bi bi-star-fill"></i>
-					<span>{establecimiento.calificacion_promedio.toFixed(1)}</span>
+					<span>{typeof establecimiento.calificacion_promedio === 'string' ? establecimiento.calificacion_promedio : establecimiento.calificacion_promedio.toFixed(1)}</span>
 				</span>
 			</div>
 
