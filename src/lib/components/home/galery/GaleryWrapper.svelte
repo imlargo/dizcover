@@ -1,6 +1,6 @@
 <script lang="ts">
 	import * as Carousel from '$components/ui/carousel/index.js';
-	import { setContext, type Snippet } from 'svelte';
+	import { onMount, setContext, type Snippet } from 'svelte';
 	import { type CarouselAPI } from '$lib/components/ui/carousel/context.js';
 
 	type TipoGaleria = 'establecimiento' | 'evento';
@@ -31,7 +31,7 @@
 	setContext('galery-config', galeryConfig);
 	let api = $state<CarouselAPI>();
 	let current = $state(0);
-	const count = $derived(api ? api.scrollSnapList().length : 0);
+	let count = $derived(api ? api.scrollSnapList().length : 0);
 
 	$effect(() => {
 		if (api) {
