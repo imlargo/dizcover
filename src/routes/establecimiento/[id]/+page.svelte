@@ -61,14 +61,14 @@
 		</div>
 
 		<div class="flex flex-col gap-8">
-			<div class="flex gap-4">
-				<h5 class="text-6xl font-bold">
-					<span>{establecimiento.nombre}</span>
-					<span class="text-[#D400FE]">
-						<i class="bi bi-star-fill"></i>
-						<span>{establecimiento.calificacion_promedio}</span>
-					</span>
+			<div class="flex gap-4 items-center">
+				<h5 class="text-6xl font-display">
+					{establecimiento.nombre}
 				</h5>
+				<span class="text-5xl font-bold text-[#D400FE]">
+					<i class="bi bi-star-fill"></i>
+					<span>{establecimiento.calificacion_promedio.toFixed(1)}</span>
+				</span>
 			</div>
 
 			<div class="flex gap-4">
@@ -82,12 +82,12 @@
 
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Descripcion</h3>
+		<h3 class="text-3xl font-bold font-display">Descripcion</h3>
 		<p class="text-lg">{establecimiento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Galeria</h3>
+		<h3 class="text-3xl font-bold font-display">Galeria</h3>
 
 		<div>
 			<BentoGalery images={establecimiento.imagenes} />
@@ -102,7 +102,7 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold">Ubicacion</h3>
+		<h3 class="text-3xl font-bold font-display">Ubicacion</h3>
 
 		<div>
 			<Map coords={establecimiento.ubicacion} title={establecimiento.nombre} />
