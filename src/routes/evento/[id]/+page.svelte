@@ -105,7 +105,7 @@
 	<hr />
 
 	<div class="space-y-6">
-		<GaleryWrapper title="Recomendados" tipo="establecimiento">
+		<GaleryWrapper title="Recomendados" tipo="establecimiento" size={recomendados.length}>
 			{#each recomendados as establecimiento}
 				<GaleryItem>
 					<CardEstablecimiento {establecimiento} />

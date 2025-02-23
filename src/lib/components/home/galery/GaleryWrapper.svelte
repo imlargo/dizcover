@@ -8,6 +8,7 @@
 		title: string;
 		tipo: TipoGaleria;
 		children: Snippet;
+		size: number;
 	};
 
 	const { title, tipo, children }: Props = $props();
