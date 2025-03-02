@@ -67,9 +67,13 @@
 				<DropdownMenu.Content align="end">
 					<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 					<DropdownMenu.Separator />
-					<DropdownMenu.Item>Perfil</DropdownMenu.Item>
+					<DropdownMenu.Item>
+						<a href="/profile">Perfil</a>
+					</DropdownMenu.Item>
 					<DropdownMenu.Item>Configuración</DropdownMenu.Item>
-					<DropdownMenu.Item>Cerrar sesión</DropdownMenu.Item>
+					<DropdownMenu.Item>
+						<a href="/logout">Cerrar sesión</a>
+					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
 
