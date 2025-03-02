@@ -17,6 +17,7 @@
 
 	const evento: Evento = data.evento as Evento;
 	const imagenesEvento = data.imagenes.map((img) => img.imagen);
+	const seatsPricing = data.seatsPricing;
 	
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
@@ -65,7 +66,7 @@
 
 		<div class="flex h-full w-full items-center justify-center">
 			<div class="flex px-12">
-				<Hero {evento} />
+				<Hero {evento} pricing={seatsPricing} />
 			</div>
 		</div>
 	</div>

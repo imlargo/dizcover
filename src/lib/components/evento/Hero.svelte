@@ -1,23 +1,14 @@
 <script lang="ts">
-	import type { Evento } from '$lib/types/evento';
+	import type { Evento, PricingEvento } from '$lib/types/evento';
 
 	type Props = {
 		evento: Evento;
+		pricing: PricingEvento[];
 	};
 
-    type Tier = {
-        label: string;
-        price: number;
-    }
-
-	const { evento }: Props = $props();
-
-    const tierOptions: Tier[] = [
-        { label: "VIP", price: 200000 },
-        { label: "General", price: 100000 },
-        { label: "Balcony", price: 150000 },
-        { label: "Box", price: 250000 }
-    ];
+	const { evento, pricing }: Props = $props();
+	const toPesos = (price: number) => price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+	const toNumber = (price: string) => parseInt(price.split(".")[0]);
 </script>
 
 <div class="grid grid-cols-12 gap-x-12">
@@ -46,10 +37,10 @@
 		</div>
 
 		<div class="flex flex-col rounded-md overflow-hidden gap-y-1 overflow-y-scroll">
-            {#each tierOptions as tier}
+            {#each pricing as tier}
                 <div class="flex justify-between px-4 py-4 glass">
-                    <span class="text-lg font-semibold">{tier.label}</span>
-                    <span class="text-lg font-semibold">{tier.price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' })}</span>
+                    <span class="text-lg font-semibold">{tier.nombre}</span>
+                    <span class="text-lg font-semibold">COP {toPesos(toNumber(tier.precio))}</span>
                 </div>
             {/each}
         </div>
