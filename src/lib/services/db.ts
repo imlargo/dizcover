@@ -1,5 +1,5 @@
 import type { Establecimiento, CoordsEstablecimiento } from '$types/establecimiento';
-import type { Evento } from '$lib/types/evento';
+import type { Evento, PricingEvento } from '$lib/types/evento';
 import { $api } from './api';
 
 export class DatabaseController {
@@ -35,6 +35,11 @@ export class DatabaseController {
 
 	async getCordenadasEstablecimiento(idEstablecimiento: string | number): Promise<CoordsEstablecimiento[]> {
 		const response = await $api(`/api/establecimiento/${idEstablecimiento}/coordenadas/`)
+		return response
+	}
+
+	async getPricingEvento(idEvento: string | number): Promise<PricingEvento[]> {
+		const response = await $api(`/api/evento/asientos/${idEvento}/`)
 		return response
 	}
 }

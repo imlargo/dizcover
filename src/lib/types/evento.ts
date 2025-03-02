@@ -16,3 +16,11 @@ export type Evento = {
 	};
 	ubicacion: Coordinates;
 };
+
+export type PricingEvento = {
+	id: number;
+	nombre: string;
+	precio: string;
+	cupos: number;
+	evento: number;
+}
