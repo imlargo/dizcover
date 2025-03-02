@@ -18,7 +18,7 @@
 	const evento: Evento = data.evento as Evento;
 	const imagenesEvento = data.imagenes.map((img) => img.imagen);
 	const seatsPricing = data.seatsPricing;
-	
+
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
 		return mapsUrl;
@@ -29,6 +29,7 @@
 	dbController.getEstablecimientos().then((data) => (recomendados = data));
 
 	import Hero from '$lib/components/evento/Hero.svelte';
+	import Ubicaciones from '$lib/components/evento/Ubicaciones.svelte';
 </script>
 
 <div class="relative h-[90vh] overflow-hidden">
@@ -74,16 +75,17 @@
 
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Ubicaciones</h3>
+		<h3 class="font-display text-3xl font-bold">Ubicaciones</h3>
+		<Ubicaciones {evento} pricing={seatsPricing} />
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Descripcion</h3>
+		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
 		<p class="text-lg">{evento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Galeria</h3>
+		<h3 class="font-display text-3xl font-bold">Galeria</h3>
 
 		<div>
 			<BentoGalery images={imagenesEvento} />
@@ -91,7 +93,7 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Ubicacion</h3>
+		<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
 
 		<div>
 			<Map coords={evento.ubicacion} title={evento.nombre} />
