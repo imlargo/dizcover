@@ -4,7 +4,7 @@ import { DatabaseController } from '$lib/services/db';
 export const load = (async ({ params }) => {
 	const dbController = new DatabaseController();
 	const establecimiento = await dbController.getEstablecimiento(params.id);
-	const eventos = await dbController.getEventos(); 
+	const eventos = await dbController.getEventosEstablecimiento(params.id); 
 	const imagenes = await dbController.getImagenesEstablecimiento(establecimiento.id as number);
 	const cordenadas = await dbController.getCordenadasEstablecimiento(establecimiento.id as number);
 

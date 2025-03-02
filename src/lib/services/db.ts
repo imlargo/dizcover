@@ -42,4 +42,9 @@ export class DatabaseController {
 		const response = await $api(`/api/evento/asientos/${idEvento}/`)
 		return response
 	}
+
+	async getEventosEstablecimiento(idEstablecimiento: string | number): Promise<Evento[]> {
+		const response = await $api(`/api/evento/establecimiento/${idEstablecimiento}`)
+		return response
+	}
 }
