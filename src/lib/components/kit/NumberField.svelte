@@ -26,13 +26,13 @@
 </script>
 
 <div class="flex items-center space-x-3 rounded">
-	<Button onclick={decrement} variant="ghost" class="flex items-center jutify-center size-8 rounded-full border">
-		<i class="bi bi-dash leading-none"></i>
+	<Button onclick={decrement} variant="ghost" class="flex items-center jutify-center size-8 rounded-full border border-[#3BFF00] hover:bg-white/10">
+		<i class="bi bi-dash leading-none text-[#3BFF00]"></i>
 	</Button>
 	
     <span>{value}</span>
 
-	<Button onclick={increment} variant="ghost" class="flex items-center jutify-center size-8 rounded-full border">
-		<i class="bi bi-plus leading-none"></i>
+	<Button onclick={increment} variant="ghost" class="flex items-center jutify-center size-8 rounded-full border border-[#3BFF00] hover:bg-white/10">
+		<i class="bi bi-plus leading-none text-[#3BFF00]"></i>
 	</Button>
 </div>
