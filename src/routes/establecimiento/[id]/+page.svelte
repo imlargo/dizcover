@@ -20,6 +20,11 @@
 	const establecimiento: Establecimiento = data.establecimiento as Establecimiento;
 	const eventos: Evento[] = data.eventos as Evento[];
 	const imagenesEstablecimiento = data.imagenes.map((img) => img.imagen);
+	const cordenadas = data.cordenadas.length > 0 ? data.cordenadas[0] : null;
+	const cords: Coordinates = {
+		lat: cordenadas?.latitud || "",
+		lng: cordenadas?.longitud || "",
+	};
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
@@ -107,14 +112,14 @@
 		<h3 class="text-3xl font-bold font-display">Ubicacion</h3>
 
 		<div>
-			<Map coords={establecimiento.ubicacion} title={establecimiento.nombre} />
+			<Map coords={cords} title={establecimiento.nombre} />
 		</div>
 
 		<div class="flex justify-around">
 			<Button
 				class="px-12 py-8 text-xl "
 				variant="secondary"
-				href={getGoogleMapsLink(establecimiento.ubicacion)}
+				href={getGoogleMapsLink(cords)}
 				target="_blank">Ir ahora</Button
 			>
 			<DialogReserva />

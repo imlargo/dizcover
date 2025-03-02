@@ -6,10 +6,12 @@ export const load = (async ({ params }) => {
 	const establecimiento = await dbController.getEstablecimiento(params.id);
 	const eventos = await dbController.getEventos(); 
 	const imagenes = await dbController.getImagenesEstablecimiento(establecimiento.id as number);
+	const cordenadas = await dbController.getCordenadasEstablecimiento(establecimiento.id as number);
 
 	return {
 		establecimiento: establecimiento,
 		eventos: eventos,
-		imagenes: imagenes
+		imagenes: imagenes,
+		cordenadas,
 	};
 }) satisfies PageServerLoad;
