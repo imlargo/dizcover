@@ -1,23 +1,32 @@
 <script lang="ts">
-	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
-	import { Badge } from '$components/ui/badge/index.js';
-	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
-	import Map from '$lib/components/UIKit/Map.svelte';
-	import { DatabaseController } from '$lib/services/db';
-	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
 	import type { PageData } from './$types';
 	import type { Evento } from '$lib/types/evento';
-	import { Button } from '$components/ui/button';
+	import type { Coordinates, Establecimiento } from '$lib/types/establecimiento';
 
+	import * as Breadcrumb from '$components/ui/breadcrumb/index.js';
+	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
+	import Map from '$lib/components/UIKit/Map.svelte';
+	import { Button } from '$components/ui/button';
 	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
+	import Hero from '$lib/components/evento/Hero.svelte';
+	import Ubicaciones from '$lib/components/evento/Ubicaciones.svelte';
+	import Artista from '$lib/components/evento/Artista.svelte';
+
+	import { DatabaseController } from '$lib/services/db';
 
 	let { data }: { data: PageData } = $props();
 
 	const evento: Evento = data.evento as Evento;
 	const imagenesEvento = data.imagenes.map((img) => img.imagen);
 	const seatsPricing = data.seatsPricing;
+
+	const artistas = [
+		{ imagen: 'https://s3-alpha-sig.figma.com/img/a723/7d57/739834023ee6496489a599e6887b440c?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=A4SCAgp0rag4j8djvLDEgpdChdCfnoT-ofAeGASv61NIZFTWDvWLSCUyTfer1QBmJj3znvLaTqu-eMkXzkVJmaGJBYblu0wF8V1KS5vbZm5UC1VZUvwFfq49tApOPKRtAVg9Z73iYNb00SHBVm8BKhRBfda~oqBZpFEw4RFmnoBHSbJ1RS7lpMs1WcBcz~yuKvO-aEcAMriHqyOXFKkciF-SwbKZu3QHS1YQlOZi8sSI75iEt-ypyUox2UFycfpMQlSdKSZMY3SFH7HWAUh~3s36UUmpw-cLZtJi7gF7yqIAu4hnW4DB0B6nOWAUZAOBidPcn1Rr42LKmsbBjqKtOA__', nombre: 'Pepito' },
+		{ imagen: 'https://s3-alpha-sig.figma.com/img/a723/7d57/739834023ee6496489a599e6887b440c?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=A4SCAgp0rag4j8djvLDEgpdChdCfnoT-ofAeGASv61NIZFTWDvWLSCUyTfer1QBmJj3znvLaTqu-eMkXzkVJmaGJBYblu0wF8V1KS5vbZm5UC1VZUvwFfq49tApOPKRtAVg9Z73iYNb00SHBVm8BKhRBfda~oqBZpFEw4RFmnoBHSbJ1RS7lpMs1WcBcz~yuKvO-aEcAMriHqyOXFKkciF-SwbKZu3QHS1YQlOZi8sSI75iEt-ypyUox2UFycfpMQlSdKSZMY3SFH7HWAUh~3s36UUmpw-cLZtJi7gF7yqIAu4hnW4DB0B6nOWAUZAOBidPcn1Rr42LKmsbBjqKtOA__', nombre: 'Pepito' },
+		{ imagen: 'https://s3-alpha-sig.figma.com/img/a723/7d57/739834023ee6496489a599e6887b440c?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=A4SCAgp0rag4j8djvLDEgpdChdCfnoT-ofAeGASv61NIZFTWDvWLSCUyTfer1QBmJj3znvLaTqu-eMkXzkVJmaGJBYblu0wF8V1KS5vbZm5UC1VZUvwFfq49tApOPKRtAVg9Z73iYNb00SHBVm8BKhRBfda~oqBZpFEw4RFmnoBHSbJ1RS7lpMs1WcBcz~yuKvO-aEcAMriHqyOXFKkciF-SwbKZu3QHS1YQlOZi8sSI75iEt-ypyUox2UFycfpMQlSdKSZMY3SFH7HWAUh~3s36UUmpw-cLZtJi7gF7yqIAu4hnW4DB0B6nOWAUZAOBidPcn1Rr42LKmsbBjqKtOA__', nombre: 'Pepito' },
+	]
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
@@ -27,9 +36,6 @@
 	const dbController = new DatabaseController();
 	let recomendados: Establecimiento[] = $state([]);
 	dbController.getEstablecimientos().then((data) => (recomendados = data));
-
-	import Hero from '$lib/components/evento/Hero.svelte';
-	import Ubicaciones from '$lib/components/evento/Ubicaciones.svelte';
 </script>
 
 <div class="relative h-[90vh] overflow-hidden">
@@ -89,6 +95,16 @@
 
 		<div>
 			<BentoGalery images={imagenesEvento} />
+		</div>
+	</div>
+
+	<div class="space-y-6">
+		<h3 class="font-display text-3xl font-bold">Artistas</h3>
+
+		<div class="flex justify-center items-top gap-x-8">
+			{#each artistas as artista}
+				<Artista imagen={artista.imagen} nombre={artista.nombre} />		
+			{/each}
 		</div>
 	</div>
 
