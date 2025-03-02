@@ -1,6 +1,6 @@
 export type Coordinates = {
-	lat: number;
-	lng: number;
+	lat: number | string;
+	lng: number | string;
 };
 
 export type Establecimiento = {
@@ -13,3 +13,11 @@ export type Establecimiento = {
 	primera_imagen: string;
 	ubicacion: Coordinates;
 };
+
+export type CoordsEstablecimiento = {
+	id: number;
+	latitud: number;
+	longitud: number;
+	hemisferio_lat: string;
+	hemisferio_lon: string;
+}
