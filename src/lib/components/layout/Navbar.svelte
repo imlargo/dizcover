@@ -39,14 +39,14 @@
 				<a
 					data-sveltekit-reload
 					href="/multimedia"
-					class="text-sm font-medium text-gray-200 hover:text-white"
+					class="text-sm font-medium text-gray-200 hover:text-white font-display"
 				>
 					Multimedia
 				</a>
 				<a
 					data-sveltekit-reload
 					href="/mapa"
-					class="text-sm font-medium text-gray-200 hover:text-white"
+					class="text-sm font-medium text-gray-200 hover:text-white font-display"
 				>
 					Mapa
 				</a>
@@ -68,11 +68,11 @@
 					<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<a href="/profile">Perfil</a>
+						<a href="/profile" data-sveltekit-reload>Perfil</a>
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>Configuración</DropdownMenu.Item>
 					<DropdownMenu.Item>
-						<a href="/logout">Cerrar sesión</a>
+						<a href="/logout" data-sveltekit-reload>Cerrar sesión</a>
 					</DropdownMenu.Item>
 				</DropdownMenu.Content>
 			</DropdownMenu.Root>
