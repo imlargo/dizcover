@@ -5,6 +5,7 @@
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import * as RadioGroup from '$lib/components/ui/radio-group/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
+	import NumberField from './NumberField.svelte';
 
 	let isOpen = $state(false);
 	let numPersonas = $state(1);
@@ -24,16 +25,10 @@
 		</Dialog.Header>
 
 		<div class="flex flex-col items-center justify-center space-y-6 text-black py-8">
-			
-			<div class="flex items-center space-x-3 rounded">
-                <i class="bi bi-person"></i>
-				<Button class="size-8 rounded-full border" onclick={() => numPersonas--} variant="ghost"
-					><i class="bi bi-dash"></i></Button
-				>
-				<span>{numPersonas}</span>
-				<Button class="size-8 rounded-full border" onclick={() => numPersonas++} variant="ghost"
-					><i class="bi bi-plus"></i></Button
-				>
+
+			<div class="flex gap-2">
+				<i class="bi bi-person"></i>
+				<NumberField min={1} max={10} bind:value={numPersonas} onChange={(value) => (numPersonas = value)} />
 			</div>
 
 			<div>
