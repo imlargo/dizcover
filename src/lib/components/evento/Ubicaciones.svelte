@@ -27,7 +27,7 @@
 </script>
 
 <div class="grid grid-cols-2 gap-x-4 max-h-min">
-	<div class="col-span-1 rounded-lg max-h-max">
+	<div class="col-span-1 flex flex-col gap-4 rounded-lg max-h-max">
 		<div class="flex flex-col divide-y divide-neutral-500 border border-neutral-500 rounded">
 			<div class="glass flex justify-between px-4 py-4">
 				<Input
@@ -75,6 +75,10 @@
 				{/each}
 			</ScrollArea>
 		</div>
+
+        <div class="flex justify-end">
+            <Button variant="outline" class="text-lg px-6 py-4 bg-transparent">Confirmar</Button>
+        </div>
 	</div>
 	<div class="col-span-1 h-full rounded-lg bg-neutral-900">
 	</div>
