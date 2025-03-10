@@ -22,7 +22,7 @@
 			name: el.nombre,
 			type: Math.random() > 0.5 ? 'Cover' : 'Cupon de consumo',
 			quantity: Math.floor(Math.random() * 10) + 1,
-			total: Math.floor(Math.random() * 1000) + 1,
+            total: Math.floor(Math.random() * 70000) + 20000,
 			payment_method: ['Efectivo', 'Tarjeta', 'Transferencia'][Math.floor(Math.random() * 3)] as
 				| 'Efectivo'
 				| 'Tarjeta'
@@ -69,7 +69,9 @@
 									<i class="bi bi-person"></i>
 									<span>{invoice.quantity}</span>
 								</p>
-								<p class="text-lg text-neutral-200">${invoice.total}</p>
+                                <p class="text-lg text-neutral-200">
+                                    {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(invoice.total)}
+                                </p>
 								<p class="text-lg font-bold text-neutral-200">
 									{#if invoice.payment_method === 'Efectivo'}
 										<i class="bi bi-cash"></i>
