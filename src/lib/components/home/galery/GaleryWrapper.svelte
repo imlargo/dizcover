@@ -9,9 +9,10 @@
 		title: string;
 		tipo: TipoGaleria;
 		children: Snippet;
+		showTitle?: boolean;
 	};
 
-	const { title, tipo, children }: Props = $props();
+	const { title, tipo, children, showTitle = true }: Props = $props();
 
 	type GaleryConfig = {
 		tipo: TipoGaleria;
@@ -44,13 +45,19 @@
 </script>
 
 <div class="w-full space-y-8">
-	<h3 class="font-display text-center text-3xl">{title}</h3>
+	{#if showTitle}
+		<h3 class="font-display text-center text-3xl">{title}</h3>
 
-	<div class="flex items-center justify-center gap-2">
-		{#each { length: count }, i}
-			<div class="inline-flex h-3 w-4 rounded-full {current === i + 1 ? 'bg-[#D400FE]' : 'bg-gray-300'}"></div>
-		{/each}
-	</div>
+		<div class="flex items-center justify-center gap-2">
+			{#each { length: count }, i}
+				<div
+					class="inline-flex h-3 w-4 rounded-full {current === i + 1
+						? 'bg-[#D400FE]'
+						: 'bg-gray-300'}"
+				></div>
+			{/each}
+		</div>
+	{/if}
 
 	<div class="">
 		<Carousel.Root
