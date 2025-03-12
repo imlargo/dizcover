@@ -1,4 +1,4 @@
-import type { Establecimiento, CoordsEstablecimiento } from '$types/establecimiento';
+import type { Establecimiento, CoordsEstablecimiento, Horario } from '$types/establecimiento';
 import type { Evento, PricingEvento } from '$lib/types/evento';
 import { $api } from './api';
 
@@ -45,6 +45,11 @@ export class DatabaseController {
 
 	async getEventosEstablecimiento(idEstablecimiento: string | number): Promise<Evento[]> {
 		const response = await $api(`/api/evento/establecimiento/${idEstablecimiento}`)
+		return response
+	}
+
+	async getHorariosEstablecimiento(idEstablecimiento: string | number): Promise<Horario[]> {
+		const response = await $api(`/api/establecimiento/${idEstablecimiento}/horarios/`)
 		return response
 	}
 }
