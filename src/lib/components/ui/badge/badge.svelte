@@ -11,7 +11,8 @@
 				destructive:
 					'bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent',
 				outline: 'text-foreground',
-				purple: 'bg-[#D400FE24]/15 text-white border-[#D400FE] text-base px-6 py-1'
+				purple: 'bg-[#D400FE24]/15 text-white border-[#D400FE] text-base px-6 py-1',
+				green: 'bg-[#3BFF0024]/15 text-white border-[#2AFE00] text-base px-6 py-1'
 			}
 		},
 		defaultVariants: {
