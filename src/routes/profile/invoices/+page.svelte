@@ -1,20 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { Input } from '$lib/components/ui/input/index.js';
+	import type { Invoice } from '$lib/types/profile/invoice';
 
 	let { data }: { data: PageData } = $props();
 
 	const { establecimientos } = data;
-
-	type Invoice = {
-		image: string;
-		name: string;
-		type: 'Cover' | 'Cupon de consumo';
-		quantity: number;
-		total: number;
-		payment_method: 'Efectivo' | 'Tarjeta' | 'Transferencia';
-		date: string;
-	};
 
 	const invoices: Invoice[] = establecimientos.map((el) => {
 		return {
