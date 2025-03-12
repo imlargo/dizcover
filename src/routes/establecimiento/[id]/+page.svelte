@@ -87,14 +87,16 @@
 				<Popover.Root>
 					<Popover.Trigger>
 						<span
-							class="flex items-center justify-center gap-2 rounded-full border  px-6 py-1.5 {isOpen ? 'border-lime-500 bg-lime-700/10 text-lime-500': 'border-red-500 bg-red-700/10 text-red-500'} "
+							class="flex items-center justify-center gap-2 rounded-full border px-6 py-1.5 {isOpen
+								? 'border-lime-500 bg-lime-700/10 text-lime-500'
+								: 'border-red-500 bg-red-700/10 text-red-500'} "
 						>
-							<span 
+							<span
 								class="size-3 rounded-full"
 								class:bg-red-500={!isOpen}
 								class:bg-lime-500={isOpen}
 							></span>
-							<span>{isOpen ? "Abierto" : "Cerrado"}</span>
+							<span>{isOpen ? 'Abierto' : 'Cerrado'}</span>
 						</span>
 					</Popover.Trigger>
 					<Popover.Content>
@@ -179,11 +181,19 @@
 
 	<hr />
 
-	<div class="space-y-6">
+	<div class="flex flex-col gap-24">
 		<GaleryWrapper title="Recomendados" tipo="establecimiento">
 			{#each recomendados as establecimiento}
 				<GaleryItem>
 					<CardEstablecimiento {establecimiento} />
+				</GaleryItem>
+			{/each}
+		</GaleryWrapper>
+
+		<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento" variant="green">
+			{#each recomendados as establecimiento}
+				<GaleryItem>
+					<CardEstablecimiento variant="green" {establecimiento} />
 				</GaleryItem>
 			{/each}
 		</GaleryWrapper>
