@@ -32,13 +32,13 @@
 	}
 </script>
 
-<div class="inline-flex md:hidden">
+<div class="inline-flex lg:hidden">
 	<Button variant="ghost" class={`size-${size}`} onclick={shareOnMobile}>
 		<Share2 />
 	</Button>
 </div>
 
-<div class="hidden md:inline-flex">
+<div class="hidden lg:inline-flex">
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			<Button variant="ghost" class={`size-${size}`}>
