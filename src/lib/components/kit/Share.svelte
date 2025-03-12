@@ -47,6 +47,8 @@
 		</DropdownMenu.Trigger>
 		<DropdownMenu.Content>
 			<DropdownMenu.Group>
+				<DropdownMenu.GroupHeading>Compartir</DropdownMenu.GroupHeading>
+				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
 					<a class="flex gap-2 items-center" href={`https://wa.me/?text=${prompt}`} target="_blank">
 						<i class="bi bi-whatsapp"></i>
