@@ -1,15 +1,19 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { page } from '$app/state';
 
 	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 	import CardEvento from '$lib/components/home/galery/cards/CardEvento.svelte';
+	import Share from '$lib/components/kit/Share.svelte';
 
 	let { data }: { data: PageData } = $props();
 
 	const { establecimientos, eventos } = data;
+
+	const shareUrl = 'https://www.google.com';
 </script>
 
 <div class="flex flex-col gap-6">
@@ -20,6 +24,8 @@
 			<div>
 				<Input class="rounded-full bg-transparent" placeholder="Buscar" />
 			</div>
+
+			<Share title="Mira mis favoritos en dizcover: " description="" shareUrl={`${page.url.origin}/profile/123`} />
 		</div>
 
 		<div class="flex flex-col gap-2">
