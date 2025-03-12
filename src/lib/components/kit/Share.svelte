@@ -1,14 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
-	import {
-		Facebook,
-		Linkedin,
-		Instagram,
-		Share2,
-		Twitter,
-		PhoneIcon as WhatsApp
-	} from 'lucide-svelte';
+	import { Share2 } from 'lucide-svelte';
 
 	type Props = {
 		title: string;
@@ -19,9 +12,9 @@
 
 	const { title, description, shareUrl, size = '10' }: Props = $props();
 
-	const encodedShareUrl = encodeURIComponent(shareUrl);
+	const prompt = `${title} ${description} ${shareUrl}`;
 
-	async function shareOnInstagram() {
+	async function shareOnMobile() {
 		if (navigator.share) {
 			try {
 				await navigator.share({
@@ -39,7 +32,13 @@
 	}
 </script>
 
-<div class="inline-flex">
+<div class="inline-flex md:hidden">
+	<Button variant="ghost" class={`size-${size}`} onclick={shareOnMobile}>
+		<Share2 />
+	</Button>
+</div>
+
+<div class="hidden md:inline-flex">
 	<DropdownMenu.Root>
 		<DropdownMenu.Trigger>
 			<Button variant="ghost" class={`size-${size}`}>
@@ -49,17 +48,13 @@
 		<DropdownMenu.Content>
 			<DropdownMenu.Group>
 				<DropdownMenu.Item>
-					<a
-						class="flex gap-2 items-center"
-						href={`https://wa.me/?text=${encodedShareUrl}`}
-						target="_blank"
-					>
-                    <i class="bi bi-whatsapp"></i>
+					<a class="flex gap-2 items-center" href={`https://wa.me/?text=${prompt}`} target="_blank">
+						<i class="bi bi-whatsapp"></i>
 						<span>WhatsApp</span>
 					</a>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<a class="flex gap-2 items-center" onclick={shareOnInstagram}>
+					<a class="flex gap-2 items-center" onclick={shareOnMobile}>
 						<i class="bi bi-instagram"></i>
 						<span>Instagram</span>
 					</a>
@@ -67,20 +62,20 @@
 				<DropdownMenu.Item>
 					<a
 						class="flex gap-2 items-center"
-						href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedShareUrl}`}
+						href={`https://www.linkedin.com/sharing/share-offsite/?url=${prompt}`}
 						target="_blank"
 					>
-                    <i class="bi bi-linkedin"></i>
+						<i class="bi bi-linkedin"></i>
 						<span>Linkedin</span>
 					</a>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
 					<a
 						class="flex gap-2 items-center"
-						href={`https://www.facebook.com/sharer/sharer.php?u=${encodedShareUrl}`}
+						href={`https://www.facebook.com/sharer/sharer.php?u=${prompt}`}
 						target="_blank"
 					>
-                        <i class="bi bi-facebook"></i>
+						<i class="bi bi-facebook"></i>
 						<span>Facebook</span>
 					</a>
 				</DropdownMenu.Item>
