@@ -4,9 +4,10 @@
 
 	type Props = {
 		establecimiento: Establecimiento;
+		variant?: 'base' | 'green';
 	};
 
-	const { establecimiento }: Props = $props();
+	const { establecimiento, variant="base" }: Props = $props();
 </script>
 
 <div class="relative overflow-hidden rounded-md">
@@ -33,7 +34,7 @@
 		class="flex w-full absolute bottom-0 left-0 items-center gap-2 bg-black bg-opacity-50 py-5 overflow-x-auto px-4"
 	>
 		{#each establecimiento.etiquetas as tag}
-			<Badge variant="purple">{tag}</Badge>
+			<Badge variant={variant === "base" ? "purple" : "green"}>{tag}</Badge>
 		{/each}
 	</div>
 </div>

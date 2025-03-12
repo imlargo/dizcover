@@ -42,10 +42,10 @@
 		{/each}
 	</GaleryWrapper>
 
-	<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento">
+	<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento" variant="green">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>
-				<CardEstablecimiento {establecimiento} />
+				<CardEstablecimiento variant="green" {establecimiento} />
 			</GaleryItem>
 		{/each}
 	</GaleryWrapper>
