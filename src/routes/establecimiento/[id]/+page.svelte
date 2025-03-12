@@ -14,6 +14,7 @@
 	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
+	import * as Popover from "$lib/components/ui/popover/index.js";
 
 	let { data }: { data: PageData } = $props();
 
@@ -25,6 +26,7 @@
 		lat: cordenadas?.latitud || "",
 		lng: cordenadas?.longitud || "",
 	};
+	const { horarios } = data;
 
 	const getGoogleMapsLink = (coords: Coordinates): string => {
 		const mapsUrl = `https://www.google.com/maps?q=${coords?.lat},${coords?.lng}`;
@@ -34,6 +36,14 @@
 	const dbController = new DatabaseController();
 	let recomendados: Establecimiento[] = $state([])
 	dbController.getEstablecimientos().then((data) => (recomendados = data));
+
+	const parseTime = (time: string) => {
+		const [hours, minutes] = time.split(':');
+		const hour = parseInt(hours);
+		const ampm = hour >= 12 ? 'PM' : 'AM';
+		const formattedHour = hour % 12 || 12;
+		return `${formattedHour}:${minutes} ${ampm}`;
+	};
 </script>
 
 <div class="relative h-[90vh]">
@@ -61,10 +71,28 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 
-			<span class="flex gap-2 items-center justify-center px-6 py-1.5 rounded-full text-[#FF0000] bg-[#3C0101] border border-[#FF0000]">
-				<span class="size-3 rounded-full  bg-[#FF0000] "></span>
-				<span>Cerrado</span>
-			</span>
+
+			<div>
+				<Popover.Root>
+					<Popover.Trigger>
+						<span class="flex gap-2 items-center justify-center px-6 py-1.5 rounded-full text-[#FF0000] bg-[#3C0101] border border-[#FF0000]">
+							<span class="size-3 rounded-full  bg-[#FF0000]"></span>
+							<span>Cerrado</span>
+						</span>
+					</Popover.Trigger>
+					<Popover.Content>
+						<div class="flex flex-col gap-1">
+							{#each horarios as horario}
+							<div class="flex gap-2 hover:bg-neutral-50">
+								<span class="font-semibold">{horario.dia.charAt(0).toUpperCase() + horario.dia.slice(1).toLowerCase()}:</span>
+								<span>{parseTime(horario.hora_apertura)} - {parseTime(horario.hora_cierre)}</span>
+							</div>
+						{/each}
+						</div>
+					</Popover.Content>
+				  </Popover.Root>
+			</div>
+			
 		</div>
 
 		<div class="flex flex-col gap-8">
