@@ -14,7 +14,7 @@
 	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
-	import * as Popover from "$lib/components/ui/popover/index.js";
+	import * as Popover from '$lib/components/ui/popover/index.js';
 
 	let { data }: { data: PageData } = $props();
 
@@ -23,8 +23,8 @@
 	const imagenesEstablecimiento = data.imagenes.map((img) => img.imagen);
 	const cordenadas = data.cordenadas.length > 0 ? data.cordenadas[0] : null;
 	const cords: Coordinates = {
-		lat: cordenadas?.latitud || "",
-		lng: cordenadas?.longitud || "",
+		lat: cordenadas?.latitud || '',
+		lng: cordenadas?.longitud || ''
 	};
 	const { horarios } = data;
 
@@ -34,7 +34,7 @@
 	};
 
 	const dbController = new DatabaseController();
-	let recomendados: Establecimiento[] = $state([])
+	let recomendados: Establecimiento[] = $state([]);
 	dbController.getEstablecimientos().then((data) => (recomendados = data));
 
 	const parseTime = (time: string) => {
@@ -44,6 +44,17 @@
 		const formattedHour = hour % 12 || 12;
 		return `${formattedHour}:${minutes} ${ampm}`;
 	};
+
+	const isOpen = $derived.by(() => {
+		const today = new Date().getDay();
+		const todayHorario = horarios.find((h) => h.dia === today.toString());
+		if (!todayHorario) return false;
+		const [hours, minutes] = new Date().toLocaleTimeString('en-US', { hour12: false }).split(':');
+		const currentTime = parseInt(hours + minutes);
+		const openTime = parseInt(todayHorario.hora_apertura.replace(':', ''));
+		const closeTime = parseInt(todayHorario.hora_cierre.replace(':', ''));
+		return currentTime >= openTime && currentTime <= closeTime;
+	});
 </script>
 
 <div class="relative h-[90vh]">
@@ -62,7 +73,8 @@
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
-						<Breadcrumb.Link class="text-white hover:text-white/60">Establecimiento</Breadcrumb.Link>
+						<Breadcrumb.Link class="text-white hover:text-white/60">Establecimiento</Breadcrumb.Link
+						>
 					</Breadcrumb.Item>
 					<Breadcrumb.Separator class="text-white" />
 					<Breadcrumb.Item>
@@ -71,38 +83,49 @@
 				</Breadcrumb.List>
 			</Breadcrumb.Root>
 
-
 			<div>
 				<Popover.Root>
 					<Popover.Trigger>
-						<span class="flex gap-2 items-center justify-center px-6 py-1.5 rounded-full text-[#FF0000] bg-[#3C0101] border border-[#FF0000]">
-							<span class="size-3 rounded-full  bg-[#FF0000]"></span>
-							<span>Cerrado</span>
+						<span
+							class="flex items-center justify-center gap-2 rounded-full border  px-6 py-1.5 {isOpen ? 'border-lime-500 bg-lime-700/10 text-lime-500': 'border-red-500 bg-red-700/10 text-red-500'} "
+						>
+							<span 
+								class="size-3 rounded-full"
+								class:bg-red-500={!isOpen}
+								class:bg-lime-500={isOpen}
+							></span>
+							<span>{isOpen ? "Abierto" : "Cerrado"}</span>
 						</span>
 					</Popover.Trigger>
 					<Popover.Content>
 						<div class="flex flex-col gap-1">
 							{#each horarios as horario}
-							<div class="flex gap-2 hover:bg-neutral-50">
-								<span class="font-semibold">{horario.dia.charAt(0).toUpperCase() + horario.dia.slice(1).toLowerCase()}:</span>
-								<span>{parseTime(horario.hora_apertura)} - {parseTime(horario.hora_cierre)}</span>
-							</div>
-						{/each}
+								<div class="flex gap-2 hover:bg-neutral-50">
+									<span class="font-semibold"
+										>{horario.dia.charAt(0).toUpperCase() +
+											horario.dia.slice(1).toLowerCase()}:</span
+									>
+									<span>{parseTime(horario.hora_apertura)} - {parseTime(horario.hora_cierre)}</span>
+								</div>
+							{/each}
 						</div>
 					</Popover.Content>
-				  </Popover.Root>
+				</Popover.Root>
 			</div>
-			
 		</div>
 
 		<div class="flex flex-col gap-8">
-			<div class="flex gap-4 items-center">
-				<h5 class="text-6xl font-display">
+			<div class="flex items-center gap-4">
+				<h5 class="font-display text-6xl">
 					{establecimiento.nombre}
 				</h5>
 				<span class="text-5xl font-bold text-[#D400FE]">
 					<i class="bi bi-star-fill"></i>
-					<span>{typeof establecimiento.calificacion_promedio === 'string' ? establecimiento.calificacion_promedio : establecimiento.calificacion_promedio.toFixed(1)}</span>
+					<span
+						>{typeof establecimiento.calificacion_promedio === 'string'
+							? establecimiento.calificacion_promedio
+							: establecimiento.calificacion_promedio.toFixed(1)}</span
+					>
 				</span>
 			</div>
 
@@ -117,12 +140,12 @@
 
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Descripcion</h3>
+		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
 		<p class="text-lg">{establecimiento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Galeria</h3>
+		<h3 class="font-display text-3xl font-bold">Galeria</h3>
 
 		<div>
 			<BentoGalery images={imagenesEstablecimiento} />
@@ -137,7 +160,7 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="text-3xl font-bold font-display">Ubicacion</h3>
+		<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
 
 		<div>
 			<Map coords={cords} title={establecimiento.nombre} />
@@ -154,8 +177,7 @@
 		</div>
 	</div>
 
-
-	<hr>
+	<hr />
 
 	<div class="space-y-6">
 		<GaleryWrapper title="Recomendados" tipo="establecimiento">
