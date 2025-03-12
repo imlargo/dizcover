@@ -113,7 +113,7 @@
 			
 		</div>
 
-		<div class="grid grid-cols-2 gap-1">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
 			{#each fields as field}
 				<div class="profile-data-field">
 					<span class="text-neutral-600">{field.label}</span>
