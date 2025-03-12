@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import Share from '$lib/components/kit/Share.svelte';
+	import { page } from '$app/state';
 
 	let { data }: { data: PageData } = $props();
 
@@ -102,10 +104,13 @@
 					class="size-44 rounded-full object-cover"
 				/>
 			</div>
-			<div class="col-span-7 flex flex-col gap-2">
-				<h4 class="font-display text-3xl font-semibold">@{userProfile.username}</h4>
+			<div class="col-span-10 flex flex-col gap-2">
+				<div class="flex justify-between items-top">
+					<h4 class="font-display text-3xl font-semibold">@{userProfile.username}</h4>
+					<Share title="Mira este perfil en dizcover: " description="" shareUrl={`${page.url.origin}/profile/${userProfile.username}`} />
+				</div>
 			</div>
-			<div class="col-span-3"></div>
+			
 		</div>
 
 		<div class="grid grid-cols-2 gap-1">
