@@ -80,7 +80,7 @@
 							<div class="flex h-full max-w-max flex-col items-end">
 								<a
 									class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
-									href="/profile/invoices/view">Leer más</a
+									href="/profile/{data.userId}/invoices/view">Leer más</a
 								>
 							</div>
 						</div>

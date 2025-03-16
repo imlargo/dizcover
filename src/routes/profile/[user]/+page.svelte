@@ -110,7 +110,7 @@
 					<Share
 						title="Mira este perfil en dizcover: "
 						description=""
-						shareUrl={`${page.url.origin}/profile/${userProfile.username}`}
+						shareUrl={`${page.url.origin}/profile/${data.userId}/${userProfile.username}`}
 					/>
 				</div>
 			</div>

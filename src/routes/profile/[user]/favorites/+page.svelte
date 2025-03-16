@@ -28,7 +28,7 @@
 			<Share
 				title="Mira mis favoritos en dizcover: "
 				description=""
-				shareUrl={`${page.url.origin}/profile/123`}
+				shareUrl={`${page.url.origin}/profile/${data.userId}`}
 			/>
 		</div>
 

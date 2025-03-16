@@ -54,7 +54,7 @@
 				</div>
 
 				<div class="flex h-full flex-col items-center justify-center gap-2">
-					<Button variant="ghost" class="size-10" href="/profile/payment-methods/method"
+					<Button variant="ghost" class="size-10" href="/profile/{data.userId}/payment-methods/method"
 						><Pen /></Button
 					>
 					<Button variant="ghost" class="size-10"><Trash2 /></Button>
