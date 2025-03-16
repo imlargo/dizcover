@@ -3,6 +3,8 @@ import { AuthCookies } from '$lib/server/auth-cookies';
 import type { User } from '$lib/types/models/user';
 
 export const handle: Handle = async ({ event, resolve }) => {
+	return await resolve(event);
+
 	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
 
 	const isLogin =
