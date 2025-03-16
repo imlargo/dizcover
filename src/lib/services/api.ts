@@ -1,5 +1,5 @@
 import { apiBaseUrl } from '$lib/constants';
-import { storeAuth } from '$lib/store/auth';
+import { storeAuth } from '$lib/store/auth.svelte';
 
 function getAuthToken(): string | null {
 	return storeAuth.getAccessToken();
