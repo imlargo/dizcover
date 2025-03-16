@@ -6,12 +6,13 @@ type Coordinates = {
 };
 
 class UserLocation {
-	location: Coordinates = {
+	location: Coordinates = $state({
 		lat: undefined,
 		lng: undefined
-	};
-	accuracy: number = 0;
-	watchID: number = 0;
+	});
+	accuracy: number = $state(0);
+	watchID: number = $state(0);
+	autorization: boolean = $state(false);
 
 	requestLocation() {
 		const onSuccess = (position: GeolocationPosition) => {
@@ -24,9 +25,11 @@ class UserLocation {
 			}
 
 			this.accuracy = position.coords.accuracy;
+			this.autorization = true;
 		}
 
 		const onError = (error: GeolocationPositionError) => {
+			this.autorization = false;
 			switch (error.code) {
 				case error.PERMISSION_DENIED:
 					toast.error("El usuario denegó la solicitud de geolocalización");
@@ -37,7 +40,7 @@ class UserLocation {
 				case error.TIMEOUT:
 					toast.error("Se agotó el tiempo para obtener la ubicación");
 					break;
-				case error.UNKNOWN_ERROR:
+				default:
 					toast.error("Ocurrió un error desconocido");
 					break;
 			}
@@ -57,6 +60,7 @@ class UserLocation {
 
 	startWatch() {
 		const watchID = navigator.geolocation.watchPosition((position) => {
+			this.autorization = true;
 			this.location = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
@@ -73,4 +77,4 @@ class UserLocation {
 	}
 }
 
-export const userLocation = new UserLocation();
+export const storeLocation = new UserLocation();
