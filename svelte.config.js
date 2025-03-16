@@ -14,12 +14,15 @@ const config = {
 		adapter: adapter(),
 		alias: {
 			$lib: './src/lib',
+			$styles: './src/styles',
 			$components: './src/lib/components',
-			$store: './src/lib/store',
 			$utils: './src/lib/utils',
+			$types: './src/lib/types',
 			$actions: './src/lib/actions',
+			$client: './src/lib/client',
 			$server: './src/lib/server',
-			$types: './src/lib/types'
+			$stores: './src/lib/stores',
+			$services: './src/lib/services'
 		}
 	}
 };
