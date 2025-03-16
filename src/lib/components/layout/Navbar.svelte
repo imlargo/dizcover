@@ -39,14 +39,14 @@
 				<a
 					data-sveltekit-reload
 					href="/multimedia"
-					class="text-sm font-medium text-gray-200 hover:text-white font-display"
+					class="font-display text-sm font-medium text-gray-200 hover:text-white"
 				>
 					Multimedia
 				</a>
 				<a
 					data-sveltekit-reload
 					href="/mapa"
-					class="text-sm font-medium text-gray-200 hover:text-white font-display"
+					class="font-display text-sm font-medium text-gray-200 hover:text-white"
 				>
 					Mapa
 				</a>

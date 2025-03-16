@@ -20,11 +20,11 @@ export type CoordsEstablecimiento = {
 	longitud: number;
 	hemisferio_lat: string;
 	hemisferio_lon: string;
-}
+};
 
 export type Horario = {
 	dia_id: number;
 	dia: string;
 	hora_apertura: string;
 	hora_cierre: string;
-}
+};

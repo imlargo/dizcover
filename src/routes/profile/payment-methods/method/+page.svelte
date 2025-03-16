@@ -88,35 +88,35 @@
 		}
 	];
 
-    const paymentMethod: PaymentMethod = {
-		cardType: "",
-		cardNumber: "",
-		expirationDate: "",
-		securityCode: "",
-		firstName: "",
-		lastName: "",
-		address: "",
-		postalCode: "",
-		city: "",
-		department: "",
-		country: "",
-		phone: "",
-    }
+	const paymentMethod: PaymentMethod = {
+		cardType: '',
+		cardNumber: '',
+		expirationDate: '',
+		securityCode: '',
+		firstName: '',
+		lastName: '',
+		address: '',
+		postalCode: '',
+		city: '',
+		department: '',
+		country: '',
+		phone: ''
+	};
 </script>
 
 <div class="flex flex-col gap-8">
 	<h3 class="font-display text-3xl font-bold">Mi perfil</h3>
 
 	<div class="flex flex-col gap-1">
-        <div class="flex flex-col gap-2 rounded-lg bg-neutral-900 p-4">
-            <div class="border rounded-lg overflow-hidden h-16 w-28">
-                <img class="h-16 w-28" src="" alt={paymentMethod.cardType} />
-            </div>
+		<div class="flex flex-col gap-2 rounded-lg bg-neutral-900 p-4">
+			<div class="h-16 w-28 overflow-hidden rounded-lg border">
+				<img class="h-16 w-28" src="" alt={paymentMethod.cardType} />
+			</div>
 
-            <span class="font-semibold text-lg">VISA</span>
-            <span class="text-neutral-400">*** *** ***333</span>
-        </div>
-		
+			<span class="text-lg font-semibold">VISA</span>
+			<span class="text-neutral-400">*** *** ***333</span>
+		</div>
+
 		<div class="grid grid-cols-1 gap-1 lg:grid-cols-1">
 			{#each fields as field}
 				<div class="profile-data-field">
@@ -125,7 +125,7 @@
 						bind:value={paymentMethod[field.field]}
 						type={field.type}
 						placeholder={field.label}
-						class="rounded-lg border-0 bg-transparent focus:border-white/5 bg-transparent"
+						class="rounded-lg border-0 bg-transparent bg-transparent focus:border-white/5"
 					/>
 				</div>
 			{/each}

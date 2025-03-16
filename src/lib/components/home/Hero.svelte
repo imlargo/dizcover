@@ -18,7 +18,11 @@
 	/>
 
 	<div class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-8 text-white">
-		<a href="/establecimiento/{establecimiento.id}" class="flex items-center gap-2 hover:underline transition-all duration-300" data-sveltekit-reload>
+		<a
+			href="/establecimiento/{establecimiento.id}"
+			class="flex items-center gap-2 transition-all duration-300 hover:underline"
+			data-sveltekit-reload
+		>
 			<h5 class="font-display text-6xl">{establecimiento.nombre}</h5>
 			<i class="bi bi-arrow-right text-4xl"></i>
 		</a>

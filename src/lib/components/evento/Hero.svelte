@@ -7,8 +7,9 @@
 	};
 
 	const { evento, pricing }: Props = $props();
-	const toPesos = (price: number) => price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
-	const toNumber = (price: string) => parseInt(price.split(".")[0]);
+	const toPesos = (price: number) =>
+		price.toLocaleString('es-CO', { style: 'currency', currency: 'COP' });
+	const toNumber = (price: string) => parseInt(price.split('.')[0]);
 </script>
 
 <div class="grid grid-cols-12 gap-x-12">
@@ -36,17 +37,18 @@
 			</span>
 		</div>
 
-		<div class="flex flex-col rounded-md overflow-hidden gap-y-1 overflow-y-scroll">
-            {#each pricing as tier}
-                <div class="flex justify-between px-4 py-4 glass">
-                    <span class="text-lg font-semibold">{tier.nombre}</span>
-                    <span class="text-lg font-semibold">COP {toPesos(toNumber(tier.precio))}</span>
-                </div>
-            {/each}
-        </div>
+		<div class="flex flex-col gap-y-1 overflow-hidden overflow-y-scroll rounded-md">
+			{#each pricing as tier}
+				<div class="glass flex justify-between px-4 py-4">
+					<span class="text-lg font-semibold">{tier.nombre}</span>
+					<span class="text-lg font-semibold">COP {toPesos(toNumber(tier.precio))}</span>
+				</div>
+			{/each}
+		</div>
 
-
-        <button class="px-4 py-2 rounded-lg border-2 border-white w-52 font-bold">Más informacion</button>
+		<button class="w-52 rounded-lg border-2 border-white px-4 py-2 font-bold"
+			>Más informacion</button
+		>
 	</div>
 </div>
 

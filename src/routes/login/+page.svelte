@@ -8,7 +8,7 @@
 	import { Button } from '$lib/components/ui/button';
 	import { onMount } from 'svelte';
 	import { invalidateAll } from '$app/navigation';
-    import { toast } from 'svelte-sonner';
+	import { toast } from 'svelte-sonner';
 
 	type LoginForm = {
 		email: string;
@@ -27,7 +27,7 @@
 
 		if (!formData.email || !formData.password) {
 			toast.error('Por favor, rellena todos los campos');
-            return;
+			return;
 		}
 
 		const d: Record<string, string> = {

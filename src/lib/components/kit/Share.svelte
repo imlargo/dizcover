@@ -50,20 +50,20 @@
 				<DropdownMenu.GroupHeading>Compartir</DropdownMenu.GroupHeading>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
-					<a class="flex gap-2 items-center" href={`https://wa.me/?text=${prompt}`} target="_blank">
+					<a class="flex items-center gap-2" href={`https://wa.me/?text=${prompt}`} target="_blank">
 						<i class="bi bi-whatsapp"></i>
 						<span>WhatsApp</span>
 					</a>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
-					<a class="flex gap-2 items-center" onclick={shareOnMobile}>
+					<a class="flex items-center gap-2" onclick={shareOnMobile}>
 						<i class="bi bi-instagram"></i>
 						<span>Instagram</span>
 					</a>
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
 					<a
-						class="flex gap-2 items-center"
+						class="flex items-center gap-2"
 						href={`https://www.linkedin.com/sharing/share-offsite/?url=${prompt}`}
 						target="_blank"
 					>
@@ -73,7 +73,7 @@
 				</DropdownMenu.Item>
 				<DropdownMenu.Item>
 					<a
-						class="flex gap-2 items-center"
+						class="flex items-center gap-2"
 						href={`https://www.facebook.com/sharer/sharer.php?u=${prompt}`}
 						target="_blank"
 					>

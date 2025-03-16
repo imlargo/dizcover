@@ -10,14 +10,15 @@
 	let { data }: { data: PageData } = $props();
 	const { establecimientos, eventos } = data;
 
-	const featuredEstablecimiento = establecimientos[Math.floor(Math.random() * establecimientos.length)];
+	const featuredEstablecimiento =
+		establecimientos[Math.floor(Math.random() * establecimientos.length)];
 </script>
 
 <Hero establecimiento={featuredEstablecimiento} />
 
 <div class="mt-12 space-y-24">
 	<GalerySale />
-	
+
 	<GaleryWrapper title="Para ti" tipo="establecimiento">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>

@@ -13,7 +13,7 @@
 		variant?: 'base' | 'green';
 	};
 
-	const { title, tipo, children, showTitle = true, variant = "base" }: Props = $props();
+	const { title, tipo, children, showTitle = true, variant = 'base' }: Props = $props();
 
 	type GaleryConfig = {
 		tipo: TipoGaleria;
@@ -53,7 +53,9 @@
 			{#each { length: count }, i}
 				<div
 					class="inline-flex h-3 w-4 rounded-full {current === i + 1
-						? (variant === "base" ? 'bg-[#D400FE]' : 'bg-[#2AFE00]')
+						? variant === 'base'
+							? 'bg-[#D400FE]'
+							: 'bg-[#2AFE00]'
 						: 'bg-gray-300'}"
 				></div>
 			{/each}

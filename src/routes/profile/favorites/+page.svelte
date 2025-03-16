@@ -25,7 +25,11 @@
 				<Input class="rounded-full bg-transparent" placeholder="Buscar" />
 			</div>
 
-			<Share title="Mira mis favoritos en dizcover: " description="" shareUrl={`${page.url.origin}/profile/123`} />
+			<Share
+				title="Mira mis favoritos en dizcover: "
+				description=""
+				shareUrl={`${page.url.origin}/profile/123`}
+			/>
 		</div>
 
 		<div class="flex flex-col gap-2">

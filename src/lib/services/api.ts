@@ -17,7 +17,9 @@ function createHeaders(options: RequestInit = {}): HeadersInit {
 async function handleResponse(response: Response): Promise<any> {
 	if (!response.ok) {
 		const errorText = await response.text();
-		throw new Error(`Error: ${response.statusText}, Status: ${response.status}, Endpoint: ${response.url}`);
+		throw new Error(
+			`Error: ${response.statusText}, Status: ${response.status}, Endpoint: ${response.url}`
+		);
 	}
 	return await response.json();
 }

@@ -9,7 +9,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup' || event.url.pathname === '/' ;
+		event.url.pathname === '/signup' ||
+		event.url.pathname === '/';
 	if (isLogin) {
 		return await resolve(event);
 	}
@@ -22,7 +23,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-	const userData: User = {}
+	const userData: User = {};
 	event.locals.user = userData;
 
 	const response = await resolve(event);

@@ -23,4 +23,4 @@ export type PricingEvento = {
 	precio: string;
 	cupos: number;
 	evento: number;
-}
+};

@@ -105,15 +105,18 @@
 				/>
 			</div>
 			<div class="col-span-10 flex flex-col gap-2">
-				<div class="flex justify-between items-top">
+				<div class="items-top flex justify-between">
 					<h4 class="font-display text-3xl font-semibold">@{userProfile.username}</h4>
-					<Share title="Mira este perfil en dizcover: " description="" shareUrl={`${page.url.origin}/profile/${userProfile.username}`} />
+					<Share
+						title="Mira este perfil en dizcover: "
+						description=""
+						shareUrl={`${page.url.origin}/profile/${userProfile.username}`}
+					/>
 				</div>
 			</div>
-			
 		</div>
 
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-1">
+		<div class="grid grid-cols-1 gap-1 lg:grid-cols-2">
 			{#each fields as field}
 				<div class="profile-data-field">
 					<span class="text-neutral-600">{field.label}</span>

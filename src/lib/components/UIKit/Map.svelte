@@ -30,7 +30,7 @@
 <div class="relative flex w-full overflow-hidden rounded-md">
 	<iframe
 		class="w-full"
-		title={title}
+		{title}
 		width="100%"
 		height="600"
 		frameborder="0"

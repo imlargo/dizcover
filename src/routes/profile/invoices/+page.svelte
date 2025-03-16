@@ -12,7 +12,7 @@
 			name: el.nombre,
 			type: Math.random() > 0.5 ? 'Cover' : 'Cupon de consumo',
 			quantity: Math.floor(Math.random() * 10) + 1,
-            total: Math.floor(Math.random() * 70000) + 20000,
+			total: Math.floor(Math.random() * 70000) + 20000,
 			payment_method: ['Efectivo', 'Tarjeta', 'Transferencia'][Math.floor(Math.random() * 3)] as
 				| 'Efectivo'
 				| 'Tarjeta'
@@ -44,16 +44,16 @@
 				<h4 class="font-display text-xl">{date}</h4>
 				<div class="flex flex-col gap-1">
 					{#each invoices as invoice}
-						<div class="flex max-h-max gap-6 justify-between rounded-lg bg-neutral-900 p-4">
+						<div class="flex max-h-max justify-between gap-6 rounded-lg bg-neutral-900 p-4">
 							<div class="flex gap-6">
 								<div class="max-h-min">
 									<img
 										src={invoice.image}
 										alt={invoice.name}
-										class="block w-72 h-[156px] rounded-lg object-cover"
+										class="block h-[156px] w-72 rounded-lg object-cover"
 									/>
 								</div>
-								<div class="flex max-h-max flex-col gap-1 max-w-max">
+								<div class="flex max-h-max max-w-max flex-col gap-1">
 									<p class="font-display text-xl font-semibold">{invoice.name}</p>
 									<p class="text-lg font-bold text-neutral-200">{invoice.type}</p>
 									<p class="text-lg text-neutral-200">
@@ -61,7 +61,9 @@
 										<span>{invoice.quantity}</span>
 									</p>
 									<p class="text-lg text-neutral-200">
-										{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(invoice.total)}
+										{new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(
+											invoice.total
+										)}
 									</p>
 									<p class="text-lg font-bold text-neutral-200">
 										{#if invoice.payment_method === 'Efectivo'}
@@ -75,8 +77,11 @@
 									</p>
 								</div>
 							</div>
-							<div class="flex flex-col max-w-max h-full items-end">
-								<a class="inline-flex px-4 py-2 font-semibold border border-white text-white rounded-md " href="/profile/invoices/view">Leer más</a>
+							<div class="flex h-full max-w-max flex-col items-end">
+								<a
+									class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
+									href="/profile/invoices/view">Leer más</a
+								>
 							</div>
 						</div>
 					{/each}
