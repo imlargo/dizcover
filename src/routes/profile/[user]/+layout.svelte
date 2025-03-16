@@ -7,9 +7,17 @@
 	const sidebarLinks = [
 		{ label: 'Perfil', href: `/profile/${data.userId}`, icon: 'bi bi-person' },
 		{ label: 'Favoritos', href: `/profile/${data.userId}/favorites`, icon: 'bi bi-heart' },
-		{ label: 'Métodos de pago', href: `/profile/${data.userId}/payment-methods`, icon: 'bi bi-credit-card' },
+		{
+			label: 'Métodos de pago',
+			href: `/profile/${data.userId}/payment-methods`,
+			icon: 'bi bi-credit-card'
+		},
 		{ label: 'Facturas', href: `/profile/${data.userId}/invoices`, icon: 'bi bi-receipt' },
-		{ label: 'Mis reservas', href: `/profile/${data.userId}/reservations`, icon: 'bi bi-calendar-check' }
+		{
+			label: 'Mis reservas',
+			href: `/profile/${data.userId}/reservations`,
+			icon: 'bi bi-calendar-check'
+		}
 	];
 </script>
 

@@ -69,7 +69,7 @@
 					<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<a href="/profile/{storeAuth.user?.id || "0"}" data-sveltekit-reload>Perfil</a>
+						<a href="/profile/{storeAuth.user?.id || '0'}" data-sveltekit-reload>Perfil</a>
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>Configuración</DropdownMenu.Item>
 					<DropdownMenu.Item>
