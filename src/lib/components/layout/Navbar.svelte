@@ -4,6 +4,7 @@
 	import * as DropdownMenu from '$components/ui/dropdown-menu/index.js';
 	import * as Avatar from '$components/ui/avatar/index.js';
 	import { page } from '$app/stores';
+	import { storeAuth } from '$lib/store/auth.svelte';
 
 	let isOpenMenu = $state(false);
 	const currentRoute = $state($page.url.pathname);
@@ -68,7 +69,7 @@
 					<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 					<DropdownMenu.Separator />
 					<DropdownMenu.Item>
-						<a href="/profile" data-sveltekit-reload>Perfil</a>
+						<a href="/profile/{storeAuth.user?.id || "0"}" data-sveltekit-reload>Perfil</a>
 					</DropdownMenu.Item>
 					<DropdownMenu.Item>Configuración</DropdownMenu.Item>
 					<DropdownMenu.Item>
