@@ -5,18 +5,17 @@ import type { User } from '$lib/types/models/user';
 export const handle: Handle = async ({ event, resolve }) => {
 	return await resolve(event);
 
-	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
-
 	const isLogin =
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup' ||
+		event.url.pathname === '/signup' || 
 		event.url.pathname === '/';
 	if (isLogin) {
 		return await resolve(event);
 	}
 
+	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
 	if (!hasAuthCookies) {
 		redirect(303, '/login');
 	}
@@ -25,8 +24,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-	const userData: User = {};
-	event.locals.user = userData;
+	const user = {};
+	event.locals.user = user;
 
 	const response = await resolve(event);
 	return response;

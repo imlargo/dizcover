@@ -64,11 +64,11 @@
 
 		// Parameters to pass to OAuth 2.0 endpoint.
 		const params: Record<string, string> = {
-			client_id: '927512412726-qbrkf1gcel5f2gnsk6tsegq8n1gjfni9.apps.googleusercontent.com',
-			redirect_uri: `${window.location.origin}/authorize`,
+			client_id: '598816663524-2jkeue6coob8m59nkqn288161n5uqdkp.apps.googleusercontent.com',
+			redirect_uri: `http://127.0.0.1:8000/autenticacion/login/`,
 			response_type: 'code',
 			prompt: 'select_account',
-			scope: 'openid profile email https://www.googleapis.com/auth/user.gender.read',
+			scope: 'openid profile email',
 			include_granted_scopes: 'true'
 		};
 
