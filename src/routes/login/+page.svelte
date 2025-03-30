@@ -65,7 +65,7 @@
 		// Parameters to pass to OAuth 2.0 endpoint.
 		const params: Record<string, string> = {
 			client_id: '598816663524-2jkeue6coob8m59nkqn288161n5uqdkp.apps.googleusercontent.com',
-			redirect_uri: `http://127.0.0.1:8000/autenticacion/login/`,
+			redirect_uri: `http://127.0.0.1:8000/accounts/google/login/callback/`,
 			response_type: 'code',
 			prompt: 'select_account',
 			scope: 'openid profile email',
