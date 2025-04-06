@@ -3,15 +3,14 @@ import { AuthCookies } from '$lib/server/auth-cookies';
 import type { User } from '$lib/types/models/user';
 
 export const handle: Handle = async ({ event, resolve }) => {
-	return await resolve(event);
 
-	const isLogin =
+	const isPublicAccessPath =
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
 		event.url.pathname === '/signup' || 
 		event.url.pathname === '/';
-	if (isLogin) {
+	if (isPublicAccessPath) {
 		return await resolve(event);
 	}
 
