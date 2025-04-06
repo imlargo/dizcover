@@ -11,7 +11,8 @@ export type User = {
 	nombre_usuario: string;
 	email: string;
 	nombre_completo: string;
-	foto_perfil: string | null;
+	foto_perfil: string;
 	tipo: string;
-	fiestero: Fiestero;
-};
+	fiestero: null;
+	discotequero: Fiestero | null;
+}

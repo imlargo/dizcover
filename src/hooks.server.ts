@@ -1,6 +1,7 @@
 import { redirect, type Handle } from '@sveltejs/kit';
 import { AuthCookies } from '$lib/server/auth-cookies';
 import type { User } from '$lib/types/models/user';
+import api from '$lib/services/api';
 
 export const handle: Handle = async ({ event, resolve }) => {
 
@@ -23,7 +24,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-	const user = {};
+	const user = await api.get<User>('/auth/me', {}, authTokens?.accessToken);
 	event.locals.user = user;
 
 	const response = await resolve(event);
