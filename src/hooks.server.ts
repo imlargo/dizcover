@@ -27,13 +27,24 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-	const user = await api.get<User>(
-		`/autenticacion/usuario/${user_id}`,
-		{},
-		authTokens?.accessToken
-	);
-	event.locals.user = user;
+	try {
+		const user = await api.get<User>(
+			`/autenticacion/usuario/${user_id}`,
+			{},
+			authTokens?.accessToken
+		);
+		event.locals.user = user;
+	
+		const response = await resolve(event);	
+		return response;
+	} catch (error) {
 
-	const response = await resolve(event);
-	return response;
+		AuthCookies.deleteAuthCookies(event.cookies);
+
+		if (event.url.pathname === '/') {
+			return await resolve(event);
+		} else {
+			redirect(303, '/login');
+		}
+	}	
 };
