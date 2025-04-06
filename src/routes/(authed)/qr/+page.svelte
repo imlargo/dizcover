@@ -32,9 +32,6 @@
 				video: { deviceId: { exact: cameraId } }
 			});
 
-			// videoElement.srcObject = stream;
-			// Start?
-
 			return stream;
 		} catch (err) {
 			console.error('Error al iniciar el video:', err);
@@ -54,7 +51,6 @@
 	async function startScanner() {
 		try {
 			await loadMediaDevices();
-			const stream = await startVideo(selectedCameraId);
 
 			html5QrCodeInstance = new Html5Qrcode('reader', false);
 
@@ -68,7 +64,7 @@
 			};
 
 			// Iniciar el escáner con la cámara seleccionada
-			await html5QrCodeInstance.start(selectedCameraId, config, onScanSuccess, onScanError);
+			await html5QrCodeInstance.start({ facingMode: "environment" }, config, onScanSuccess, onScanError);
 
 			console.log('Escáner QR iniciado');
 		} catch (err) {
