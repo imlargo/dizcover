@@ -12,6 +12,8 @@ export const load = (async ({ url, cookies }) => {
 		AuthCookies.setAuthCookies(cookies, credentials.access_token, '');
 		redirect(303, '/');
 	} catch (error) {
+		console.log("Error in authorize callback", error);
+		
 		redirect(303, '/logout');
 	}
 }) satisfies PageServerLoad;
