@@ -69,12 +69,6 @@
 			console.log('Escáner QR iniciado');
 		} catch (err) {
 			console.error(`No se pudo iniciar el escáner: ${err}`);
-			alert(`Error al iniciar el escáner: ${err}`);
-			// Limpieza en caso de error
-			if (videoElement.srcObject) {
-				videoElement.srcObject.getTracks().forEach((track) => track.stop());
-				videoElement.srcObject = null;
-			}
 		}
 	}
 
