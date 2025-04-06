@@ -9,7 +9,6 @@
 	let hasPermission = $state(false);
 	let html5QrCodeInstance = null;
 
-	let videoElement: HTMLVideoElement;
 	let selectedCameraId = $state('');
 
 	async function loadMediaDevices() {
@@ -23,19 +22,6 @@
 			}
 		} catch (error) {
 			return null;
-		}
-	}
-
-	async function startVideo(cameraId: string) {
-		try {
-			const stream = await navigator.mediaDevices.getUserMedia({
-				video: { deviceId: { exact: cameraId } }
-			});
-
-			return stream;
-		} catch (err) {
-			console.error('Error al iniciar el video:', err);
-			throw err;
 		}
 	}
 
