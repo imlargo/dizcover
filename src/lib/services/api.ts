@@ -53,15 +53,6 @@ export class ApiClient {
 	 * Procesa la respuesta de la API
 	 */
 	private async handleResponse<T>(response: Response): Promise<T> {
-		if (!response.ok) {
-			const error: ApiErrorResponse = {
-				code: 'API_ERROR',
-				message: 'An error occurred while processing the request',
-				payload: { status: response.status }
-			};
-			throw error;
-		}
-		
 		const responseData = await response.json();
 
 		// Si es una respuesta exitosa, devolver los datos directamente
