@@ -9,5 +9,6 @@ export const load = (async ({ url, cookies }) => {
 	const credentials = Object.fromEntries(decoded) as SignInResponse;
 
 	AuthCookies.setAuthCookies(cookies, credentials.access_token, '');
+	AuthCookies.setIdCookie(cookies, credentials.user_id);
 	return redirect(303, '/');
 }) satisfies PageServerLoad;

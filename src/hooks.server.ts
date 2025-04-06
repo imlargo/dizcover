@@ -20,10 +20,12 @@ export const handle: Handle = async ({ event, resolve }) => {
 	}
 
 	const authTokens = AuthCookies.getAuthTokens(event.cookies);
+	const user_id = AuthCookies.getIdCookie(event.cookies);
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-	const user = await api.get<User>('/auth/me', {}, authTokens?.accessToken);
+
+	const user = await api.get<User>(`/autenticacion/usuario/${user_id}`, {}, authTokens?.accessToken);
 	event.locals.user = user;
 
 	const response = await resolve(event);
