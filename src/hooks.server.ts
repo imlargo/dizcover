@@ -4,12 +4,11 @@ import type { User } from '$lib/types/models/user';
 import api from '$lib/services/api';
 
 export const handle: Handle = async ({ event, resolve }) => {
-
 	const isPublicAccessPath =
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup' || 
+		event.url.pathname === '/signup' ||
 		event.url.pathname === '/';
 	if (isPublicAccessPath) {
 		return await resolve(event);

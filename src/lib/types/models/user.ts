@@ -15,4 +15,4 @@ export type User = {
 	tipo: string;
 	fiestero: null;
 	discotequero: Fiestero | null;
-}
+};

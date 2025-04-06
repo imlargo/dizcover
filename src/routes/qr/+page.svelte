@@ -4,14 +4,14 @@
 
 	let { data }: { data: PageData } = $props();
 
-    let showReader = $state(true);
+	let showReader = $state(true);
 	let result: string = $state('');
 	let html5QrcodeScanner: Html5QrcodeScanner;
 
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		console.log(`Scan result: ${decodedText}`, decodedResult);
 		result = decodedText;
-        showReader = false;
+		showReader = false;
 		html5QrcodeScanner.clear();
 	}
 
@@ -32,9 +32,9 @@
 </script>
 
 <div class="flex w-full items-center justify-center p-12">
-    {#if showReader}
-	<div use:useQrCode class="h-[500px] w-[500px]" id="reader"></div>
-    {/if}
+	{#if showReader}
+		<div use:useQrCode class="h-[500px] w-[500px]" id="reader"></div>
+	{/if}
 	<div>
 		{#if result !== ''}
 			<span>

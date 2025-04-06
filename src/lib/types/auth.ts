@@ -3,4 +3,4 @@ export type SignInResponse = {
 	refresh_token: string;
 	user_id: string;
 	tipo_usuario: string;
-}
+};

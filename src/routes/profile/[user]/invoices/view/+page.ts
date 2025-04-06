@@ -1,8 +1,8 @@
 import type { PageLoad } from './$types';
 import type { Invoice } from '$lib/types/profile/invoice';
 import { DatabaseController } from '$lib/services/db';
-export const load = (async () => {
-	const dbController = new DatabaseController();
+export const load = (async ({ data }) => {
+	const dbController = new DatabaseController(data.locals.accessToken);
 	const establecimiento = (await dbController.getEstablecimientos())[0];
 
 	const invoice: Invoice = {

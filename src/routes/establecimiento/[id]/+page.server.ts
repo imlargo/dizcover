@@ -1,8 +1,8 @@
 import type { PageServerLoad } from './$types';
 import { DatabaseController } from '$lib/services/db';
 
-export const load = (async ({ params }) => {
-	const dbController = new DatabaseController();
+export const load = (async ({ params, locals }) => {
+	const dbController = new DatabaseController(locals.accessToken);
 	const establecimiento = await dbController.getEstablecimiento(params.id);
 	const eventos = await dbController.getEventosEstablecimiento(params.id);
 	const imagenes = await dbController.getImagenesEstablecimiento(establecimiento.id as number);

@@ -24,25 +24,25 @@
 			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 		}).addTo(map);
 
-        const locations = [
-            { lat: 6.2095588, lng: -75.5659474, nombre: "Establecimiento 1" },
-            { lat: 6.2097457, lng: -75.5659753, nombre: "Establecimiento 2" },
-            { lat: 6.2108964, lng: -75.5711483, nombre: "Establecimiento 3" },
-        ]
+		const locations = [
+			{ lat: 6.2095588, lng: -75.5659474, nombre: 'Establecimiento 1' },
+			{ lat: 6.2097457, lng: -75.5659753, nombre: 'Establecimiento 2' },
+			{ lat: 6.2108964, lng: -75.5711483, nombre: 'Establecimiento 3' }
+		];
 
-        const marketIcon = L.icon({
-            iconUrl: 'marker.svg',
-            iconSize: [40, 40],
-            iconAnchor: [20, 40],
-            popupAnchor: [0, -40]
-        });
+		const marketIcon = L.icon({
+			iconUrl: 'marker.svg',
+			iconSize: [40, 40],
+			iconAnchor: [20, 40],
+			popupAnchor: [0, -40]
+		});
 
-        for (const location of locations) {
-            const marker = L.marker([location.lat, location.lng], {
-                icon: marketIcon
-            }).addTo(map);
-            marker.bindPopup(location.nombre).openPopup();
-        }
+		for (const location of locations) {
+			const marker = L.marker([location.lat, location.lng], {
+				icon: marketIcon
+			}).addTo(map);
+			marker.bindPopup(location.nombre).openPopup();
+		}
 	}
 
 	onMount(() => {
