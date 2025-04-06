@@ -3,11 +3,15 @@ import { DatabaseController } from '$lib/services/db';
 
 export const load = (async ({ params, locals }) => {
 	const dbController = new DatabaseController(locals.accessToken);
+
 	const establecimiento = await dbController.getEstablecimiento(params.id);
 	const eventos = await dbController.getEventosEstablecimiento(params.id);
-	const imagenes = await dbController.getImagenesEstablecimiento(establecimiento.id as number);
-	const cordenadas = await dbController.getCordenadasEstablecimiento(establecimiento.id as number);
-	const horarios = await dbController.getHorariosEstablecimiento(establecimiento.id as number);
+
+	const [imagenes, cordenadas, horarios] = await Promise.all([
+		dbController.getImagenesEstablecimiento(establecimiento.id as number),
+		dbController.getCordenadasEstablecimiento(establecimiento.id as number),
+		dbController.getHorariosEstablecimiento(establecimiento.id as number),
+	])
 
 	return {
 		establecimiento: establecimiento,
