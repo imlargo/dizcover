@@ -1,4 +1,6 @@
-export type Token = {
-	token: string;
-	refreshToken: string;
-};
+export type SignInResponse = {
+	access_token: string;
+	refresh_token: string;
+	user_id: string;
+	tipo_usuario: string;
+}
