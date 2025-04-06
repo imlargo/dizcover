@@ -9,6 +9,23 @@
 	let isOpenMenu = $state(false);
 	const currentRoute = $state($page.url.pathname);
 	const isHome = $derived(currentRoute === '/');
+
+	function getInitials(name?: string): string {
+		if (!name || typeof name !== 'string') return '';
+
+		const names = name.trim().split(/\s+/);
+		if (!names.length) return '';
+
+		if (names.length === 1) {
+			return name.length > 1 ? name.slice(0, 2).toUpperCase() : name.toUpperCase();
+		}
+
+		return names
+			.slice(0, 2)
+			.map((part) => part[0])
+			.join('')
+			.toUpperCase();
+	}
 </script>
 
 <nav class="navbar z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
@@ -53,30 +70,32 @@
 				</a>
 			</div>
 
-			<DropdownMenu.Root>
-				<DropdownMenu.Trigger>
-					<Button variant="ghost" size="icon" class="relative size-10 rounded-full">
-						<Avatar.Root class="size-10">
-							<Avatar.Image
-								src="https://avatars.githubusercontent.com/u/124599?v=4"
-								alt="@usuario"
-							/>
-							<Avatar.Fallback>U</Avatar.Fallback>
-						</Avatar.Root>
-					</Button>
-				</DropdownMenu.Trigger>
-				<DropdownMenu.Content align="end">
-					<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
-					<DropdownMenu.Separator />
-					<DropdownMenu.Item>
-						<a href="/profile/{storeAuth.user?.id || '0'}" data-sveltekit-reload>Perfil</a>
-					</DropdownMenu.Item>
-					<DropdownMenu.Item>Configuración</DropdownMenu.Item>
-					<DropdownMenu.Item>
-						<a href="/logout" data-sveltekit-reload>Cerrar sesión</a>
-					</DropdownMenu.Item>
-				</DropdownMenu.Content>
-			</DropdownMenu.Root>
+			{#if storeAuth.isAuthenticated()}
+				<DropdownMenu.Root>
+					<DropdownMenu.Trigger>
+						<Button variant="ghost" size="icon" class="relative size-10 rounded-full">
+							<Avatar.Root class="size-10">
+								<Avatar.Image
+									src={storeAuth.user?.foto_perfil}
+									alt={`@${storeAuth.user?.nombre_usuario}`}
+								/>
+								<Avatar.Fallback>{getInitials(storeAuth.user?.nombre_completo)}</Avatar.Fallback>
+							</Avatar.Root>
+						</Button>
+					</DropdownMenu.Trigger>
+					<DropdownMenu.Content align="end">
+						<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
+						<DropdownMenu.Separator />
+						<DropdownMenu.Item>
+							<a href="/profile/{storeAuth.user?.id || '0'}" data-sveltekit-reload>Perfil</a>
+						</DropdownMenu.Item>
+						<DropdownMenu.Item>Configuración</DropdownMenu.Item>
+						<DropdownMenu.Item>
+							<a href="/logout" data-sveltekit-reload>Cerrar sesión</a>
+						</DropdownMenu.Item>
+					</DropdownMenu.Content>
+				</DropdownMenu.Root>
+			{/if}
 
 			<Button variant="ghost" size="icon" onclick={() => (isOpenMenu = true)}>
 				<span><i class="bi bi-list"></i></span>

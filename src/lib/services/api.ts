@@ -99,8 +99,7 @@ export class ApiClient {
 		try {
 			const headers = this.createHeaders(options, accessToken);
 			const url = `${this.baseUrl}${endpoint}`;
-			console.log(url);
-			
+
 			const response = await fetch(url, {
 				...options,
 				headers

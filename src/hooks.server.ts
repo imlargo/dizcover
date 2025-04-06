@@ -8,14 +8,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup' ||
-		event.url.pathname === '/';
+		event.url.pathname === '/signup'
 	if (isPublicAccessPath) {
 		return await resolve(event);
 	}
 
 	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
-	if (!hasAuthCookies) {
+	if (!hasAuthCookies && event.url.pathname !== '/') {
 		redirect(303, '/login');
 	}
 
@@ -24,8 +23,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 	event.locals.accessToken = authTokens?.accessToken;
 	event.locals.refreshToken = authTokens?.refreshToken;
 
-
-	const user = await api.get<User>(`/autenticacion/usuario/${user_id}`, {}, authTokens?.accessToken);
+	const user = await api.get<User>(
+		`/autenticacion/usuario/${user_id}`,
+		{},
+		authTokens?.accessToken
+	);
 	event.locals.user = user;
 
 	const response = await resolve(event);
