@@ -8,7 +8,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup'
+		event.url.pathname === '/signup';
 	if (isPublicAccessPath) {
 		return await resolve(event);
 	}
@@ -16,6 +16,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
 	if (!hasAuthCookies && event.url.pathname !== '/') {
 		redirect(303, '/login');
+	}
+
+	if (event.url.pathname === '/' && !hasAuthCookies) {
+		return await resolve(event);
 	}
 
 	const authTokens = AuthCookies.getAuthTokens(event.cookies);
