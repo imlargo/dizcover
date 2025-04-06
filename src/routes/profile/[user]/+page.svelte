@@ -3,8 +3,11 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import Share from '$lib/components/kit/Share.svelte';
 	import { page } from '$app/state';
+	import type { User } from '$lib/types/models/user';
 
 	let { data }: { data: PageData } = $props();
+
+	const authedUser = data.user as User;
 
 	type UserProfile = {
 		name: string;
@@ -78,7 +81,7 @@
 	const userProfile: UserProfile = {
 		name: 'Juan',
 		lastname: 'Perez',
-		email: 'juan@gmail.com',
+		email: authedUser?.email,
 		password: '123',
 		birthdate: '1990-01-01',
 		country: 'Colombia',
@@ -86,9 +89,8 @@
 		city: 'Medellin',
 		phone: '1234567890',
 
-		profile_image:
-			'https://s3-alpha-sig.figma.com/img/c6d0/766e/f3a2428b63fa72b58a847d02a31fd39b?Expires=1741564800&Key-Pair-Id=APKAQ4GOSFWCW27IBOMQ&Signature=tIrcf331Qcz1fElutPdnA5VWoN7voTjTExSr8N26YZfilORWnEuoOWlj0KDsrd69c3XtDrWpiwk269FNpTseRUT3oVUouLrD1KKm84T8mp7iMcpf7ZRcwZh0dHiiUEA1OlIBcACb7mzRxyT0IXRScTsKw9QwVmx2JhlGbOlj836PupHF6ZbqQQL0xOQCbWw6mG2WEttRSrS3fvebFyOwpEWsa0pyfJCsfPSJckcSOfrYZJt9l3-5BYEPI5R843FVzcm-ECHJgdaunaM2mK0dvm60xhOiBBQpXYA4J3bMup4qKNAc3Xa6MS7J07CR4GuF6j-03wed8gSlWt1E~UVnMA__',
-		username: 'roxy123'
+		profile_image: authedUser?.foto_perfil,
+		username: authedUser?.nombre_usuario,
 	};
 </script>
 
