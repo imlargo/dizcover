@@ -1,13 +1,19 @@
 <script lang="ts">
-	import { Html5QrcodeScanner, Html5Qrcode, Html5QrcodeSupportedFormats, type Html5QrcodeResult } from 'html5-qrcode';
+	import {
+		Html5QrcodeScanner,
+		Html5Qrcode,
+		Html5QrcodeSupportedFormats,
+		type Html5QrcodeResult
+	} from 'html5-qrcode';
 	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
 
+	type ScannerState = 'uninitialized' | 'waiting_permission' | 'starting' | 'running' | 'success' | 'paused';
+
 	let result = $state('');
-	let scannerInit = $state(false);
-	let hasPermission = $state(false);
-	let html5QrCodeInstance = null;
+	let scannerState = $state<ScannerState>('uninitialized');
+	let html5QrCodeInstance: Html5Qrcode | null = null;
 
 	let selectedCameraId = $state('');
 
@@ -28,6 +34,9 @@
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		result = decodedText;
 		console.log(`Código QR escaneado: ${decodedText}`, decodedResult);
+
+		scannerState = 'success';
+		stopScanner();
 	}
 
 	function onScanError(error: string) {
@@ -36,21 +45,26 @@
 
 	async function startScanner() {
 		try {
+			scannerState = 'waiting_permission';
 			await loadMediaDevices();
+
+			scannerState = 'starting';
+			await tick();
 
 			html5QrCodeInstance = new Html5Qrcode('reader', false);
 
-			const config = {
-				fps: 10,
-				qrbox: { width: 384, height: 384 },
-				aspectRatio: 1.0,
-				rememberLastUsedCamera: true,
-				showTorchButtonIfSupported: true,
-				formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE ]
-			};
+			await html5QrCodeInstance.start(
+				{ facingMode: 'environment' },
+				{
+					fps: 10,
+					qrbox: { width: 384, height: 384 },
+					aspectRatio: 1.0
+				},
+				onScanSuccess,
+				onScanError
+			);
 
-			// Iniciar el escáner con la cámara seleccionada
-			await html5QrCodeInstance.start({ facingMode: "environment" }, config, onScanSuccess, onScanError);
+			scannerState = 'running';
 
 			console.log('Escáner QR iniciado');
 		} catch (err) {
@@ -59,40 +73,37 @@
 	}
 
 	// Detener el escáner
-	function stopScanner() {
-		/*
-		if (html5QrCode !== null && html5QrCode.isScanning) {
-			html5QrCode
-				.stop()
-				.then(() => {
-					console.log('Escáner QR detenido');
-					// Detener el video
-					if (videoElement.srcObject) {
-						videoElement.srcObject.getTracks().forEach((track) => track.stop());
-						videoElement.srcObject = null;
-					}
-
-					videoContainer.style.display = 'none';
-					readerElement.style.display = 'block';
-
-					startButton.disabled = false;
-					stopButton.disabled = true;
-					cameraSelect.disabled = false;
-					statusElement.textContent = 'Escáner detenido';
-				})
-				.catch((err) => {
-					console.error(`Error al detener el escáner: ${err}`);
-					statusElement.textContent = `Error al detener: ${err.message}`;
-				});
+	async function stopScanner() {
+		if (html5QrCodeInstance !== null && html5QrCodeInstance.isScanning) {
+			try {
+				await html5QrCodeInstance.stop();
+				console.log('Escáner QR detenido');
+				scannerState = 'paused';
+			} catch (error) {
+				console.error(`Error al detener el escáner: ${error}`);
+			}
 		}
-				*/
 	}
 </script>
 
 <div class="flex w-full items-center justify-center p-12">
 	<div class="flex items-center justify-center border p-4">
 		<div class="flex flex-col gap-4">
-			<div id="reader" class="size-96"></div>
+			{#if scannerState === 'running' || scannerState === 'starting'}
+				<div id="reader" class="size-96"></div>
+			{:else}
+				<div class="size-96">
+					<div class="flex items-center justify-center w-full h-full bg-gray-200 rounded-lg">
+						{#if scannerState === 'waiting_permission'}
+							<p class="text-gray-500">Esperando permiso de la cámara...</p>
+						{:else if scannerState === 'paused'}
+							<p class="text-gray-500">Escáner detenido</p>
+						{:else}
+							<p class="text-gray-500">Escáner no iniciado</p>
+						{/if}
+					</div>
+				</div>
+			{/if}
 
 			<!--
 			<div class="relative size-96 overflow-hidden rounded-lg border">
@@ -102,6 +113,16 @@
 			-->
 
 			<Button variant="secondary" onclick={startScanner}>Iniciar Escáner</Button>
+			<Button variant="secondary" onclick={stopScanner}>Parar Escáner</Button>
+
+			{#if result}
+				<div class="flex flex-col gap-2">
+					<p class="text-gray-500">Resultado:</p>
+					<p class="text-gray-700">{result}</p>
+				</div>
+			{:else}
+				<p class="text-gray-500">No se ha escaneado ningún código QR.</p>
+			{/if}
 		</div>
 	</div>
 </div>
