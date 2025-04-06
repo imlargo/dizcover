@@ -4,16 +4,10 @@ import type { SignInResponse } from '$lib/types/auth';
 import { AuthCookies } from '$lib/server/auth-cookies';
 
 export const load = (async ({ url, cookies }) => {
-	try {
-		const credentialsText = url.searchParams.toString();
-		const decoded = new URLSearchParams(credentialsText);
-		const credentials = Object.fromEntries(decoded) as SignInResponse;
+	const credentialsText = url.searchParams.toString();
+	const decoded = new URLSearchParams(credentialsText);
+	const credentials = Object.fromEntries(decoded) as SignInResponse;
 
-		AuthCookies.setAuthCookies(cookies, credentials.access_token, '');
-		redirect(303, '/');
-	} catch (error) {
-		console.log("Error in authorize callback", error);
-		
-		redirect(303, '/logout');
-	}
+	AuthCookies.setAuthCookies(cookies, credentials.access_token, '');
+	return redirect(303, '/');
 }) satisfies PageServerLoad;
