@@ -48,17 +48,12 @@
 
 <div class="flex flex-col gap-y-8">
 	<div class="flex items-center justify-between">
-		<h1 class="font-display text-3xl">Mis promociones</h1>
-
-		<Button variant="link" class="text-white">
-			<History />
-			<span>Historial de trasacciones</span>
-		</Button>
+		<h1 class="font-display text-3xl">Historial de transacciones</h1>
 	</div>
 
 	<div>
 		<Table.Root>
-			<Table.Caption>Transacciones.</Table.Caption>
+			<Table.Caption>Historial de transacciones</Table.Caption>
 			<Table.Header>
 				<Table.Row>
 					<Table.Head>Id</Table.Head>
