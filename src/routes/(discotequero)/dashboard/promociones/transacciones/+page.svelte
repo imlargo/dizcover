@@ -57,21 +57,20 @@
 			<Table.Header>
 				<Table.Row>
 					<Table.Head>Id</Table.Head>
-                    <Table.Head>Discoteca</Table.Head>
+					<Table.Head>Discoteca</Table.Head>
 					<Table.Head>Item</Table.Head>
 					<Table.Head class="text-right">Valor</Table.Head>
 				</Table.Row>
 			</Table.Header>
 			<Table.Body>
-                {#each cupones as cupon, i }
-                <Table.Row>
-					<Table.Cell class="font-medium">ID#{i}</Table.Cell>
-					<Table.Cell>{cupon.establecimiento}</Table.Cell>
-					<Table.Cell>Cupon</Table.Cell>
-					<Table.Cell class="text-right">$250.00</Table.Cell>
-				</Table.Row>    
-                {/each}
-				
+				{#each cupones as cupon, i}
+					<Table.Row>
+						<Table.Cell class="font-medium">ID#{i}</Table.Cell>
+						<Table.Cell>{cupon.establecimiento}</Table.Cell>
+						<Table.Cell>Cupon</Table.Cell>
+						<Table.Cell class="text-right">$250.00</Table.Cell>
+					</Table.Row>
+				{/each}
 			</Table.Body>
 		</Table.Root>
 	</div>

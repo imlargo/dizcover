@@ -92,7 +92,11 @@
 			<div class="flex items-center gap-4">
 				<h2 class="font-display max-w-max text-2xl">Nightclub bolivar</h2>
 
-				<Button size="icon" variant="secondary" class="flex items-center justify-center rounded-full">
+				<Button
+					size="icon"
+					variant="secondary"
+					class="flex items-center justify-center rounded-full"
+				>
 					<Plus />
 				</Button>
 			</div>
@@ -114,11 +118,15 @@
 				{/each}
 			</div>
 		</div>
-        <div class="space-y-4">
+		<div class="space-y-4">
 			<div class="flex items-center gap-4">
 				<h2 class="font-display max-w-max text-2xl">Nightclub bolivar</h2>
 
-				<Button size="icon" variant="secondary" class="flex items-center justify-center rounded-full">
+				<Button
+					size="icon"
+					variant="secondary"
+					class="flex items-center justify-center rounded-full"
+				>
 					<Plus />
 				</Button>
 			</div>
