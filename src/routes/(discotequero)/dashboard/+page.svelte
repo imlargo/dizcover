@@ -36,18 +36,18 @@
 			</div>
 
 			<div class="space-y-2">
-				<p class="font-medium text-neutral-400">Ultimas reservas</p>
-				<p class="font-display text-3xl">20</p>
+				<p class="font-medium text-neutral-400">Cupones restantes</p>
+				<p class="font-display text-3xl">3</p>
 			</div>
 
 			<div class="space-y-2">
-				<p class="font-medium text-neutral-400">Ultimas reservas</p>
-				<p class="font-display text-3xl">20</p>
+				<p class="font-medium text-neutral-400">Total visualizaciones:</p>
+				<p class="font-display text-3xl">3.7k</p>
 			</div>
 
 			<div class="space-y-2">
-				<p class="font-medium text-neutral-400">Ultimas reservas</p>
-				<p class="font-display text-3xl">20</p>
+				<p class="font-medium text-neutral-400">Total favoritos</p>
+				<p class="font-display text-3xl">742</p>
 			</div>
 		</div>
 	</div>
