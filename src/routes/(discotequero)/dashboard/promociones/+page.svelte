@@ -49,7 +49,7 @@
 	<div class="flex items-center justify-between">
 		<h1 class="font-display text-3xl">Mis promociones</h1>
 
-		<Button variant="link" class="text-white">
+		<Button variant="link" class="text-white" href="/dashboard/promociones/transacciones">
 			<History />
 			<span>Historial de trasacciones</span>
 		</Button>
