@@ -4,7 +4,7 @@
 
 	let { data }: { data: PageData } = $props();
 	import { Button } from '$lib/components/ui/button/index.js';
-	import * as Table from '$lib/components/ui/table/index.js';
+	import * as Table from '$lib/components/ui/table';
 
 	const cupones = [
 		{
@@ -62,7 +62,7 @@
 			<Table.Header>
 				<Table.Row>
 					<Table.Head>Id</Table.Head>
-                    <Table.Head class="w-[100px]">Discoteca</Table.Head>
+                    <Table.Head>Discoteca</Table.Head>
 					<Table.Head>Item</Table.Head>
 					<Table.Head class="text-right">Valor</Table.Head>
 				</Table.Row>
