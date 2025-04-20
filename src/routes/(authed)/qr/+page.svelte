@@ -9,7 +9,13 @@
 	import { onMount, tick } from 'svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
 
-	type ScannerState = 'uninitialized' | 'waiting_permission' | 'starting' | 'running' | 'success' | 'paused';
+	type ScannerState =
+		| 'uninitialized'
+		| 'waiting_permission'
+		| 'starting'
+		| 'running'
+		| 'success'
+		| 'paused';
 
 	let result = $state('');
 	let scannerState = $state<ScannerState>('uninitialized');
@@ -93,7 +99,7 @@
 				<div id="reader" class="size-96"></div>
 			{:else}
 				<div class="size-96">
-					<div class="flex items-center justify-center w-full h-full bg-gray-200 rounded-lg">
+					<div class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
 						{#if scannerState === 'waiting_permission'}
 							<p class="text-gray-500">Esperando permiso de la cámara...</p>
 						{:else if scannerState === 'paused'}

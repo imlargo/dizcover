@@ -19,9 +19,7 @@
 			<Sheet.Content>
 				<Sheet.Header>
 					<Sheet.Title>Desplegable para navegacion</Sheet.Title>
-					<Sheet.Description>
-						Aqui van links o informacion
-					</Sheet.Description>
+					<Sheet.Description>Aqui van links o informacion</Sheet.Description>
 				</Sheet.Header>
 			</Sheet.Content>
 		</Sheet.Root>
