@@ -4,10 +4,50 @@
 	import type { PageData } from './$types';
 	import type { Establecimiento } from '$lib/types/establecimiento';
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 
 	let { data }: { data: PageData } = $props();
 
 	const establecimientos = $state<Establecimiento[]>(data.establecimientos);
+
+	const cupones = [
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		}
+	];
 </script>
 
 <div class="flex flex-col gap-y-8">
@@ -61,6 +101,18 @@
 				<p class="font-display text-3xl">742</p>
 			</div>
 		</div>
+	</div>
+
+	<div class="space-y-4 rounded-lg bg-neutral-900 p-4">
+		<h2 class="font-semibold text-neutral-400">Cover y reservas</h2>
+		<ScrollArea class="h-[200px] w-full">
+			{#each cupones as cupon}
+				<div class="flex justify-between border-b border-neutral-800 py-3">
+					<span>@Juan ha usado {cupon.descripcion}</span>
+					<span class="text-neutral-400">Abril 12, 2025</span>
+				</div>
+			{/each}
+		</ScrollArea>
 	</div>
 
 	<div class="space-y-2">
