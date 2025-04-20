@@ -10,8 +10,8 @@ export const load = (async ({ params, locals }) => {
 	const [imagenes, cordenadas, horarios] = await Promise.all([
 		dbController.getImagenesEstablecimiento(establecimiento.id as number),
 		dbController.getCordenadasEstablecimiento(establecimiento.id as number),
-		dbController.getHorariosEstablecimiento(establecimiento.id as number),
-	])
+		dbController.getHorariosEstablecimiento(establecimiento.id as number)
+	]);
 
 	return {
 		establecimiento: establecimiento,

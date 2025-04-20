@@ -96,7 +96,10 @@
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>
 			{:else}
-				<Button href="/login" class="rounded-full bg-[#D400FE] px-6 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#D400FE]/20">
+				<Button
+					href="/login"
+					class="rounded-full bg-[#D400FE] px-6 py-2 text-sm font-semibold text-white transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#D400FE]/20"
+				>
 					Iniciar sesión
 				</Button>
 			{/if}

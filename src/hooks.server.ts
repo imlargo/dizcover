@@ -34,11 +34,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 			authTokens?.accessToken
 		);
 		event.locals.user = user;
-	
-		const response = await resolve(event);	
+
+		const response = await resolve(event);
 		return response;
 	} catch (error) {
-
 		AuthCookies.deleteAuthCookies(event.cookies);
 
 		if (event.url.pathname === '/') {
@@ -46,5 +45,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} else {
 			redirect(303, '/login');
 		}
-	}	
+	}
 };

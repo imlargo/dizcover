@@ -3,6 +3,7 @@
 	import { ChevronUp, Eye, Star } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import type { Establecimiento } from '$lib/types/establecimiento';
+	import * as Sheet from '$lib/components/ui/sheet/index.js';
 
 	let { data }: { data: PageData } = $props();
 
@@ -12,6 +13,18 @@
 <div class="flex flex-col gap-y-8">
 	<div class="flex items-center justify-between">
 		<h1 class="font-display text-3xl">Bienvenid@, {storeAuth.user?.nombre_usuario}</h1>
+
+		<Sheet.Root>
+			<Sheet.Trigger>Abrir</Sheet.Trigger>
+			<Sheet.Content>
+				<Sheet.Header>
+					<Sheet.Title>Desplegable para navegacion</Sheet.Title>
+					<Sheet.Description>
+						Aqui van links o informacion
+					</Sheet.Description>
+				</Sheet.Header>
+			</Sheet.Content>
+		</Sheet.Root>
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">
@@ -55,7 +68,7 @@
 	<div class="space-y-2">
 		{#each establecimientos as establecimiento}
 			<div class="flex max-h-max justify-between gap-6 rounded-lg bg-neutral-900 p-4">
-				<div class="flex gap-6 items-center">
+				<div class="flex items-center gap-6">
 					<div class="max-h-min">
 						<img
 							src={establecimiento.primera_imagen}
@@ -76,12 +89,12 @@
 						<p class="flex items-center gap-1 text-lg text-neutral-200">Calle 123</p>
 					</div>
 				</div>
-                <div class="flex h-full max-w-max flex-col items-baseline justify-end">
-                    <a
-                        class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
-                        href="/">Leer más</a
-                    >
-                </div>
+				<div class="flex h-full max-w-max flex-col items-baseline justify-end">
+					<a
+						class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
+						href="/">Leer más</a
+					>
+				</div>
 			</div>
 		{/each}
 	</div>
