@@ -16,9 +16,9 @@
 
 		<Sheet.Root>
 			<Sheet.Trigger>Abrir</Sheet.Trigger>
-			<Sheet.Content>
+			<Sheet.Content class="bg-neutral-900 text-white">
 				<Sheet.Header>
-					<Sheet.Title>Desplegable para navegacion</Sheet.Title>
+					<Sheet.Title class="text-white">Desplegable para navegacion</Sheet.Title>
 					<Sheet.Description>Aqui van links o informacion</Sheet.Description>
 				</Sheet.Header>
 			</Sheet.Content>
