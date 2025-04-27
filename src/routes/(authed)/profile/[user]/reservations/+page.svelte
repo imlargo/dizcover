@@ -37,7 +37,7 @@
 </script>
 
 <main class="space-y-4">
-	<h2>Cupon de consumo</h2>
+	<h2 class="font-semibold font-display text-2xl">Cupon de consumo</h2>
 
 	<div class="grid grid-cols-2 gap-12 rounded-lg bg-neutral-900 p-8">
 		<div class="space-y-8">
