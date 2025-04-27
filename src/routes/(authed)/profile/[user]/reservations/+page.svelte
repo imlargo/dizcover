@@ -14,7 +14,7 @@
 			hasta: '2025-03-09'
 		},
 		precio: 35000,
-		qr_code_url: 'URL_DEL_CODIGO_QR'
+		code: '123456789'
 	};
 
 	import { Badge } from '$lib/components/ui/badge';
@@ -68,7 +68,7 @@
 
 		<div class="flex justify-end">
 			<div class="max-w-max space-y-12 rounded-lg bg-neutral-500/80 p-6">
-				<Qr content={cupon.qr_code_url} size="lg" class="rounded-lg" />
+				<Qr content={cupon.code} size="lg" class="rounded-lg" />
 				<div class="flex items-center justify-between">
 					<p class="font-display text-2xl">Precio</p>
 					<p class="font-display text-2xl">{formatCurrency(cupon.precio)}</p>
