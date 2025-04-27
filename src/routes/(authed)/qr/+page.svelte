@@ -83,8 +83,10 @@
 		if (html5QrCodeInstance !== null && html5QrCodeInstance.isScanning) {
 			try {
 				await html5QrCodeInstance.stop();
-				console.log('Escáner QR detenido');
-				scannerState = 'paused';
+				if (scannerState != "success") {
+					scannerState = 'paused';
+				}
+				
 			} catch (error) {
 				console.error(`Error al detener el escáner: ${error}`);
 			}
@@ -92,11 +94,13 @@
 	}
 </script>
 
-<div class="flex w-full items-center justify-center p-12">
-	<div class="flex items-center justify-center border p-4">
+<main class="space-y-4 py-12">
+	<h1 class="font-display w-full text-center text-2xl font-bold">Lee el código QR</h1>
+
+	<div class="flex items-center justify-center p-4">
 		<div class="flex flex-col gap-4">
 			{#if scannerState === 'running' || scannerState === 'starting'}
-				<div id="reader" class="size-96"></div>
+				<div id="reader" class="size-96 overflow-hidden rounded-md"></div>
 			{:else}
 				<div class="size-96">
 					<div class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
@@ -104,6 +108,8 @@
 							<p class="text-gray-500">Esperando permiso de la cámara...</p>
 						{:else if scannerState === 'paused'}
 							<p class="text-gray-500">Escáner detenido</p>
+						{:else if scannerState === 'success'}
+							<p class="text-green-500">Código QR escaneado con éxito</p>
 						{:else}
 							<p class="text-gray-500">Escáner no iniciado</p>
 						{/if}
@@ -112,26 +118,28 @@
 			{/if}
 
 			<!--
-			<div class="relative size-96 overflow-hidden rounded-lg border">
-				<video class="size-96 object-cover" bind:this={videoElement} autoplay playsinline></video>
-				<div class="border-2 border-purple-500 rounded-lg absolute top-1/2 left-1/2 w-[250px] h-[250px] -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none shadow-[0_0_0_99999px_rgba(0,0,0,0.5)]"></div>
-			</div>
-			-->
+				<div class="relative size-96 overflow-hidden rounded-lg border">
+					<video class="size-96 object-cover" bind:this={videoElement} autoplay playsinline></video>
+					<div class="border-2 border-purple-500 rounded-lg absolute top-1/2 left-1/2 w-[250px] h-[250px] -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none shadow-[0_0_0_99999px_rgba(0,0,0,0.5)]"></div>
+				</div>
+				-->
 
-			<Button variant="secondary" onclick={startScanner}>Iniciar Escáner</Button>
-			<Button variant="secondary" onclick={stopScanner}>Parar Escáner</Button>
+			<div class="flex flex-col gap-2">
+				<Button class="bg-[#D400FE] font-semibold text-white" onclick={startScanner}
+					>Iniciar Escáner</Button
+				>
+				<Button class="bg-neutral-700 font-semibold text-white" onclick={stopScanner}
+					>Detener Escáner</Button
+				>
+			</div>
 
 			{#if result}
-				<div class="flex flex-col gap-2">
-					<p class="text-gray-500">Resultado:</p>
-					<p class="text-gray-700">{result}</p>
+				<div class="flex flex-col gap-2 text-center">
+					<p class="text-gray-400">{result}</p>
 				</div>
 			{:else}
-				<p class="text-gray-500">No se ha escaneado ningún código QR.</p>
+				<p class="text-gray-500 text-center">No se ha escaneado ningún código QR.</p>
 			{/if}
 		</div>
 	</div>
-</div>
-
-<style>
-</style>
+</main>
