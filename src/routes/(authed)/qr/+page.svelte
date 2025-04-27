@@ -93,15 +93,17 @@
 	}
 </script>
 
-<main class="space-y-4 py-12">
+<main class="space-y-4 py-12 px-4">
 	<h1 class="font-display w-full text-center text-2xl font-bold">Lee el código QR</h1>
 
 	<div class="flex items-center justify-center p-4">
 		<div class="flex flex-col gap-4">
 			{#if scannerState === 'running' || scannerState === 'starting'}
-				<div id="reader" class="size-96 overflow-hidden rounded-md"></div>
+				<div>
+					<div id="reader" class="aspect-square h-72 md:h-96 w-auto overflow-hidden rounded-md"></div>
+				</div>
 			{:else}
-				<div class="size-96">
+				<div class="aspect-square h-72 md:h-96 w-auto overflow-hidden rounded-md">
 					<div class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
 						{#if scannerState === 'waiting_permission'}
 							<p class="text-gray-500">Esperando permiso de la cámara...</p>
