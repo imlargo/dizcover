@@ -83,10 +83,9 @@
 		if (html5QrCodeInstance !== null && html5QrCodeInstance.isScanning) {
 			try {
 				await html5QrCodeInstance.stop();
-				if (scannerState != "success") {
+				if (scannerState != 'success') {
 					scannerState = 'paused';
 				}
-				
 			} catch (error) {
 				console.error(`Error al detener el escáner: ${error}`);
 			}
@@ -138,7 +137,7 @@
 					<p class="text-gray-400">{result}</p>
 				</div>
 			{:else}
-				<p class="text-gray-500 text-center">No se ha escaneado ningún código QR.</p>
+				<p class="text-center text-gray-500">No se ha escaneado ningún código QR.</p>
 			{/if}
 		</div>
 	</div>

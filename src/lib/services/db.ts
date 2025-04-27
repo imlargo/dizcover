@@ -72,11 +72,7 @@ export class DatabaseController {
 	}
 
 	async getArtistasEvento(idEvento: string | number): Promise<any[]> {
-		const response = await api.get(
-			`/api/evento/artistas/${idEvento}`,
-			{},
-			this.token
-		);
+		const response = await api.get(`/api/evento/artistas/${idEvento}`, {}, this.token);
 		return response;
 	}
 }
