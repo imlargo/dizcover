@@ -31,9 +31,7 @@ export class CuponController {
 
     async validarCupon(codigo: string) {
         return await api.post(`/api/establecimiento/v1/consumo_cupon/validar/`, {
-            body: {
-                codigo: codigo,
-            },
+            codigo: codigo,
         }, {}, this.token)
     }
 

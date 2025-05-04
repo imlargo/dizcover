@@ -8,6 +8,8 @@
 	import type { PageData } from './$types';
 	import { onMount, tick } from 'svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { toast } from 'svelte-sonner';
+	import { CuponController } from '$lib/controllers/cupon';
 
 	type ScannerState =
 		| 'uninitialized'
@@ -40,6 +42,11 @@
 	function onScanSuccess(decodedText: string, decodedResult: Html5QrcodeResult) {
 		result = decodedText;
 		console.log(`Código QR escaneado: ${decodedText}`, decodedResult);
+
+		toast.success(`Código QR escaneado: ${decodedText}`);
+		toast.loading('Validando código...');
+		validarCodigo(decodedText);
+		toast.success('Código validado con éxito');
 
 		scannerState = 'success';
 		stopScanner();
@@ -90,6 +97,11 @@
 				console.error(`Error al detener el escáner: ${error}`);
 			}
 		}
+	}
+
+	function validarCodigo(codigo: string) {
+		const cuponController = new CuponController();
+		cuponController.validarCupon(codigo);
 	}
 </script>
 
