@@ -144,7 +144,7 @@ export function groupObjectsBy<T, K extends string | number | symbol>(
 }
 
 export function formatDate(date: number | string) {
-	return new Date(date).toLocaleDateString('en-US', {
+	return new Date(date).toLocaleDateString('es-CO', {
 		month: 'short',
 		day: 'numeric',
 		year: 'numeric'
