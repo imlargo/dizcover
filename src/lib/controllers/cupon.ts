@@ -25,9 +25,7 @@ export class CuponController {
 
     async reclamarCupon(id_cupon: number) {
         return await api.post(`/api/establecimiento/v1/consumo_cupon/`, {
-            body: {
-                cupon_id: id_cupon,
-            },
+            cupon_id: id_cupon,
         }, {}, this.token)
     }
 
@@ -37,5 +35,10 @@ export class CuponController {
                 codigo: codigo,
             },
         }, {}, this.token)
+    }
+
+    async getCuponesFiestero() {
+        return await api.get<Cupon>(`/api/establecimiento/v1/consumo_cupon/`, {}, this.token)
+
     }
 }

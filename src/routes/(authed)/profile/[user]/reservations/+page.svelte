@@ -39,6 +39,8 @@
 <main class="space-y-4">
 	<h2 class="font-display text-2xl font-semibold">Cupon de consumo</h2>
 
+	{JSON.stringify(data.cupones)}
+
 	<div class="grid grid-cols-2 gap-12 rounded-lg bg-neutral-900 p-8">
 		<div class="space-y-8">
 			<div class="space-y-4">
