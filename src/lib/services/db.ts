@@ -70,4 +70,9 @@ export class DatabaseController {
 		);
 		return response;
 	}
+
+	async getArtistasEvento(idEvento: string | number): Promise<any[]> {
+		const response = await api.get(`/api/evento/artistas/${idEvento}`, {}, this.token);
+		return response;
+	}
 }

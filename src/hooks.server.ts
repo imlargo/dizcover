@@ -8,7 +8,8 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup';
+		event.url.pathname === '/signup' ||
+		event.url.pathname === '/qr';
 	if (isPublicAccessPath) {
 		return await resolve(event);
 	}
@@ -34,11 +35,10 @@ export const handle: Handle = async ({ event, resolve }) => {
 			authTokens?.accessToken
 		);
 		event.locals.user = user;
-	
-		const response = await resolve(event);	
+
+		const response = await resolve(event);
 		return response;
 	} catch (error) {
-
 		AuthCookies.deleteAuthCookies(event.cookies);
 
 		if (event.url.pathname === '/') {
@@ -46,5 +46,5 @@ export const handle: Handle = async ({ event, resolve }) => {
 		} else {
 			redirect(303, '/login');
 		}
-	}	
+	}
 };

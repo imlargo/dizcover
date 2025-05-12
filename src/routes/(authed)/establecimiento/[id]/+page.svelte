@@ -15,6 +15,7 @@
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 	import * as Popover from '$lib/components/ui/popover/index.js';
+	import GalerySale from '$lib/components/home/galery/cards/GalerySale.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -145,6 +146,8 @@
 		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
 		<p class="text-lg">{establecimiento.descripcion}</p>
 	</div>
+
+	<GalerySale cupones={data.cupones.vigentes} />
 
 	<div class="space-y-6">
 		<h3 class="font-display text-3xl font-bold">Galeria</h3>

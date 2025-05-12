@@ -90,7 +90,7 @@
 		phone: '1234567890',
 
 		profile_image: authedUser?.foto_perfil,
-		username: authedUser?.nombre_usuario,
+		username: authedUser?.nombre_usuario
 	};
 </script>
 

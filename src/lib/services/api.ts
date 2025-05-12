@@ -63,7 +63,7 @@ export class ApiClient {
 		// Si hay error, utilizar el formato específico del backend
 		const error: ApiErrorResponse = {
 			code: responseData.code || 'UNKNOWN_ERROR',
-			message: responseData.message || 'An unknown error occurred',
+			message: responseData.detail || 'An unknown error occurred',
 			payload: responseData.payload
 		};
 
