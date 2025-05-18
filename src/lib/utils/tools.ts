@@ -106,7 +106,7 @@ export function toQueryParams<T extends Record<string, any>>(params: T): string 
 			if (value.length === 0) {
 				queryParts.push(`${encodeURIComponent(key)}[]=`);
 			} else {
-				for (const item of (value as any[])) {
+				for (const item of value as any[]) {
 					if (item !== null && item !== undefined) {
 						queryParts.push(
 							`${encodeURIComponent(key)}[]=${encodeURIComponent(convertToString(item))}`

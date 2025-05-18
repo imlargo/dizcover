@@ -5,7 +5,6 @@ import { CuponController } from '$lib/controllers/cupon';
 export const load = (async ({ params, locals }) => {
 	const dbController = new DatabaseController(locals.accessToken);
 
-
 	const cuponController = new CuponController(locals.accessToken);
 	const [establecimiento, eventos, imagenes, cordenadas, horarios, cupones] = await Promise.all([
 		dbController.getEstablecimiento(params.id),

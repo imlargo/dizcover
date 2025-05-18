@@ -23,7 +23,7 @@
 			toast.success('Cupón reclamado con éxito');
 		} catch (error) {
 			toast.error('Error al reclamar el cupón', {
-				description: (error as ApiErrorResponse).message,
+				description: (error as ApiErrorResponse).message
 			});
 		}
 	}
@@ -32,7 +32,7 @@
 <main class="space-y-4 bg-neutral-900 py-8">
 	<h2 class="font-display text-center text-2xl font-semibold">Cupon de consumo</h2>
 
-	<div class="grid grid-cols-3 gap-12 rounded-lg p-8 place-items-center">
+	<div class="grid grid-cols-3 place-items-center gap-12 rounded-lg p-8">
 		<div class="space-y-8">
 			<div class="space-y-4">
 				<h3 class="font-display text-3xl">{establecimiento.nombre}</h3>
@@ -71,7 +71,11 @@
 
 		<div class="flex w-full justify-end">
 			<div class="max-w-max space-y-2">
-				<Button onclick={reclamarCupon} variant="outline" class="max-w-max p-8 font-semibold text-black">Reclamar</Button>
+				<Button
+					onclick={reclamarCupon}
+					variant="outline"
+					class="max-w-max p-8 font-semibold text-black">Reclamar</Button
+				>
 				<p class="max-w-96 text-muted-foreground">
 					*Una vez reclamado el cupón, no usarlo puede incurrir en penalizaciones
 				</p>

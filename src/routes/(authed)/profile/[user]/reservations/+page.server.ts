@@ -7,10 +7,10 @@ export const load = (async ({ locals }) => {
 	const establecimiento = await db.getEstablecimiento(2);
 
 	const cuponController = new CuponController(locals.accessToken);
-	const cupones = await cuponController.getCuponesFiestero()
+	const cupones = await cuponController.getCuponesFiestero();
 
 	return {
 		establecimiento,
-		cupones,
+		cupones
 	};
 }) satisfies PageServerLoad;
