@@ -5,12 +5,52 @@
 
 	const establecimiento = $state(data.establecimiento);
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Pencil, Star, Trash, View } from 'lucide-svelte';
+
+	const cupones = [
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		},
+		{
+			image: '/promo.jpg',
+			establecimiento: 'Night club bolivar',
+			descripcion: 'Six pack cervezas',
+			porcentaje: 25
+		}
+	];
 </script>
 
-<main class="space-y-4">
+<main class="space-y-8">
 	<div class="flex items-center justify-between">
-		<h2 class="font-display text-2xl">{establecimiento.nombre}</h2>
+		<h2 class="font-display text-3xl">{establecimiento.nombre}</h2>
 
 		<div class="flex items-center gap-x-2">
 			<Button variant="ghost" size="icon">
@@ -54,8 +94,7 @@
 				<p class="font-display text-3xl">
 					{establecimiento.calificacion_promedio.toFixed(1)}
 				</p>
-				<p class="font-medium text-neutral-400 flex gap-1 items-center">
-					
+				<p class="flex items-center gap-1 font-medium text-neutral-400">
 					<span>Calificación</span>
 				</p>
 			</div>
@@ -75,5 +114,17 @@
 				<p class="font-medium text-neutral-400">Cupones vendidos</p>
 			</div>
 		</div>
+	</div>
+
+	<div class="space-y-4 rounded-lg bg-neutral-900 p-4">
+		<h2 class="font-semibold text-neutral-400">Cover y reservas</h2>
+		<ScrollArea class="h-[200px] w-full">
+			{#each cupones as cupon}
+				<div class="flex justify-between border-b border-neutral-800 py-3">
+					<span>@Juan ha usado {cupon.descripcion}</span>
+					<span class="text-neutral-400">Abril 12, 2025</span>
+				</div>
+			{/each}
+		</ScrollArea>
 	</div>
 </main>
