@@ -48,8 +48,6 @@
 <div class="flex flex-col gap-y-8">
 	<div class="flex items-center justify-between">
 		<h1 class="font-display text-3xl">Mis promociones</h1>
-
-		
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">

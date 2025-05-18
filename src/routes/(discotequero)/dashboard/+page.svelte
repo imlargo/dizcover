@@ -6,7 +6,7 @@
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Progress } from '$lib/components/ui/progress/index.js';
-  import { Button } from "$lib/components/ui/button/index.js";
+	import { Button } from '$lib/components/ui/button/index.js';
 
 	let { data }: { data: PageData } = $props();
 

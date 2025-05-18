@@ -36,7 +36,7 @@
 			</Table.Root>
 		</Tabs.Content>
 		<Tabs.Content value="cupones">
-            <Table.Root>
+			<Table.Root>
 				<Table.Caption>Historial de reservas.</Table.Caption>
 				<Table.Header>
 					<Table.Row class="text-white">
@@ -45,7 +45,7 @@
 						<Table.Head>Valor</Table.Head>
 						<Table.Head>Cantidad</Table.Head>
 						<Table.Head>Total</Table.Head>
-                    </Table.Row>
+					</Table.Row>
 				</Table.Header>
 				<Table.Body>
 					<Table.Row>
@@ -57,6 +57,6 @@
 					</Table.Row>
 				</Table.Body>
 			</Table.Root>
-        </Tabs.Content>
+		</Tabs.Content>
 	</Tabs.Root>
 </main>
