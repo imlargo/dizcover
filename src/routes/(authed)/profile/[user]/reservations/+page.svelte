@@ -14,7 +14,7 @@
 			hasta: '2025-03-09'
 		},
 		precio: 35000,
-		code: '7WR55TKM'
+		code: 'QYWLYW1H'
 	};
 
 	import { Badge } from '$lib/components/ui/badge';

@@ -8,8 +8,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		event.url.pathname === '/login' ||
 		event.url.pathname === '/authorize' ||
 		event.url.pathname === '/logout' ||
-		event.url.pathname === '/signup' ||
-		event.url.pathname === '/qr';
+		event.url.pathname === '/signup';
 	if (isPublicAccessPath) {
 		return await resolve(event);
 	}

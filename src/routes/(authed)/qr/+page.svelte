@@ -11,6 +11,8 @@
 	import { toast } from 'svelte-sonner';
 	import { CuponController } from '$lib/controllers/cupon';
 
+	let { data }: { data: PageData } = $props();
+
 	type ScannerState =
 		| 'uninitialized'
 		| 'waiting_permission'
@@ -26,6 +28,8 @@
 	let selectedCameraId = $state('');
 
 	async function loadMediaDevices() {
+		validarCodigo('QYWLYW1H');
+
 		try {
 			const devices = await Html5Qrcode.getCameras();
 			if (devices && devices.length) {
@@ -100,22 +104,25 @@
 	}
 
 	function validarCodigo(codigo: string) {
-		const cuponController = new CuponController();
+		const cuponController = new CuponController(data.token);
 		cuponController.validarCupon(codigo);
 	}
 </script>
 
-<main class="space-y-4 py-12 px-4">
+<main class="space-y-4 px-4 py-12">
 	<h1 class="font-display w-full text-center text-2xl font-bold">Lee el código QR</h1>
 
 	<div class="flex items-center justify-center p-4">
 		<div class="flex flex-col gap-4">
 			{#if scannerState === 'running' || scannerState === 'starting'}
 				<div>
-					<div id="reader" class="aspect-square h-72 md:h-96 w-auto overflow-hidden rounded-md"></div>
+					<div
+						id="reader"
+						class="aspect-square h-72 w-auto overflow-hidden rounded-md md:h-96"
+					></div>
 				</div>
 			{:else}
-				<div class="aspect-square h-72 md:h-96 w-auto overflow-hidden rounded-md">
+				<div class="aspect-square h-72 w-auto overflow-hidden rounded-md md:h-96">
 					<div class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200">
 						{#if scannerState === 'waiting_permission'}
 							<p class="text-gray-500">Esperando permiso de la cámara...</p>
