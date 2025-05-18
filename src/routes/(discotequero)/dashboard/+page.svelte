@@ -128,7 +128,9 @@
 							/>
 						</div>
 						<div class="flex max-h-max max-w-max flex-col gap-1">
-							<p class="font-display text-2xl font-semibold">{establecimiento.nombre}</p>
+							<a href="/dashboard/establecimiento/{establecimiento.id}">
+								<p class="font-display text-2xl font-semibold">{establecimiento.nombre}</p>
+							</a>
 							<p class="flex items-center gap-1 text-lg font-bold text-neutral-200">
 								<Eye />
 								<span>2.5k</span>

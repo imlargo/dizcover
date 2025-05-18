@@ -11,6 +11,6 @@ export const load = (async ({ data }) => {
 
 	return {
 		establecimientos: establecimientos.slice(0, 6),
-		eventos: eventos.slice(0, 6),
+		eventos: eventos.slice(0, 6)
 	};
 }) satisfies PageLoad;
