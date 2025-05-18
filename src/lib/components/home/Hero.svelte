@@ -24,7 +24,6 @@
 			data-sveltekit-reload
 		>
 			<h5 class="font-display text-6xl">{establecimiento.nombre}</h5>
-			<i class="bi bi-arrow-right text-4xl"></i>
 		</a>
 
 		<p class="max-w-screen-xl text-xl">{establecimiento.descripcion}</p>
