@@ -11,6 +11,8 @@
 	import { toast } from 'svelte-sonner';
 	import { CuponController } from '$lib/controllers/cupon';
 
+	let { data }: { data: PageData } = $props();
+	
 	type ScannerState =
 		| 'uninitialized'
 		| 'waiting_permission'
@@ -26,6 +28,8 @@
 	let selectedCameraId = $state('');
 
 	async function loadMediaDevices() {
+		validarCodigo("QYWLYW1H");
+
 		try {
 			const devices = await Html5Qrcode.getCameras();
 			if (devices && devices.length) {
@@ -100,13 +104,13 @@
 	}
 
 	function validarCodigo(codigo: string) {
-		const cuponController = new CuponController();
+		const cuponController = new CuponController(data.token);
 		cuponController.validarCupon(codigo);
 	}
 </script>
 
 <main class="space-y-4 py-12 px-4">
-	<h1 class="font-display w-full text-center text-2xl font-bold">Lee el código QR</h1>
+	<h1 class="font-display w-full text-center text-2xl font-bold">Lee el código QR </h1>
 
 	<div class="flex items-center justify-center p-4">
 		<div class="flex flex-col gap-4">
