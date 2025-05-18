@@ -6,6 +6,7 @@
 	const establecimiento = $state(data.establecimiento);
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
+	import { ChevronUp, History, Plus } from 'lucide-svelte';
 	import { Pencil, Star, Trash, View } from 'lucide-svelte';
 
 	const cupones = [
@@ -126,5 +127,28 @@
 				</div>
 			{/each}
 		</ScrollArea>
+	</div>
+
+	<div class="space-y-4">
+		<div class="flex items-center gap-4">
+			<h2 class="font-display max-w-max text-2xl">Promociones</h2>
+		</div>
+
+		<div class="grid grid-cols-6 gap-2">
+			{#each cupones as cupon}
+				<div class="space-y-4 rounded-lg bg-neutral-700 p-4">
+					<img
+						src={cupon.image}
+						alt={cupon.descripcion}
+						class="block aspect-square w-full rounded-lg object-cover"
+					/>
+					<div class="space-y-1 text-center">
+						<p class="font-display text-lg">{cupon.establecimiento}</p>
+						<p class="text-lg">{cupon.descripcion}</p>
+						<p class="font-display text-lg">{cupon.porcentaje}% dcto</p>
+					</div>
+				</div>
+			{/each}
+		</div>
 	</div>
 </main>
