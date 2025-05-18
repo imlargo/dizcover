@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { storeAuth } from '$lib/store/auth.svelte';
-	import { Calendar, ChevronUp, Clock, Eye, Star } from 'lucide-svelte';
+	import { Calendar, ChevronUp, Clock, Eye, History, Star } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import type { Establecimiento } from '$lib/types/establecimiento';
 	import * as Sheet from '$lib/components/ui/sheet/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Progress } from '$lib/components/ui/progress/index.js';
+  import { Button } from "$lib/components/ui/button/index.js";
 
 	let { data }: { data: PageData } = $props();
 
@@ -65,15 +66,10 @@
 	<div class="flex items-center justify-between">
 		<h1 class="font-display text-3xl">Bienvenid@, {storeAuth.user?.nombre_usuario}</h1>
 
-		<Sheet.Root>
-			<Sheet.Trigger>Abrir</Sheet.Trigger>
-			<Sheet.Content class="bg-neutral-900 text-white">
-				<Sheet.Header>
-					<Sheet.Title class="text-white">Desplegable para navegacion</Sheet.Title>
-					<Sheet.Description>Aqui van links o informacion</Sheet.Description>
-				</Sheet.Header>
-			</Sheet.Content>
-		</Sheet.Root>
+		<Button variant="link" class="text-white" href="/dashboard/transacciones">
+			<History />
+			<span>Historial de trasacciones</span>
+		</Button>
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">

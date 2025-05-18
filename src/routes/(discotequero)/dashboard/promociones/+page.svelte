@@ -49,17 +49,14 @@
 	<div class="flex items-center justify-between">
 		<h1 class="font-display text-3xl">Mis promociones</h1>
 
-		<Button variant="link" class="text-white" href="/dashboard/promociones/transacciones">
-			<History />
-			<span>Historial de trasacciones</span>
-		</Button>
+		
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">
 		<div class="relative flex items-center justify-center rounded-lg bg-neutral-900 p-8">
 			<div class="space-y-2 py-12 text-center">
 				<p class="font-display text-4xl">$500.000,00</p>
-				<p class="font-medium text-neutral-400">Total ingresos</p>
+				<p class="font-medium text-neutral-400">Ingresos por cupones</p>
 			</div>
 
 			<div class="absolute bottom-0 right-0 p-4">
@@ -75,14 +72,14 @@
 				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-neutral-900 p-8 text-center"
 			>
 				<p class="font-display text-4xl">38</p>
-				<p class="font-medium text-neutral-400">Cupones restantes</p>
+				<p class="font-medium text-neutral-400">Cupones activos</p>
 			</div>
 
 			<div
 				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-neutral-900 p-8 text-center"
 			>
-				<p class="font-display text-4xl">20</p>
-				<p class="font-medium text-neutral-400">Cupones vendidos</p>
+				<p class="font-display text-4xl">700</p>
+				<p class="font-medium text-neutral-400">Cupones reclamados</p>
 			</div>
 		</div>
 	</div>
