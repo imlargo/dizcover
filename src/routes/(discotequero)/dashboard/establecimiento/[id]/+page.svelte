@@ -26,4 +26,8 @@
 			</Button>
 		</div>
 	</div>
+
+	<div class="w-full aspect-[3/1] overflow-hidden rounded-lg">
+		<img src={establecimiento.primera_imagen} alt={establecimiento.nombre} class="w-full h-auto object-cover" />
+	</div>
 </main>
