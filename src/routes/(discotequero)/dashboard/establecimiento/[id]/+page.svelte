@@ -2,6 +2,28 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	const establecimiento = $state(data.establecimiento);
+	import { Button } from '$lib/components/ui/button/index.js';
+	import { Pencil, Trash, View } from 'lucide-svelte';
 </script>
 
-{JSON.stringify(data.establecimiento)}
+<main class="space-y-4">
+	<div class="flex items-center justify-between">
+		<h2 class="font-display text-2xl">{establecimiento.nombre}</h2>
+
+		<div class="flex items-center gap-x-2">
+			<Button variant="ghost" size="icon">
+				<View class="size-4" />
+			</Button>
+
+			<Button variant="ghost" size="icon">
+				<Pencil class="size-4" />
+			</Button>
+
+			<Button variant="ghost" size="icon">
+				<Trash class="size-4" />
+			</Button>
+		</div>
+	</div>
+</main>
