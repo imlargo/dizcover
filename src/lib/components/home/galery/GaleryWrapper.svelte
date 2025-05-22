@@ -49,16 +49,18 @@
 	{#if showTitle}
 		<h3 class="font-display text-center text-3xl">{title}</h3>
 
-		<div class="flex items-center justify-center gap-2">
-			{#each { length: count }, i}
-				<div
-					class="inline-flex h-3 w-4 rounded-full {current === i + 1
-						? variant === 'base'
-							? 'bg-dizcover-purple'
-							: 'bg-[#2AFE00]'
-						: 'bg-gray-300'}"
-				></div>
-			{/each}
+		<div class="flex items-center justify-center">
+			<div class="slider flex max-w-max items-center justify-center gap-2">
+				{#each { length: 3 }, i}
+					<div
+						class="inline-flex h-4 w-16 rounded-full {i === 1
+							? variant === 'base'
+								? 'bg-dizcover-purple'
+								: 'bg-[#2AFE00]'
+							: 'bg-accent'}"
+					></div>
+				{/each}
+			</div>
 		</div>
 	{/if}
 
@@ -78,3 +80,9 @@
 		</Carousel.Root>
 	</div>
 </div>
+
+<style>
+	.slider {
+		mask-image: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(255, 255, 255, 0) 100%);
+	}
+</style>
