@@ -4,7 +4,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Trash } from 'lucide-svelte';
+	import { Trash2 } from 'lucide-svelte';
 
 	type BookingDetails = PricingEvento & { numPersonas: number };
 
@@ -63,7 +63,7 @@
 									class="text-destructive hover:text-destructive/80"
 									onclick={() => (tier.numPersonas = 0)}
 								>
-									<Trash class="size-4" />
+									<Trash2  />
 								</Button>
 							{/if}
 
