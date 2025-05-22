@@ -55,7 +55,7 @@
 					<div
 						class="inline-flex h-4 w-16 rounded-full {i === 1
 							? variant === 'base'
-								? 'bg-dizcover-purple'
+								? 'bg-dizcover-primary'
 								: 'bg-[#2AFE00]'
 							: 'bg-accent'}"
 					></div>

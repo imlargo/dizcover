@@ -122,7 +122,7 @@
 				<h5 class="font-display text-6xl">
 					{establecimiento.nombre}
 				</h5>
-				<span class="text-5xl font-bold text-dizcover-purple">
+				<span class="text-5xl font-bold text-dizcover-primary">
 					<i class="bi bi-star-fill"></i>
 					<span
 						>{typeof establecimiento.calificacion_promedio === 'string'

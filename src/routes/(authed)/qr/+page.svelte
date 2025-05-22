@@ -145,7 +145,7 @@
 				-->
 
 			<div class="flex flex-col gap-2">
-				<Button class="bg-dizcover-purple font-semibold text-white" onclick={startScanner}
+				<Button class="bg-dizcover-primary font-semibold text-white" onclick={startScanner}
 					>Iniciar Escáner</Button
 				>
 				<Button class="bg-neutral-700 font-semibold text-white" onclick={stopScanner}

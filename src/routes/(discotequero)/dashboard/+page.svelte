@@ -180,7 +180,7 @@
 						</div>
 						<Progress
 							value={33}
-							class="h-2 rounded-full bg-dizcover-purple/20"
+							class="h-2 rounded-full bg-dizcover-primary/20"
 							aria-label="Progreso de asistentes al evento"
 						/>
 					</div>
