@@ -91,7 +91,7 @@
 					/>
 				</div>
 
-				<Button class="w-full bg-[#D400FE] font-semibold" type="submit" disabled={isLoading}>
+				<Button class="w-full bg-[#D400FE] hover:bg-[#D400FE]/80 font-semibold text-primary" type="submit" disabled={isLoading}>
 					{#if isLoading}
 						<span>Iniciando sesión...</span>
 						<i class="bi bi-arrow-repeat animate-spin leading-none"></i>
