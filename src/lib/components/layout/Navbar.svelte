@@ -28,7 +28,7 @@
 	}
 </script>
 
-<nav class="glass bg-accent/40 z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
+<nav class="glass z-40 bg-accent/40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
 	<div class="flex w-full items-center justify-between px-10 py-6">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
@@ -46,7 +46,9 @@
 				<Input
 					type="search"
 					placeholder="Buscar..."
-					class="w-96 rounded-full pl-4 {isHome ? 'bg-transparent placeholder:text-secondary-foreground border-accent' : ''}"
+					class="w-96 rounded-full pl-4 {isHome
+						? 'border-accent bg-transparent placeholder:text-secondary-foreground'
+						: ''}"
 				/>
 				<!--
 				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-gray-200"></i>
@@ -100,7 +102,7 @@
 			{:else}
 				<Button
 					href="/login"
-					class="rounded-full bg-dizcover-primary px-6 py-2 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-dizcover-primary/20 hover:bg-dizcover-primary/80"
+					class="rounded-full bg-dizcover-primary px-6 py-2 text-sm font-semibold text-white transition-all hover:bg-dizcover-primary/80 hover:shadow-lg hover:shadow-dizcover-primary/20"
 				>
 					Iniciar sesión
 				</Button>

@@ -67,7 +67,7 @@
 	<Card.Root class="text-primary">
 		<Card.Header class="space-y-1 text-center">
 			<div class="flex items-center justify-center">
-				<img src="/dizcover-logo.png" alt="" class="h-10">
+				<img src="/dizcover-logo.png" alt="" class="h-10" />
 			</div>
 			<Card.Description class="text-muted-foreground"
 				>Inicia sesión con tu correo o con tu usuario</Card.Description
@@ -77,11 +77,7 @@
 			<form {onsubmit} class="space-y-4">
 				<div class="relative">
 					<User class="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-					<Input
-						placeholder="Correo o usuario"
-						class="pl-10"
-						bind:value={formData.email}
-					/>
+					<Input placeholder="Correo o usuario" class="pl-10" bind:value={formData.email} />
 				</div>
 				<div class="relative">
 					<Lock class="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -93,7 +89,11 @@
 					/>
 				</div>
 
-				<Button class="w-full bg-dizcover-primary hover:bg-dizcover-primary/80 font-semibold text-primary" type="submit" disabled={isLoading}>
+				<Button
+					class="w-full bg-dizcover-primary font-semibold text-primary hover:bg-dizcover-primary/80"
+					type="submit"
+					disabled={isLoading}
+				>
 					{#if isLoading}
 						<span>Iniciando sesión...</span>
 						<i class="bi bi-arrow-repeat animate-spin leading-none"></i>
@@ -114,17 +114,12 @@
 					<Separator class="w-full" />
 				</div>
 				<div class="relative flex justify-center">
-					<span class="text-muted-foreground bg-background px-2 text-sm">ó</span>
+					<span class="bg-background px-2 text-sm text-muted-foreground">ó</span>
 				</div>
 			</div>
 
 			<div class="space-y-3">
-				<Button
-					variant="outline"
-					class="w-full"
-					disabled={isLoading}
-					onclick={oauthSignIn}
-				>
+				<Button variant="outline" class="w-full" disabled={isLoading} onclick={oauthSignIn}>
 					{#if isLoading}
 						<LoaderCircle class="animate-spin" />
 					{:else}

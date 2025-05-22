@@ -56,7 +56,7 @@
 						class="inline-flex h-4 w-16 rounded-full {i === 1
 							? variant === 'base'
 								? 'bg-dizcover-primary'
-								: 'bg-[#2AFE00]'
+								: 'bg-dizcover-secondary'
 							: 'bg-accent'}"
 					></div>
 				{/each}
@@ -83,6 +83,12 @@
 
 <style>
 	.slider {
-		mask-image: linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 1) 60%, rgba(255, 255, 255, 0) 100%);
+		mask-image: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0) 0%,
+			rgba(0, 0, 0, 1) 40%,
+			rgba(0, 0, 0, 1) 60%,
+			rgba(255, 255, 255, 0) 100%
+		);
 	}
 </style>

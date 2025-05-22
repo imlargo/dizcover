@@ -11,7 +11,8 @@
 				destructive:
 					'bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent',
 				outline: 'text-foreground',
-				purple: 'bg-dizcover-primary/15 text-dizcover-primary border-dizcover-primary/70 hover:bg-dizcover-primary/30',
+				purple:
+					'bg-dizcover-primary/15 text-dizcover-primary border-dizcover-primary/70 hover:bg-dizcover-primary/30'
 			}
 		},
 		defaultVariants: {
