@@ -69,28 +69,7 @@
 	* {
 		@apply border-border;
 	}
-
 	body {
 		@apply bg-background text-foreground;
-		color: #fff;
-		background-color: #272727;
 	}
-}
-
-::-webkit-scrollbar {
-	@apply h-2.5 w-2.5;
-}
-
-::-webkit-scrollbar-track {
-	@apply bg-transparent;
-}
-
-::-webkit-scrollbar-thumb {
-	@apply rounded-full border-[1px] border-solid border-transparent bg-zinc-400 bg-clip-padding;
-}
-
-.font-display {
-	font-family: 'Anton', serif !important;
-	font-weight: 400 !important;
-	font-style: normal !important;
 }

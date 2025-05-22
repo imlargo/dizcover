@@ -22,7 +22,8 @@ const config = {
 			$client: './src/lib/client',
 			$server: './src/lib/server',
 			$stores: './src/lib/stores',
-			$services: './src/lib/services'
+			$services: './src/lib/services',
+			$controllers: './src/lib/controllers'
 		}
 	}
 };
