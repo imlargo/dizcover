@@ -84,8 +84,8 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{evento.descripcion}</p>
+		<h3 class="font-display text-3xl font-bold">Descripción</h3>
+		<p class="text-lg text-muted-foreground">{evento.descripcion}</p>
 	</div>
 
 	<div class="space-y-6">

@@ -44,7 +44,7 @@
 			</div>
 
 			<p class="max-w-prose text-xl">
-				<span class="font-display">Descripcion: </span>
+				<span class="font-display">Descripción: </span>
 				{cupon?.descripcion}
 			</p>
 

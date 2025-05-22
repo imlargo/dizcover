@@ -4,6 +4,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Trash } from 'lucide-svelte';
 
 	type BookingDetails = PricingEvento & { numPersonas: number };
 
@@ -58,10 +59,11 @@
 							{#if tier.numPersonas > 0}
 								<Button
 									variant="ghost"
-									class="size-8 text-lg text-red-400 hover:bg-red-100/20 hover:text-red-500"
+									size="icon"
+									class="text-destructive hover:text-destructive/80"
 									onclick={() => (tier.numPersonas = 0)}
 								>
-									<i class="bi bi-trash"></i>
+									<Trash class="size-4" />
 								</Button>
 							{/if}
 

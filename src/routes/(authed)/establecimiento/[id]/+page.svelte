@@ -143,7 +143,7 @@
 
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
+		<h3 class="font-display text-3xl font-bold">Descripción</h3>
 		<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
 	</div>
 
