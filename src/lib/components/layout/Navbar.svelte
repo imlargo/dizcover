@@ -46,9 +46,11 @@
 				<Input
 					type="search"
 					placeholder="Buscar..."
-					class="w-96 rounded-full bg-transparent pl-10"
+					class="w-96 rounded-full pl-4"
 				/>
+				<!--
 				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-gray-200"></i>
+				-->
 			</form>
 		</div>
 
