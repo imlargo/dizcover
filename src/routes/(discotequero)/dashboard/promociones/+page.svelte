@@ -98,7 +98,7 @@
 
 			<div class="grid grid-cols-6 gap-2">
 				{#each cupones as cupon}
-					<div class="space-y-4 rounded-lg bg-neutral-700 p-4">
+					<div class="space-y-4 rounded-lg bg-accent p-4">
 						<img
 							src={cupon.image}
 							alt={cupon.descripcion}
@@ -128,7 +128,7 @@
 
 			<div class="grid grid-cols-6 gap-2">
 				{#each cupones as cupon}
-					<div class="space-y-4 rounded-lg bg-neutral-700 p-4">
+					<div class="space-y-4 rounded-lg bg-accent p-4">
 						<img
 							src={cupon.image}
 							alt={cupon.descripcion}
