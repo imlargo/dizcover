@@ -134,7 +134,7 @@
 
 			<div class="flex gap-4">
 				{#each establecimiento.etiquetas as tag}
-					<Badge variant="purple">{tag}</Badge>
+					<Badge variant="purple" class="text-base">{tag}</Badge>
 				{/each}
 			</div>
 		</div>
@@ -144,7 +144,7 @@
 <main class="space-y-16 p-12">
 	<div class="space-y-6">
 		<h3 class="font-display text-3xl font-bold">Descripcion</h3>
-		<p class="text-lg">{establecimiento.descripcion}</p>
+		<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
 	</div>
 
 	<GalerySale cupones={data.cupones.vigentes} />
