@@ -77,7 +77,7 @@
 	</div>
 
 	<div class="grid grid-cols-2 gap-4">
-		<div class="relative flex items-center justify-center rounded-lg bg-neutral-900 p-8">
+		<div class="relative flex items-center justify-center rounded-lg bg-primary-foreground p-8">
 			<div class="space-y-2 text-center">
 				<p class="font-display text-4xl">$3.500.000</p>
 				<p class="font-medium text-neutral-400">Total ingresos</p>
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-2 gap-8 rounded-lg bg-neutral-900 p-8">
+		<div class="grid grid-cols-2 gap-8 rounded-lg bg-primary-foreground p-8">
 			<div class="space-y-2">
 				<p class="font-display text-3xl">
 					{establecimiento.calificacion_promedio.toFixed(1)}
@@ -117,7 +117,7 @@
 		</div>
 	</div>
 
-	<div class="space-y-4 rounded-lg bg-neutral-900 p-4">
+	<div class="space-y-4 rounded-lg bg-primary-foreground p-4">
 		<h2 class="font-semibold text-neutral-400">Cover y reservas</h2>
 		<ScrollArea class="h-[200px] w-full">
 			{#each cupones as cupon}

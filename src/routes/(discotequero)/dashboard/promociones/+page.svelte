@@ -51,7 +51,7 @@
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">
-		<div class="relative flex items-center justify-center rounded-lg bg-neutral-900 p-8">
+		<div class="relative flex items-center justify-center rounded-lg bg-primary-foreground p-8">
 			<div class="space-y-2 py-12 text-center">
 				<p class="font-display text-4xl">$500.000,00</p>
 				<p class="font-medium text-neutral-400">Ingresos por cupones</p>
@@ -67,14 +67,14 @@
 
 		<div class="grid grid-cols-2 gap-8">
 			<div
-				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-neutral-900 p-8 text-center"
+				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-primary-foreground p-8 text-center"
 			>
 				<p class="font-display text-4xl">38</p>
 				<p class="font-medium text-neutral-400">Cupones activos</p>
 			</div>
 
 			<div
-				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-neutral-900 p-8 text-center"
+				class="flex flex-col items-center justify-center gap-2 rounded-lg bg-primary-foreground p-8 text-center"
 			>
 				<p class="font-display text-4xl">700</p>
 				<p class="font-medium text-neutral-400">Cupones reclamados</p>

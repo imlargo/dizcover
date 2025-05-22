@@ -73,7 +73,7 @@
 	</div>
 
 	<div class="grid grid-cols-2 gap-12">
-		<div class="relative flex items-center justify-center rounded-lg bg-neutral-900 p-8">
+		<div class="relative flex items-center justify-center rounded-lg bg-primary-foreground p-8">
 			<div class="space-y-2 text-center">
 				<p class="font-display text-4xl">$3.500.000</p>
 				<p class="font-medium text-neutral-400">Total ingresos</p>
@@ -87,7 +87,7 @@
 			</div>
 		</div>
 
-		<div class="grid grid-cols-2 gap-8 rounded-lg bg-neutral-900 p-8">
+		<div class="grid grid-cols-2 gap-8 rounded-lg bg-primary-foreground p-8">
 			<div class="space-y-2">
 				<p class="font-medium text-neutral-400">Ultimas reservas</p>
 				<p class="font-display text-3xl">20</p>
@@ -114,7 +114,7 @@
 		<h5 class="font-display text-2xl">Establecimientos</h5>
 		<div class="space-y-2">
 			{#each establecimientos as establecimiento}
-				<div class="flex max-h-max justify-between gap-6 rounded-lg bg-neutral-900 p-4">
+				<div class="flex max-h-max justify-between gap-6 rounded-lg bg-primary-foreground p-4">
 					<div class="flex items-center gap-6">
 						<div class="max-h-min">
 							<img
@@ -154,7 +154,7 @@
 		<div class="space-y-2">
 			{#each eventos as evento}
 				<div
-					class="flex max-h-max flex-col justify-between space-y-2 rounded-lg bg-neutral-900 p-4"
+					class="flex max-h-max flex-col justify-between space-y-2 rounded-lg bg-primary-foreground p-4"
 				>
 					<div class="flex items-center justify-between">
 						<div class="flex items-center justify-between">
@@ -189,7 +189,7 @@
 		</div>
 	</div>
 
-	<div class="space-y-4 rounded-lg bg-neutral-900 p-4">
+	<div class="space-y-4 rounded-lg bg-primary-foreground p-4">
 		<h2 class="font-semibold text-neutral-400">Cover y reservas</h2>
 		<ScrollArea class="h-[200px] w-full">
 			{#each cupones as cupon}

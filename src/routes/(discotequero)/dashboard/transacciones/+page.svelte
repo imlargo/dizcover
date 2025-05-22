@@ -12,7 +12,7 @@
 	</div>
 
 	<Tabs.Root value="reservas" class="w-full">
-		<Tabs.List class="bg-neutral-900">
+		<Tabs.List class="bg-primary-foreground">
 			<Tabs.Trigger value="reservas">Reservas</Tabs.Trigger>
 			<Tabs.Trigger value="cupones">Cupones</Tabs.Trigger>
 		</Tabs.List>
