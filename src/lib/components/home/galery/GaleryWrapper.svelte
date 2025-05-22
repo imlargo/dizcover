@@ -54,7 +54,7 @@
 				<div
 					class="inline-flex h-3 w-4 rounded-full {current === i + 1
 						? variant === 'base'
-							? 'bg-[#D400FE]'
+							? 'bg-dizcover-purple'
 							: 'bg-[#2AFE00]'
 						: 'bg-gray-300'}"
 				></div>
