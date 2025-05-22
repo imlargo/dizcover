@@ -28,7 +28,7 @@
 	}
 </script>
 
-<nav class="navbar z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
+<nav class="glass bg-accent/40 z-40 {isHome ? 'absolute w-full text-white' : 'border-b'}">
 	<div class="flex w-full items-center justify-between px-10 py-6">
 		<div class="flex flex-1 items-center gap-12">
 			<div class="flex w-full items-center justify-between md:w-auto">
@@ -46,7 +46,7 @@
 				<Input
 					type="search"
 					placeholder="Buscar..."
-					class="w-96 rounded-full pl-4"
+					class="w-96 rounded-full pl-4 {isHome ? 'bg-transparent placeholder:text-secondary-foreground border-accent' : ''}"
 				/>
 				<!--
 				<i class="bi bi-search absolute left-3 top-2.5 h-5 w-5 text-gray-200"></i>
@@ -160,10 +160,8 @@
 </nav>
 
 <style>
-	.navbar {
-		--bg-color: rgb(39, 39, 39, 0.2) !important;
-		--blur: 4px;
-		background-color: var(--bg-color) !important;
+	.glass {
+		--blur: 8px;
 		backdrop-filter: blur(var(--blur)) !important;
 		-webkit-backdrop-filter: blur(var(--blur)) !important;
 	}

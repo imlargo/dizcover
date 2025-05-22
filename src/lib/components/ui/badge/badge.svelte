@@ -10,7 +10,8 @@
 					'bg-secondary text-secondary-foreground hover:bg-secondary/80 border-transparent',
 				destructive:
 					'bg-destructive text-destructive-foreground hover:bg-destructive/80 border-transparent',
-				outline: 'text-foreground'
+				outline: 'text-foreground',
+				purple: 'bg-dizcover-purple/15 text-dizcover-purple border-dizcover-purple/70 hover:bg-dizcover-purple/30',
 			}
 		},
 		defaultVariants: {

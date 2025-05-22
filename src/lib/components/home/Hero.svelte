@@ -30,7 +30,7 @@
 
 		<div class="flex space-x-4">
 			{#each establecimiento.etiquetas as tag}
-				<Badge variant="purple" class="text-base">{tag}</Badge>
+				<Badge variant="purple" class="text-base font-light">{tag}</Badge>
 			{/each}
 		</div>
 	</div>
