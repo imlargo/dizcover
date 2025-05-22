@@ -66,7 +66,9 @@
 <div class="mx-auto w-full max-w-md p-4 lg:py-24">
 	<Card.Root class="text-primary">
 		<Card.Header class="space-y-1 text-center">
-			<Card.Title class="text-3xl font-bold">dizcover</Card.Title>
+			<div class="flex items-center justify-center">
+				<img src="/dizcover-logo.png" alt="" class="h-10">
+			</div>
 			<Card.Description class="text-muted-foreground"
 				>Inicia sesión con tu correo o con tu usuario</Card.Description
 			>
