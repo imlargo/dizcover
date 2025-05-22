@@ -64,10 +64,10 @@
 </script>
 
 <div class="mx-auto w-full max-w-md p-4 lg:py-24">
-	<Card.Root class="bg-transparent text-white">
+	<Card.Root class="text-primary">
 		<Card.Header class="space-y-1 text-center">
 			<Card.Title class="text-3xl font-bold">dizcover</Card.Title>
-			<Card.Description class="text-neutral-400"
+			<Card.Description class="text-muted-foreground"
 				>Inicia sesión con tu correo o con tu usuario</Card.Description
 			>
 		</Card.Header>
@@ -77,7 +77,7 @@
 					<User class="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
 					<Input
 						placeholder="Correo o usuario"
-						class="bg-transparent pl-10"
+						class="pl-10"
 						bind:value={formData.email}
 					/>
 				</div>
@@ -86,7 +86,7 @@
 					<Input
 						type="password"
 						placeholder="Contraseña"
-						class="bg-transparent pl-10"
+						class="pl-10"
 						bind:value={formData.password}
 					/>
 				</div>
@@ -102,7 +102,7 @@
 			</form>
 
 			<div class="mt-4 text-center">
-				<a href="/forgot-password" class="text-sm text-neutral-200 hover:underline">
+				<a href="/forgot-password" class="text-sm text-primary hover:underline">
 					Olvidé mi contraseña
 				</a>
 			</div>
@@ -112,14 +112,14 @@
 					<Separator class="w-full" />
 				</div>
 				<div class="relative flex justify-center">
-					<span class="text-nuetral-400 bg-[#272727] px-2 text-sm">ó</span>
+					<span class="text-muted-foreground bg-background px-2 text-sm">ó</span>
 				</div>
 			</div>
 
 			<div class="space-y-3">
 				<Button
 					variant="outline"
-					class="w-full border-white/10 bg-transparent text-white"
+					class="w-full"
 					disabled={isLoading}
 					onclick={oauthSignIn}
 				>
@@ -157,7 +157,7 @@
 			</div>
 		</Card.Content>
 		<Card.Footer class="flex justify-center">
-			<a href="/register" class="text-sm text-white hover:underline">Regístrate</a>
+			<a href="/register" class="text-sm text-primary hover:underline">Regístrate</a>
 		</Card.Footer>
 	</Card.Root>
 </div>
