@@ -92,13 +92,17 @@
 						<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<a href="/profile/{storeAuth.user?.id || '0'}" class="w-full flex items-center gap-1" data-sveltekit-reload>
+							<a
+								href="/profile/{storeAuth.user?.id || '0'}"
+								class="flex w-full items-center gap-1"
+								data-sveltekit-reload
+							>
 								<User />
 								<span>Perfil</span>
 							</a>
 						</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<a href="/logout" class="w-full  flex items-center gap-1" data-sveltekit-reload>
+							<a href="/logout" class="flex w-full items-center gap-1" data-sveltekit-reload>
 								<LogOut />
 								<span>Cerrar sesión</span>
 							</a>

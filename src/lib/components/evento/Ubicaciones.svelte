@@ -63,7 +63,7 @@
 									class="text-destructive hover:text-destructive/80"
 									onclick={() => (tier.numPersonas = 0)}
 								>
-									<Trash2  />
+									<Trash2 />
 								</Button>
 							{/if}
 

@@ -21,11 +21,11 @@
 	</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title >Reservar</Dialog.Title>
+			<Dialog.Title>Reservar</Dialog.Title>
 			<Dialog.Description>Elije el numero de personas</Dialog.Description>
 		</Dialog.Header>
 
-		<div class="flex flex-col items-center justify-center space-y-6 py-8 ">
+		<div class="flex flex-col items-center justify-center space-y-6 py-8">
 			<div class="flex items-center gap-2">
 				<User class="size-4" />
 				<NumberField

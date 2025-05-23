@@ -139,6 +139,6 @@
 
 <style>
 	.cover-image {
-		filter: brightness(50%);
+		filter: brightness(25%);
 	}
 </style>
