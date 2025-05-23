@@ -28,7 +28,7 @@
 
 		<p class="max-w-screen-xl text-xl">{establecimiento.descripcion}</p>
 
-		<div class="flex space-x-4">
+		<div class="flex space-x-4 overflow-x-auto">
 			{#each establecimiento.etiquetas as tag}
 				<Badge variant="purple" class="text-base font-light">{tag}</Badge>
 			{/each}
