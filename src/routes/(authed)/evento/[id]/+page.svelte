@@ -39,7 +39,7 @@
 <div class="relative h-[90vh] overflow-hidden">
 	<img
 		src={evento.primera_imagen}
-		class="cover-image absolute -z-10 h-full w-full object-cover blur-xl"
+		class="cover-image absolute -z-10 h-full w-full object-cover blur-xl brightness-50"
 		alt={evento.nombre}
 	/>
 

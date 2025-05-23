@@ -5,6 +5,7 @@
 	import * as Avatar from '$components/ui/avatar/index.js';
 	import { page } from '$app/stores';
 	import { storeAuth } from '$lib/store/auth.svelte';
+	import { LogOut, User } from 'lucide-svelte';
 
 	let isOpenMenu = $state(false);
 	const currentRoute = $state($page.url.pathname);
@@ -91,17 +92,23 @@
 						<DropdownMenu.Label>Mi Cuenta</DropdownMenu.Label>
 						<DropdownMenu.Separator />
 						<DropdownMenu.Item>
-							<a href="/profile/{storeAuth.user?.id || '0'}" data-sveltekit-reload>Perfil</a>
+							<a href="/profile/{storeAuth.user?.id || '0'}" class="w-full flex items-center gap-1" data-sveltekit-reload>
+								<User />
+								<span>Perfil</span>
+							</a>
 						</DropdownMenu.Item>
-						<DropdownMenu.Item>Configuración</DropdownMenu.Item>
 						<DropdownMenu.Item>
-							<a href="/logout" data-sveltekit-reload>Cerrar sesión</a>
+							<a href="/logout" class="w-full  flex items-center gap-1" data-sveltekit-reload>
+								<LogOut />
+								<span>Cerrar sesión</span>
+							</a>
 						</DropdownMenu.Item>
 					</DropdownMenu.Content>
 				</DropdownMenu.Root>
 			{:else}
 				<Button
 					href="/login"
+					data-sveltekit-reload
 					class="rounded-full bg-dizcover-primary px-6 py-2 text-sm font-semibold text-white transition-all hover:bg-dizcover-primary/80 hover:shadow-lg hover:shadow-dizcover-primary/20"
 				>
 					Iniciar sesión
@@ -152,9 +159,15 @@
 					</div>
 				</div>
 				<div class="mt-3 space-y-1 px-2">
-					<Button variant="ghost" class="w-full justify-start">Perfil</Button>
-					<Button variant="ghost" class="w-full justify-start">Configuración</Button>
-					<Button variant="ghost" class="w-full justify-start">Cerrar sesión</Button>
+					<Button variant="ghost" class="w-full justify-start">
+						<span>Perfil</span>
+					</Button>
+					<Button variant="ghost" class="w-full justify-start">
+						<span>Configuración</span>
+					</Button>
+					<Button variant="ghost" class="w-full justify-start">
+						<span>Cerrar sesión</span>
+					</Button>
 				</div>
 			</div>
 		</div>

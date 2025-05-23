@@ -80,7 +80,7 @@
 		</div>
 
 		<div class="flex justify-end">
-			<Button variant="outline" class="bg-transparent px-6 py-4 text-lg">Confirmar</Button>
+			<Button variant="outline">Confirmar</Button>
 		</div>
 	</div>
 	<div class="col-span-1 h-full rounded-lg bg-neutral-900"></div>
