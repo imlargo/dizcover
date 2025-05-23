@@ -15,6 +15,7 @@
 	import Artista from '$lib/components/evento/Artista.svelte';
 
 	import { DatabaseController } from '$lib/services/db';
+	import { MapPin } from 'lucide-svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -107,19 +108,20 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
+		<div class="flex items-center justify-between">
+			<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
+
+			<Button variant="ghost" href={getGoogleMapsLink(evento.ubicacion)} target="_blank">
+				<MapPin />
+				<span>Ver en maps</span>
+			</Button>
+		</div>
 
 		<div>
 			<Map coords={evento.ubicacion} title={evento.nombre} />
 		</div>
 
 		<div class="flex justify-around">
-			<Button
-				class="px-12 py-8 text-xl "
-				variant="secondary"
-				href={getGoogleMapsLink(evento.ubicacion)}
-				target="_blank">Ir ahora</Button
-			>
 			<Button class="px-12 py-8 text-xl ">Reservar</Button>
 		</div>
 	</div>

@@ -16,6 +16,7 @@
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import GalerySale from '$lib/components/home/galery/cards/GalerySale.svelte';
+	import { MapPin } from 'lucide-svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -165,19 +166,20 @@
 	</div>
 
 	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
+		<div class="flex items-center justify-between">
+			<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
+
+			<Button variant="ghost" href={getGoogleMapsLink(cords)} target="_blank">
+				<MapPin />
+				<span>Ver en maps</span>
+			</Button>
+		</div>
 
 		<div>
 			<Map coords={cords} title={establecimiento.nombre} />
 		</div>
 
 		<div class="flex justify-around">
-			<Button
-				class="px-12 py-8 text-xl "
-				variant="secondary"
-				href={getGoogleMapsLink(cords)}
-				target="_blank">Ir ahora</Button
-			>
 			<DialogReserva />
 		</div>
 	</div>
