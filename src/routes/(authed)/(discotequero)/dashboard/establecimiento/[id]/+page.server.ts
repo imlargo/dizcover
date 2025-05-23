@@ -1,5 +1,5 @@
 import { DatabaseController } from '$lib/services/db';
-import type { PageServerLoad } from '../$types';
+import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params, locals }) => {
 	const db = new DatabaseController(locals.accessToken);
