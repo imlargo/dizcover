@@ -63,11 +63,13 @@
 	});
 </script>
 
-<div class="mx-auto w-full max-w-md p-4 lg:py-24">
-	<Card.Root class="bg-transparent text-white">
+<div class="flex min-h-screen items-center justify-center p-4">
+	<Card.Root class="w-full max-w-md">
 		<Card.Header class="space-y-1 text-center">
-			<Card.Title class="text-3xl font-bold">dizcover</Card.Title>
-			<Card.Description class="text-neutral-400"
+			<div class="flex items-center justify-center">
+				<img src="/dizcover-logo.png" alt="" class="h-10" />
+			</div>
+			<Card.Description class="text-muted-foreground"
 				>Inicia sesión con tu correo o con tu usuario</Card.Description
 			>
 		</Card.Header>
@@ -75,23 +77,23 @@
 			<form {onsubmit} class="space-y-4">
 				<div class="relative">
 					<User class="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
-					<Input
-						placeholder="Correo o usuario"
-						class="bg-transparent pl-10"
-						bind:value={formData.email}
-					/>
+					<Input placeholder="Correo o usuario" class="pl-10" bind:value={formData.email} />
 				</div>
 				<div class="relative">
 					<Lock class="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
 					<Input
 						type="password"
 						placeholder="Contraseña"
-						class="bg-transparent pl-10"
+						class="pl-10"
 						bind:value={formData.password}
 					/>
 				</div>
 
-				<Button class="w-full bg-[#D400FE] font-semibold" type="submit" disabled={isLoading}>
+				<Button
+					class="w-full bg-dizcover-primary font-semibold text-primary hover:bg-dizcover-primary/80"
+					type="submit"
+					disabled={isLoading}
+				>
 					{#if isLoading}
 						<span>Iniciando sesión...</span>
 						<i class="bi bi-arrow-repeat animate-spin leading-none"></i>
@@ -102,7 +104,7 @@
 			</form>
 
 			<div class="mt-4 text-center">
-				<a href="/forgot-password" class="text-sm text-neutral-200 hover:underline">
+				<a href="/forgot-password" class="text-sm text-primary hover:underline">
 					Olvidé mi contraseña
 				</a>
 			</div>
@@ -112,17 +114,12 @@
 					<Separator class="w-full" />
 				</div>
 				<div class="relative flex justify-center">
-					<span class="text-nuetral-400 bg-[#272727] px-2 text-sm">ó</span>
+					<span class="bg-background px-2 text-sm text-muted-foreground">ó</span>
 				</div>
 			</div>
 
 			<div class="space-y-3">
-				<Button
-					variant="outline"
-					class="w-full border-white/10 bg-transparent text-white"
-					disabled={isLoading}
-					onclick={oauthSignIn}
-				>
+				<Button variant="outline" class="w-full" disabled={isLoading} onclick={oauthSignIn}>
 					{#if isLoading}
 						<LoaderCircle class="animate-spin" />
 					{:else}
@@ -157,7 +154,7 @@
 			</div>
 		</Card.Content>
 		<Card.Footer class="flex justify-center">
-			<a href="/register" class="text-sm text-white hover:underline">Regístrate</a>
+			<a href="/register" class="text-sm text-primary hover:underline">Regístrate</a>
 		</Card.Footer>
 	</Card.Root>
 </div>

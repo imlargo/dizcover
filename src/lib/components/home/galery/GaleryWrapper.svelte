@@ -2,6 +2,7 @@
 	import * as Carousel from '$components/ui/carousel/index.js';
 	import { onMount, setContext, type Snippet } from 'svelte';
 	import { type CarouselAPI } from '$lib/components/ui/carousel/context.js';
+	import GaleryIndicator from '$lib/components/kit/GaleryIndicator.svelte';
 
 	type TipoGaleria = 'establecimiento' | 'evento';
 
@@ -45,20 +46,12 @@
 	});
 </script>
 
-<div class="w-full space-y-8">
+<div class="w-full space-y-8 overflow-hidden px-0.5">
 	{#if showTitle}
 		<h3 class="font-display text-center text-3xl">{title}</h3>
 
-		<div class="flex items-center justify-center gap-2">
-			{#each { length: count }, i}
-				<div
-					class="inline-flex h-3 w-4 rounded-full {current === i + 1
-						? variant === 'base'
-							? 'bg-[#D400FE]'
-							: 'bg-[#2AFE00]'
-						: 'bg-gray-300'}"
-				></div>
-			{/each}
+		<div class="flex items-center justify-center">
+			<GaleryIndicator variant={variant === 'base' ? 'primary' : 'secondary'} />
 		</div>
 	{/if}
 

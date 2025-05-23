@@ -58,7 +58,9 @@ const config: Config = {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				'dizcover-primary': 'hsl(var(--dizcover-primary) / <alpha-value>)',
+				'dizcover-secondary': 'hsl(var(--dizcover-secondary) / <alpha-value>)'
 			},
 			borderRadius: {
 				xl: 'calc(var(--radius) + 4px)',
