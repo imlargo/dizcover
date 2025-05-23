@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { LayoutData } from './$types';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
 
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 
@@ -21,9 +22,9 @@
 	];
 </script>
 
-<div class="px-12 py-12">
-	<div class="grid grid-cols-12 gap-x-6">
-		<aside class="col-span-2 flex flex-col gap-1">
+<div class="px-4 pt-12 md:px-4 lg:px-12 lg:py-12">
+	<div class="flex flex-col gap-x-6 md:grid md:grid-cols-12">
+		<aside class="hidden flex-col gap-1 md:col-span-4 md:flex lg:col-span-2">
 			{#each sidebarLinks as link}
 				<a
 					href={link.href}
@@ -35,7 +36,24 @@
 			{/each}
 		</aside>
 
-		<main class="col-span-10">
+		<div class="block w-full overflow-hidden md:hidden">
+			<Tabs.Root class="w-full">
+				<Tabs.List class="w-full overflow-x-auto">
+					{#each sidebarLinks as link}
+						<Tabs.Trigger value={link.href}>
+							<a href={link.href} class="w-full px-2">
+								<i class={link.icon}></i>
+								<span>{link.label}</span>
+							</a>
+						</Tabs.Trigger>
+					{/each}
+				</Tabs.List>
+				<Tabs.Content value="account">Make changes to your account here.</Tabs.Content>
+				<Tabs.Content value="password">Change your password here.</Tabs.Content>
+			</Tabs.Root>
+		</div>
+
+		<main class="md:col-span-8 lg:col-span-10">
 			{@render children()}
 		</main>
 	</div>

@@ -20,7 +20,11 @@
 	class="bottom-nav glass z-90 fixed bottom-0 grid w-full grid-cols-3 place-items-center gap-x-4 border-t border-white/10 bg-white/5 px-4 py-3 shadow-md"
 >
 	{#each links as link}
-		<a href={link.href} class="flex flex-col items-center justify-center gap-1" data-sveltekit-reload>
+		<a
+			href={link.href}
+			class="flex flex-col items-center justify-center gap-1"
+			data-sveltekit-reload
+		>
 			<link.icon class="size-4" />
 			<span
 				class="text-sm {activeRoute === link.href
