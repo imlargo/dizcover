@@ -46,7 +46,7 @@
 	});
 </script>
 
-<div class="w-full space-y-8">
+<div class="w-full space-y-8 overflow-hidden px-0.5">
 	{#if showTitle}
 		<h3 class="font-display text-center text-3xl">{title}</h3>
 
