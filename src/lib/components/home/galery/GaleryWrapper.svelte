@@ -2,6 +2,7 @@
 	import * as Carousel from '$components/ui/carousel/index.js';
 	import { onMount, setContext, type Snippet } from 'svelte';
 	import { type CarouselAPI } from '$lib/components/ui/carousel/context.js';
+	import GaleryIndicator from '$lib/components/kit/GaleryIndicator.svelte';
 
 	type TipoGaleria = 'establecimiento' | 'evento';
 
@@ -50,17 +51,7 @@
 		<h3 class="font-display text-center text-3xl">{title}</h3>
 
 		<div class="flex items-center justify-center">
-			<div class="slider flex max-w-max items-center justify-center gap-2">
-				{#each { length: 3 }, i}
-					<div
-						class="inline-flex h-4 w-16 rounded-full {i === 1
-							? variant === 'base'
-								? 'bg-dizcover-primary'
-								: 'bg-dizcover-secondary'
-							: 'bg-accent'}"
-					></div>
-				{/each}
-			</div>
+			<GaleryIndicator variant={variant === 'base' ? 'primary' : 'secondary'} />
 		</div>
 	{/if}
 
@@ -80,15 +71,3 @@
 		</Carousel.Root>
 	</div>
 </div>
-
-<style>
-	.slider {
-		mask-image: linear-gradient(
-			90deg,
-			rgba(255, 255, 255, 0) 0%,
-			rgba(0, 0, 0, 1) 40%,
-			rgba(0, 0, 0, 1) 60%,
-			rgba(255, 255, 255, 0) 100%
-		);
-	}
-</style>
