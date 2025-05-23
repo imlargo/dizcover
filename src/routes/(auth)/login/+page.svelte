@@ -63,8 +63,8 @@
 	});
 </script>
 
-<div class="mx-auto w-full max-w-md p-4 lg:py-24">
-	<Card.Root class="text-primary">
+<div class="flex min-h-screen items-center justify-center p-4">
+	<Card.Root class="w-full max-w-md">
 		<Card.Header class="space-y-1 text-center">
 			<div class="flex items-center justify-center">
 				<img src="/dizcover-logo.png" alt="" class="h-10" />
