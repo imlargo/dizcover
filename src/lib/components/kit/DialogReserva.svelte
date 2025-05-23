@@ -6,6 +6,7 @@
 	import * as RadioGroup from '$lib/components/ui/radio-group/index.js';
 	import { Label } from '$lib/components/ui/label/index.js';
 	import NumberField from './NumberField.svelte';
+	import { User } from 'lucide-svelte';
 
 	let isOpen = $state(false);
 	let numPersonas = $state(1);
@@ -20,13 +21,13 @@
 	</Dialog.Trigger>
 	<Dialog.Content>
 		<Dialog.Header>
-			<Dialog.Title class="text-center text-black">Reservar</Dialog.Title>
-			<Dialog.Description class="text-center">Elije el numero de personas</Dialog.Description>
+			<Dialog.Title >Reservar</Dialog.Title>
+			<Dialog.Description>Elije el numero de personas</Dialog.Description>
 		</Dialog.Header>
 
-		<div class="flex flex-col items-center justify-center space-y-6 py-8 text-black">
-			<div class="flex gap-2">
-				<i class="bi bi-person"></i>
+		<div class="flex flex-col items-center justify-center space-y-6 py-8 ">
+			<div class="flex items-center gap-2">
+				<User class="size-4" />
 				<NumberField
 					min={1}
 					max={10}
