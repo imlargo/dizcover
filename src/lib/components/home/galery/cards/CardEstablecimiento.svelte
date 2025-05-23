@@ -26,12 +26,12 @@
 	</div>
 
 	<span
-		class="absolute left-0 top-0 rounded-br-md bg-black bg-opacity-70 px-5 py-3 text-lg font-bold text-white"
+		class="absolute left-0 top-0 rounded-br-md bg-background bg-opacity-70 px-5 py-3 text-lg font-bold text-white"
 		>{establecimiento.nombre}</span
 	>
 
 	<div
-		class="absolute bottom-0 left-0 flex w-full items-center gap-2 overflow-x-auto bg-black bg-opacity-50 px-4 py-5"
+		class="absolute bottom-0 left-0 flex w-full items-center gap-2 overflow-x-auto bg-background bg-opacity-50 px-4 py-5"
 	>
 		{#each establecimiento.etiquetas as tag}
 			<Badge variant={variant === 'base' ? 'purple' : 'green'}>{tag}</Badge>

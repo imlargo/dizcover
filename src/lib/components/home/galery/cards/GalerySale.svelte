@@ -9,7 +9,7 @@
 	const { cupones }: Props = $props();
 </script>
 
-<div class="w-full space-y-8">
+<div class="w-full space-y-8 overflow-hidden px-0.5">
 	<div class="">
 		<Carousel.Root
 			class="w-full"

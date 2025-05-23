@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Evento, PricingEvento } from '$lib/types/evento';
+	import { Button } from '$lib/components/ui/button/index.js';
 
 	type Props = {
 		evento: Evento;
@@ -46,9 +47,7 @@
 			{/each}
 		</div>
 
-		<button class="w-52 rounded-lg border-2 border-white px-4 py-2 font-bold"
-			>Más informacion</button
-		>
+		<Button class="max-w-max">Más informacion</Button>
 	</div>
 </div>
 

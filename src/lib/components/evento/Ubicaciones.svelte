@@ -4,6 +4,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Trash2 } from 'lucide-svelte';
 
 	type BookingDetails = PricingEvento & { numPersonas: number };
 
@@ -32,18 +33,18 @@
 
 <div class="grid max-h-min grid-cols-2 gap-x-4">
 	<div class="col-span-1 flex max-h-max flex-col gap-4 rounded-lg">
-		<div class="flex flex-col divide-y divide-neutral-500 rounded border border-neutral-500">
-			<div class="glass flex justify-between px-4 py-4">
+		<div class="flex flex-col divide-y rounded border">
+			<div class="flex justify-between bg-primary-foreground px-4 py-4">
 				<Input
 					type="text"
 					bind:value={searchValue}
 					placeholder="Busca y elige tus entradas"
-					class="max-w-xs rounded-full bg-transparent"
+					class="max-w-xs rounded-full"
 				/>
 			</div>
-			<ScrollArea class="h-[256px] w-full">
+			<ScrollArea class="h-[256px] w-full bg-primary-foreground">
 				{#each filteredPricing as tier (tier.id)}
-					<div class="glass grid grid-cols-3 justify-between px-4 py-4">
+					<div class="grid grid-cols-3 justify-between px-4 py-4">
 						<span class="text-lg font-semibold">{tier.nombre}</span>
 						<div class="flex items-center justify-end gap-2">
 							<NumberField
@@ -58,10 +59,11 @@
 							{#if tier.numPersonas > 0}
 								<Button
 									variant="ghost"
-									class="size-8 text-lg text-red-400 hover:bg-red-100/20 hover:text-red-500"
+									size="icon"
+									class="text-destructive hover:text-destructive/80"
 									onclick={() => (tier.numPersonas = 0)}
 								>
-									<i class="bi bi-trash"></i>
+									<Trash2 />
 								</Button>
 							{/if}
 
@@ -78,17 +80,8 @@
 		</div>
 
 		<div class="flex justify-end">
-			<Button variant="outline" class="bg-transparent px-6 py-4 text-lg">Confirmar</Button>
+			<Button variant="outline">Confirmar</Button>
 		</div>
 	</div>
 	<div class="col-span-1 h-full rounded-lg bg-neutral-900"></div>
 </div>
-
-<style>
-	.glass {
-		background: rgba(255, 255, 255, 0.2);
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-	}
-</style>
