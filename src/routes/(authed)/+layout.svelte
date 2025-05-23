@@ -12,7 +12,9 @@
 		icon: typeof IconType;
 	};
 
-	const links: NavLink[] = [
+	let { data, children }: { data: LayoutData; children: Snippet } = $props();
+
+	const links: NavLink[] = $derived([
 		{
 			name: 'Home',
 			href: '/',
@@ -25,12 +27,10 @@
 		},
 		{
 			name: 'Profile',
-			href: '/profile',
+			href: `/profile/${data.user?.id || 0}`,
 			icon: User
 		}
-	];
-
-	let { data, children }: { data: LayoutData; children: Snippet } = $props();
+	]);
 </script>
 
 <div class="hidden md:block">
