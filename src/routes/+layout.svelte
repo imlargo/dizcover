@@ -5,7 +5,6 @@
 	import { Toaster } from '$lib/components/ui/sonner/index.js';
 </script>
 
-
 {@render children()}
 
 <Toaster />

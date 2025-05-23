@@ -6,13 +6,13 @@
 	import BottomNavigation from '$lib/components/layout/BottomNavigation.svelte';
 	import { Home, MapPin, User, type Icon as IconType } from 'lucide-svelte';
 
-    type NavLink = {
+	type NavLink = {
 		href: string;
 		name: string;
 		icon: typeof IconType;
 	};
 
-    const links: NavLink[] = [
+	const links: NavLink[] = [
 		{
 			name: 'Home',
 			href: '/',
