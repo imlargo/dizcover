@@ -1,0 +1,27 @@
+{
+	"theme_color": "#d400fe",
+	"background_color": "#000000",
+	"icons": [
+		{
+			"purpose": "maskable",
+			"sizes": "512x512",
+			"src": "/pwa/icon512_maskable.png",
+			"type": "image/png"
+		},
+		{
+			"purpose": "any",
+			"sizes": "512x512",
+			"src": "/pwa/icon512_rounded.png",
+			"type": "image/png"
+		}
+	],
+	"orientation": "any",
+	"display": "standalone",
+	"dir": "rtl",
+	"lang": "es-CO",
+	"name": "Dizcover",
+	"short_name": "Dizcover",
+	"scope": "/",
+	"start_url": "/",
+	"description": "Dizcover"
+}
