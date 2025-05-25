@@ -17,11 +17,10 @@
 	],
 	"orientation": "any",
 	"display": "standalone",
-	"dir": "rtl",
-	"lang": "es-CO",
+	"dir": "auto",
+	"lang": "es-US",
 	"name": "Dizcover",
 	"short_name": "Dizcover",
 	"scope": "/",
-	"start_url": "/",
-	"description": "Dizcover"
+	"start_url": "/"
 }
