@@ -17,7 +17,9 @@
 		alt="hero"
 	/>
 
-	<div class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-4 md:p-8 text-white">
+	<div
+		class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-4 text-white md:p-8"
+	>
 		<a
 			href="/establecimiento/{establecimiento.id}"
 			class="flex items-center gap-2 transition-all duration-300 hover:underline"

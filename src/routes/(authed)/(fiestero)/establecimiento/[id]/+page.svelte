@@ -66,7 +66,7 @@
 		alt={establecimiento.nombre}
 	/>
 
-	<div class="flex h-full w-full flex-col justify-between p-12">
+	<div class="flex h-full w-full flex-col justify-between px-4 py-12 md:px-10 xl:px-12">
 		<div class="flex justify-between">
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
@@ -142,13 +142,15 @@
 	</div>
 </div>
 
-<main class="space-y-16 p-12">
+<main class="space-y-16 px-4 py-12 md:px-10 xl:px-12">
 	<div class="space-y-6">
 		<h3 class="font-display text-3xl font-bold">Descripción</h3>
 		<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
 	</div>
 
-	<GalerySale cupones={data.cupones.vigentes} />
+	{#if Array.isArray(data?.cupones?.vigentes) && (data?.cupones?.vigentes || []).length > 0}
+		<GalerySale cupones={data.cupones.vigentes} />
+	{/if}
 
 	<div class="space-y-6">
 		<h3 class="font-display text-3xl font-bold">Galeria</h3>

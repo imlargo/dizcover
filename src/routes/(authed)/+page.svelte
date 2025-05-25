@@ -16,7 +16,6 @@
 
 <Hero establecimiento={featuredEstablecimiento} />
 
-
 <div class="mt-12 space-y-16 xl:space-y-20">
 	<GaleryWrapper title="Para ti" tipo="establecimiento">
 		{#each establecimientos as establecimiento}

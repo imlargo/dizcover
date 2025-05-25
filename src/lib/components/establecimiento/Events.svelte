@@ -8,7 +8,7 @@
 	const { events }: Props = $props();
 </script>
 
-<div class="grid w-full grid-cols-3 gap-12">
+<div class="grid w-full grid-cols-1 gap-12 md:grid-cols-3">
 	{#each events as event}
 		<a
 			data-sveltekit-reload
