@@ -17,8 +17,6 @@
 <Hero establecimiento={featuredEstablecimiento} />
 
 <div class="mt-12 space-y-24">
-	<GalerySale />
-
 	<GaleryWrapper title="Para ti" tipo="establecimiento">
 		{#each establecimientos as establecimiento}
 			<GaleryItem>
