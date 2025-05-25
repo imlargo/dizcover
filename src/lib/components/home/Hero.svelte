@@ -17,16 +17,16 @@
 		alt="hero"
 	/>
 
-	<div class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-8 text-white">
+	<div class="absolute bottom-0 left-0 w-full space-y-6 bg-black bg-opacity-50 p-4 md:p-8 text-white">
 		<a
 			href="/establecimiento/{establecimiento.id}"
 			class="flex items-center gap-2 transition-all duration-300 hover:underline"
 			data-sveltekit-reload
 		>
-			<h5 class="font-display text-6xl">{establecimiento.nombre}</h5>
+			<h5 class="font-display text-5xl lg:text-6xl">{establecimiento.nombre}</h5>
 		</a>
 
-		<p class="max-w-screen-xl text-xl">{establecimiento.descripcion}</p>
+		<p class="max-w-screen-xl md:text-base lg:text-lg">{establecimiento.descripcion}</p>
 
 		<div class="flex space-x-4 overflow-x-auto">
 			{#each establecimiento.etiquetas as tag}
