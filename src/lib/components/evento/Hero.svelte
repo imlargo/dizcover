@@ -13,12 +13,12 @@
 	const toNumber = (price: string) => parseInt(price.split('.')[0]);
 </script>
 
-<div class="grid grid-cols-12 gap-x-12">
-	<div class="col-span-6">
+<div class="flex flex-col gap-x-12 md:grid md:grid-cols-12">
+	<div class="flex items-center justify-center md:col-span-6">
 		<img src={evento.primera_imagen} alt={evento.nombre} class="h-[560px] w-[380px] object-cover" />
 	</div>
 
-	<div class="col-span-6 flex flex-col gap-4">
+	<div class="flex flex-col gap-4 md:col-span-6">
 		<h1 class="text-3xl font-bold">{evento.nombre}</h1>
 
 		<div class="flex flex-col gap-2">

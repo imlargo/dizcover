@@ -31,7 +31,7 @@
 	);
 </script>
 
-<div class="grid max-h-min grid-cols-2 gap-x-4">
+<div class="grid max-h-min grid-cols-1 gap-x-4 md:grid-cols-2">
 	<div class="col-span-1 flex max-h-max flex-col gap-4 rounded-lg">
 		<div class="flex flex-col divide-y rounded border">
 			<div class="flex justify-between bg-primary-foreground px-4 py-4">

@@ -44,7 +44,7 @@
 		alt={evento.nombre}
 	/>
 
-	<div class="flex h-full w-full flex-col justify-between p-12">
+	<div class="flex h-full w-full flex-col justify-between px-4 py-12 md:px-10 xl:px-12">
 		<div class="flex justify-between">
 			<Breadcrumb.Root>
 				<Breadcrumb.List>
@@ -71,14 +71,14 @@
 		</div>
 
 		<div class="flex h-full w-full items-center justify-center">
-			<div class="flex px-12">
+			<div class="flex">
 				<Hero {evento} pricing={seatsPricing} />
 			</div>
 		</div>
 	</div>
 </div>
 
-<main class="space-y-16 p-12">
+<main class="space-y-16 px-4 py-12 md:px-10 xl:px-12">
 	<div class="space-y-6">
 		<h3 class="font-display text-3xl font-bold">Ubicaciones</h3>
 		<Ubicaciones {evento} pricing={seatsPricing} />
@@ -101,9 +101,14 @@
 		<h3 class="font-display text-3xl font-bold">Artistas</h3>
 
 		<div class="items-top flex justify-center gap-x-8">
+			{#if Array.isArray(artistas) && (artistas || []).length > 0}
+				
 			{#each artistas as artista}
 				<Artista imagen={artista.imagen} nombre={artista.nombre} />
 			{/each}
+			{:else}
+				<p class="text-muted-foreground">Sin artistas especificados</p>
+			{/if}
 		</div>
 	</div>
 
