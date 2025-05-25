@@ -102,10 +102,9 @@
 
 		<div class="items-top flex justify-center gap-x-8">
 			{#if Array.isArray(artistas) && (artistas || []).length > 0}
-				
-			{#each artistas as artista}
-				<Artista imagen={artista.imagen} nombre={artista.nombre} />
-			{/each}
+				{#each artistas as artista}
+					<Artista imagen={artista.imagen} nombre={artista.nombre} />
+				{/each}
 			{:else}
 				<p class="text-muted-foreground">Sin artistas especificados</p>
 			{/if}
