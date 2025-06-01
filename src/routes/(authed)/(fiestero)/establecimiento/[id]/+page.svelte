@@ -221,14 +221,14 @@
 				</div>
 			</div>
 		</Tabs.Content>
-		<Tabs.Content value="menu">
+		<Tabs.Content value="menu"></Tabs.Content>
+		<Tabs.Content value="reviews">
 			<div class="space-y-4">
 				{#each reviewsEstablecimiento as review (review.id)}
 					<Review {review} />
 				{/each}
 			</div>
 		</Tabs.Content>
-		<Tabs.Content value="reviews"></Tabs.Content>
 	</Tabs.Root>
 </main>
 

@@ -21,7 +21,7 @@
 
 <Card.Root>
 	<Card.Content>
-        <Card.Title class="text-base">{review.fiestero}</Card.Title>
+		<Card.Title class="text-base">{review.fiestero}</Card.Title>
 		<div class="flex flex-col gap-1">
 			<div class="flex items-center gap-2">
 				<Stars rate={review.calificacion} />
