@@ -18,9 +18,14 @@
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import GalerySale from '$lib/components/home/galery/cards/GalerySale.svelte';
 	import { MapPin } from 'lucide-svelte';
+	import type { ReviewEstablecimiento } from '$lib/types/models/review';
+	import { onMount } from 'svelte';
+	import { ReviewsController } from '$lib/controllers/reviews';
+	import Review from '$lib/components/reviews/Review.svelte';
 
 	let { data }: { data: PageData } = $props();
 
+	let reviewsEstablecimiento = $state<ReviewEstablecimiento[]>(data.reviews || []);
 	const establecimiento: Establecimiento = data.establecimiento as Establecimiento;
 	const eventos: Evento[] = data.eventos as Evento[];
 	const imagenesEstablecimiento = data.imagenes.map((img) => img.imagen);
@@ -216,7 +221,13 @@
 				</div>
 			</div>
 		</Tabs.Content>
-		<Tabs.Content value="menu"></Tabs.Content>
+		<Tabs.Content value="menu">
+			<div class="space-y-4">
+				{#each reviewsEstablecimiento as review (review.id)}
+					<Review {review} />
+				{/each}
+			</div>
+		</Tabs.Content>
 		<Tabs.Content value="reviews"></Tabs.Content>
 	</Tabs.Root>
 </main>

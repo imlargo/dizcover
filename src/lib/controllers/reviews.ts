@@ -8,7 +8,7 @@ export class ReviewsController {
     }
 
     async getReviewsEstablecimiento(id_establecimiento: number) {
-        return await api.get<ReviewEstablecimiento>(`/api/fiestero/${id_establecimiento}/feedback`,)
+        return await api.get<ReviewEstablecimiento[]>(`/api/fiestero/${id_establecimiento}/feedback`, {}, this.token)
     }
 
     async createReviewEstablecimiento(id_fiestero: number, id_establecimiento: number, comentario: string, calificacion: number) {
