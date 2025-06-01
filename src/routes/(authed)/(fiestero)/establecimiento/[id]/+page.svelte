@@ -10,6 +10,7 @@
 	import type { Evento } from '$lib/types/evento';
 	import { Button } from '$components/ui/button';
 	import BentoGalery from '$lib/components/establecimiento/BentoGalery.svelte';
+	import * as Tabs from '$lib/components/ui/tabs/index.js';
 
 	import GaleryWrapper from '$lib/components/home/galery/GaleryWrapper.svelte';
 	import GaleryItem from '$lib/components/home/galery/GaleryItem.svelte';
@@ -142,69 +143,82 @@
 	</div>
 </div>
 
-<main class="space-y-16 px-4 py-12 md:px-10 xl:px-12">
-	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Descripción</h3>
-		<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
-	</div>
+<main class="px-4 py-12 md:px-10 xl:px-12">
+	<Tabs.Root value="info" class="w-full space-y-12">
+		<Tabs.List class="w-full md:max-w-max">
+			<Tabs.Trigger class="w-full" value="info">Info</Tabs.Trigger>
+			<Tabs.Trigger class="w-full" value="menu">Menu</Tabs.Trigger>
+			<Tabs.Trigger class="w-full" value="reviews">Reviews</Tabs.Trigger>
+		</Tabs.List>
+		<Tabs.Content value="info">
+			<div class="space-y-16">
+				<div class="space-y-6">
+					<h3 class="font-display text-3xl font-bold">Descripción</h3>
+					<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
+				</div>
 
-	{#if Array.isArray(data?.cupones?.vigentes) && (data?.cupones?.vigentes || []).length > 0}
-		<GalerySale cupones={data.cupones.vigentes} />
-	{/if}
+				{#if Array.isArray(data?.cupones?.vigentes) && (data?.cupones?.vigentes || []).length > 0}
+					<GalerySale cupones={data.cupones.vigentes} />
+				{/if}
 
-	<div class="space-y-6">
-		<h3 class="font-display text-3xl font-bold">Galeria</h3>
+				<div class="space-y-6">
+					<h3 class="font-display text-3xl font-bold">Galeria</h3>
 
-		<div>
-			<BentoGalery images={imagenesEstablecimiento} />
-		</div>
-	</div>
+					<div>
+						<BentoGalery images={imagenesEstablecimiento} />
+					</div>
+				</div>
 
-	<div class="space-y-6">
-		<h3 class="text-center text-3xl font-bold">Eventos</h3>
-		<div>
-			<Events events={eventos.slice(0, 3)} />
-		</div>
-	</div>
+				<div class="space-y-6">
+					<h3 class="text-center text-3xl font-bold">Eventos</h3>
+					<div>
+						<Events events={eventos.slice(0, 3)} />
+					</div>
+				</div>
 
-	<div class="space-y-6">
-		<div class="flex items-center justify-between">
-			<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
+				<div class="space-y-6">
+					<div class="flex items-center justify-between">
+						<h3 class="font-display text-3xl font-bold">Ubicacion</h3>
 
-			<Button variant="ghost" href={getGoogleMapsLink(cords)} target="_blank">
-				<MapPin />
-				<span>Ver en maps</span>
-			</Button>
-		</div>
+						<Button variant="ghost" href={getGoogleMapsLink(cords)} target="_blank">
+							<MapPin />
+							<span>Ver en maps</span>
+						</Button>
+					</div>
 
-		<div>
-			<Map coords={cords} title={establecimiento.nombre} />
-		</div>
+					<div>
+						<Map coords={cords} title={establecimiento.nombre} />
+					</div>
 
-		<div class="flex justify-around">
-			<DialogReserva />
-		</div>
-	</div>
+					<div class="flex justify-around">
+						<DialogReserva />
+					</div>
+				</div>
 
-	<hr />
+				<hr />
 
-	<div class="flex flex-col gap-24">
-		<GaleryWrapper title="Recomendados" tipo="establecimiento">
-			{#each recomendados as establecimiento}
-				<GaleryItem>
-					<CardEstablecimiento {establecimiento} />
-				</GaleryItem>
-			{/each}
-		</GaleryWrapper>
+				<div class="flex flex-col gap-24">
+					<GaleryWrapper title="Recomendados" tipo="establecimiento">
+						{#each recomendados as establecimiento}
+							<GaleryItem>
+								<CardEstablecimiento {establecimiento} />
+							</GaleryItem>
+						{/each}
+					</GaleryWrapper>
 
-		<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento" variant="green">
-			{#each recomendados as establecimiento}
-				<GaleryItem>
-					<CardEstablecimiento variant="green" {establecimiento} />
-				</GaleryItem>
-			{/each}
-		</GaleryWrapper>
-	</div>
+					<GaleryWrapper title="Nuevas experiencias" tipo="establecimiento" variant="green">
+						{#each recomendados as establecimiento}
+							<GaleryItem>
+								<CardEstablecimiento variant="green" {establecimiento} />
+							</GaleryItem>
+						{/each}
+					</GaleryWrapper>
+				</div>
+			</div>
+		</Tabs.Content>
+		<Tabs.Content value="menu"></Tabs.Content>
+		<Tabs.Content value="reviews"></Tabs.Content>
+	</Tabs.Root>
 </main>
 
 <style>
