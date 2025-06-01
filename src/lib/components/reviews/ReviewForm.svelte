@@ -18,7 +18,7 @@
 	const { establecimiento, onReviewCreation }: Props = $props();
 
 	const review = $state<Partial<ReviewEstablecimiento>>({
-		fiestero: storeAuth.user?.fiestero as unknown as number,
+		fiestero: storeAuth.user?.fiestero?.id as unknown as number,
 		establecimiento: establecimiento.id as number,
 		comentario: '',
 		calificacion: '' as unknown as number,
@@ -42,7 +42,7 @@
 
 			isSumbiting = true;
 			review.fecha = new Date().toISOString().split('T')[0];
-			review.fiestero = storeAuth.user?.fiestero as unknown as number;
+			review.fiestero = storeAuth.user?.fiestero?.id as unknown as number;
 
 			const created = await reviewsController.createReviewEstablecimiento(
 				review.fiestero as number,
