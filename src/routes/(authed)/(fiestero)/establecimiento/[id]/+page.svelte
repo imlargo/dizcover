@@ -17,11 +17,13 @@
 	import CardEstablecimiento from '$lib/components/home/galery/cards/CardEstablecimiento.svelte';
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import GalerySale from '$lib/components/home/galery/cards/GalerySale.svelte';
-	import { MapPin } from 'lucide-svelte';
+	import { MapPin, Star } from 'lucide-svelte';
 	import type { ReviewEstablecimiento } from '$lib/types/models/review';
 	import { onMount } from 'svelte';
 	import { ReviewsController } from '$lib/controllers/reviews';
 	import Review from '$lib/components/reviews/Review.svelte';
+	import * as Card from '$lib/components/ui/card/index.js';
+	import Stars from '$lib/components/reviews/Stars.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -62,6 +64,23 @@
 		const openTime = parseInt(todayHorario.hora_apertura.replace(':', ''));
 		const closeTime = parseInt(todayHorario.hora_cierre.replace(':', ''));
 		return currentTime >= openTime && currentTime <= closeTime;
+	});
+
+	const distribucionEstrellas = [5, 4, 3, 2, 1].map((stars) => ({
+		stars,
+		count: reviewsEstablecimiento.filter((review) => review.calificacion === stars).length,
+		percentage:
+			reviewsEstablecimiento.length > 0
+				? (reviewsEstablecimiento.filter((review) => review.calificacion === stars).length /
+						reviewsEstablecimiento.length) *
+					100
+				: 0
+	}));
+
+	const promedioCalificacion = $derived.by(() => {
+		if (reviewsEstablecimiento.length === 0) return 0;
+		const total = reviewsEstablecimiento.reduce((sum, review) => sum + review.calificacion, 0);
+		return total / reviewsEstablecimiento.length;
 	});
 </script>
 
@@ -223,10 +242,37 @@
 		</Tabs.Content>
 		<Tabs.Content value="menu"></Tabs.Content>
 		<Tabs.Content value="reviews">
-			<div class="space-y-4">
-				{#each reviewsEstablecimiento as review (review.id)}
-					<Review {review} />
-				{/each}
+			<div class="space-y-6">
+				<div class="mb-4 flex items-center gap-4">
+							<div class="text-2xl font-bold text-white">{promedioCalificacion.toFixed(1)}</div>
+							<Stars rate={promedioCalificacion} />
+							<div class="text-muted-foreground">({reviewsEstablecimiento.length} reviews)</div>
+						</div>
+
+						<div class="space-y-2">
+							{#each distribucionEstrellas as distribucion}
+								<div class="flex items-center gap-2">
+									<div class="flex w-16 items-center gap-2">
+										<span class="text-sm text-gray-400">{distribucion.stars}</span>
+										<Star class="h-4 w-4 fill-dizcover-primary text-dizcover-primary" />
+									</div>
+									<div class="h-2 flex-1 rounded-full bg-gray-700">
+										<div
+											class="h-2 rounded-full bg-dizcover-primary transition-all duration-300"
+											style={`width: ${distribucion.percentage}%;`}
+										></div>
+									</div>
+									<span class="w-8 text-sm text-gray-400">{distribucion.count}</span>
+								</div>
+							{/each}
+						</div>
+				<div class="space-y-4">
+					<h5 class="font-display text-xl font-semibold">Reviews</h5>
+
+					{#each reviewsEstablecimiento as review (review.id)}
+						<Review {review} />
+					{/each}
+				</div>
 			</div>
 		</Tabs.Content>
 	</Tabs.Root>
