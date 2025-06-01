@@ -24,6 +24,7 @@
 	import Review from '$lib/components/reviews/Review.svelte';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import Stars from '$lib/components/reviews/Stars.svelte';
+	import ReviewForm from '$lib/components/reviews/ReviewForm.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -66,22 +67,28 @@
 		return currentTime >= openTime && currentTime <= closeTime;
 	});
 
-	const distribucionEstrellas = [5, 4, 3, 2, 1].map((stars) => ({
-		stars,
-		count: reviewsEstablecimiento.filter((review) => review.calificacion === stars).length,
-		percentage:
-			reviewsEstablecimiento.length > 0
-				? (reviewsEstablecimiento.filter((review) => review.calificacion === stars).length /
-						reviewsEstablecimiento.length) *
-					100
-				: 0
-	}));
+	const distribucionEstrellas = $derived.by(() => {
+		return [5, 4, 3, 2, 1].map((stars) => ({
+			stars,
+			count: reviewsEstablecimiento.filter((review) => review.calificacion === stars).length,
+			percentage:
+				reviewsEstablecimiento.length > 0
+					? (reviewsEstablecimiento.filter((review) => review.calificacion === stars).length /
+							reviewsEstablecimiento.length) *
+						100
+					: 0
+		}));
+	});
 
 	const promedioCalificacion = $derived.by(() => {
 		if (reviewsEstablecimiento.length === 0) return 0;
 		const total = reviewsEstablecimiento.reduce((sum, review) => sum + review.calificacion, 0);
 		return total / reviewsEstablecimiento.length;
 	});
+
+	function handleReviewCreation(review: ReviewEstablecimiento) {
+		reviewsEstablecimiento.unshift(review);
+	}
 </script>
 
 <div class="relative h-[90vh]">
@@ -244,28 +251,30 @@
 		<Tabs.Content value="reviews">
 			<div class="space-y-6">
 				<div class="mb-4 flex items-center gap-4">
-							<div class="text-2xl font-bold text-white">{promedioCalificacion.toFixed(1)}</div>
-							<Stars rate={promedioCalificacion} />
-							<div class="text-muted-foreground">({reviewsEstablecimiento.length} reviews)</div>
-						</div>
+					<div class="text-2xl font-bold text-white">{promedioCalificacion.toFixed(1)}</div>
+					<Stars rate={promedioCalificacion} />
+					<div class="text-muted-foreground">({reviewsEstablecimiento.length} reviews)</div>
+				</div>
 
-						<div class="space-y-2">
-							{#each distribucionEstrellas as distribucion}
-								<div class="flex items-center gap-2">
-									<div class="flex w-16 items-center gap-2">
-										<span class="text-sm text-gray-400">{distribucion.stars}</span>
-										<Star class="h-4 w-4 fill-dizcover-primary text-dizcover-primary" />
-									</div>
-									<div class="h-2 flex-1 rounded-full bg-gray-700">
-										<div
-											class="h-2 rounded-full bg-dizcover-primary transition-all duration-300"
-											style={`width: ${distribucion.percentage}%;`}
-										></div>
-									</div>
-									<span class="w-8 text-sm text-gray-400">{distribucion.count}</span>
-								</div>
-							{/each}
+				<div class="space-y-2">
+					{#each distribucionEstrellas as distribucion}
+						<div class="flex items-center gap-2">
+							<div class="flex w-16 items-center gap-2">
+								<span class="text-sm text-gray-400">{distribucion.stars}</span>
+								<Star class="h-4 w-4 fill-dizcover-primary text-dizcover-primary" />
+							</div>
+							<div class="h-2 flex-1 rounded-full bg-gray-700">
+								<div
+									class="h-2 rounded-full bg-dizcover-primary transition-all duration-300"
+									style={`width: ${distribucion.percentage}%;`}
+								></div>
+							</div>
+							<span class="w-8 text-sm text-gray-400">{distribucion.count}</span>
 						</div>
+					{/each}
+				</div>
+
+				<ReviewForm onReviewCreation={handleReviewCreation} {establecimiento} />
 				<div class="space-y-4">
 					<h5 class="font-display text-xl font-semibold">Reviews</h5>
 

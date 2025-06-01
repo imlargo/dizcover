@@ -34,7 +34,7 @@
 		{@const active = index <= hoveredIndex || index <= selectedIndex}
 		<button
 			type="button"
-			class={`bi cursor-pointer p-0.5 transition-colors duration-75 ${active ? 'bi-star-fill text-yellow-400' : 'bi-star text-gray-400'}`}
+			class={`bi cursor-pointer p-0.5 transition-all duration-200 ${active ? 'bi-star-fill text-dizcover-primary' : 'bi-star text-dizcover-primary'}`}
 			onclick={() => selectRate(index)}
 			onmouseenter={() => {
 				hoveredIndex = index;
