@@ -13,6 +13,6 @@ export type User = {
 	nombre_completo: string;
 	foto_perfil: string;
 	tipo: string;
-	fiestero: null;
+	fiestero: Fiestero | null;
 	discotequero: Fiestero | null;
 };
