@@ -3,6 +3,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Pen, Trash2 } from 'lucide-svelte';
+	import { storeAuth } from '$lib/store/auth.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -37,7 +38,11 @@
 </script>
 
 <div class="flex flex-col gap-8">
-	<h3 class="font-display text-3xl font-bold">Métodos de pago</h3>
+	<div class="flex w-full items-center justify-between">
+		<h3 class="font-display text-3xl font-bold">Métodos de pago</h3>
+
+		<Button href="/profile/{storeAuth.user?.id}/payment-methods/create">Crear</Button>
+	</div>
 
 	<div class="flex flex-col gap-6">
 		{#each userPaymentMethods as paymentMethod}
