@@ -52,6 +52,8 @@
 			);
 
 			toast.success('Review publicada con éxito');
+			review.comentario = '';
+			review.calificacion = null as unknown as number;
 
 			if (onReviewCreation && created) {
 				onReviewCreation(created);

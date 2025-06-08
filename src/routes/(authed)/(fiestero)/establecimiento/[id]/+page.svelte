@@ -174,8 +174,7 @@
 	</div>
 </div>
 
-<main class="px-4 py-12 md:px-10 xl:px-12 space-y-12">
-	
+<main class="space-y-12 px-4 py-12 md:px-10 xl:px-12">
 	<GalerySale cupones={data?.cupones?.caducados || []} />
 
 	<Tabs.Root value="info" class="w-full space-y-12">
