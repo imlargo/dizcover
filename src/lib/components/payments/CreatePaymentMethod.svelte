@@ -36,7 +36,7 @@
 		phoneNumber: string;
 	}
 
-	const [activeTab, setActiveTab] = $state('card');
+	let activeTab = $state('card');
 	const formData = $state<FormData>({
 		cardNumber: '',
 		expirationMonth: '',
@@ -50,8 +50,8 @@
 	let isLoading = $state(false);
 	let nequiStatus = $state<'PENDING' | 'APPROVED' | null>(null);
 	let isCheckingStatus = $state(false);
-	let [privacyConsent, setPrivacyConsent] = $state(false);
-	let [dataConsent, setDataConsent] = $state(false);
+	let privacyConsent = $state(false);
+	let dataConsent = $state(false);
 	let submitStatus = $state<'idle' | 'success' | 'error'>('idle');
 	let errorMessage = $state('');
 
@@ -259,7 +259,7 @@
 				</CardDescription>
 			</CardHeader>
 			<CardContent class="space-y-6">
-				<Tabs value={activeTab} onValueChange={setActiveTab} class="w-full">
+				<Tabs bind:value={activeTab} class="w-full">
 					<TabsList class="grid w-full grid-cols-3">
 						<TabsTrigger value="card" class="flex items-center gap-2">
 							<CreditCard class="h-4 w-4" />
@@ -465,8 +465,7 @@
 						<div class="flex items-start space-x-3">
 							<Checkbox
 								id="privacy-consent"
-								checked={privacyConsent}
-								onCheckedChange={setPrivacyConsent}
+								bind:checked={privacyConsent}
 								aria-describedby="privacy-consent-description"
 							/>
 							<div class="space-y-1">
@@ -494,8 +493,7 @@
 						<div class="flex items-start space-x-3">
 							<Checkbox
 								id="data-consent"
-								checked={dataConsent}
-								onCheckedChange={setDataConsent}
+								bind:checked={dataConsent}
 								aria-describedby="data-consent-description"
 							/>
 							<div class="space-y-1">
