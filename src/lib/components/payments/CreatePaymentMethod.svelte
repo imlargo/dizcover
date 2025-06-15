@@ -106,14 +106,6 @@
 	const validateExpirationYear = (year: string, month: string): string | undefined => {
 		if (!year) return 'El año es requerido';
 		const yearNum = Number.parseInt(year);
-		const currentYear = new Date().getFullYear();
-		const currentMonth = new Date().getMonth() + 1;
-
-		if (yearNum < currentYear) return 'La tarjeta ha expirado';
-		if (yearNum === currentYear && month && Number.parseInt(month) < currentMonth) {
-			return 'La tarjeta ha expirado';
-		}
-		if (yearNum > currentYear + 20) return 'Año inválido';
 		return undefined;
 	};
 
