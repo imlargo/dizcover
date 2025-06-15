@@ -13,10 +13,8 @@ export type Cupon = {
 	establecimiento: number;
 	producto: number;
 	codigo_consumo: string;
-	consumo_cupon_id: number
-}
-
-
+	consumo_cupon_id: number;
+};
 
 export interface CuponesEstablecimientoResponse {
 	vigentes: Cupon[];

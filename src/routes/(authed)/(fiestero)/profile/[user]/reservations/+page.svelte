@@ -5,7 +5,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	const cupones = $state<Cupon[]>(data.cupones?.caducados || []);
+	const cupones = $state<Cupon[]>(data.cupones || []);
 </script>
 
 <main class="space-y-4">

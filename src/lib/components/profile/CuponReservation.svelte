@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Establecimiento } from '$lib/types/establecimiento';
 	import type { Cupon } from '$lib/types/models/cupon';
-    	import Qr from '$lib/components/kit/Qr.svelte';
+	import Qr from '$lib/components/kit/Qr.svelte';
 
 	import { Badge } from '$lib/components/ui/badge';
 
@@ -27,6 +27,8 @@
 
 	const { cupon }: Props = $props();
 </script>
+
+{JSON.stringify(cupon, null, 2)}
 
 <div class="grid grid-cols-2 gap-12 rounded-lg bg-neutral-900 p-8">
 	<div class="space-y-8">
