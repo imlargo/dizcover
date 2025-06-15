@@ -71,4 +71,14 @@ export class WompiService {
 		});
 		return await res.json();
 	}
+
+	async validateBancolombiaToken(
+		token: string
+	): Promise<WompiTokenResponse<BancolombiaTokenResponseData>> {
+		const res = await fetch(`${this.baseUrl}/tokens/bancolombia_transfer/${token}`, {
+			method: 'GET',
+			headers: this.headers()
+		});
+		return await res.json();
+	}
 }

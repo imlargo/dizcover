@@ -236,7 +236,7 @@
 					response = resp.data;
 				} else if (activeTab === 'bancolombia') {
 					const resp = await wompiPaymentService.tokenBancolombia({
-						redirect_url: 'http://localhost:5173/test',
+						redirect_url: '',
 						type_auth: 'TOKEN'
 					});
 
