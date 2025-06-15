@@ -175,7 +175,12 @@
 </div>
 
 <main class="space-y-12 px-4 py-12 md:px-10 xl:px-12">
-	<GalerySale cupones={data?.cupones?.caducados || []} />
+	{#if Array.isArray(data?.cupones?.vigentes) && (data?.cupones?.vigentes || []).length > 0}
+		<div class="space-y-6">
+			<h3 class="font-display text-3xl font-bold">Descuentos</h3>
+			<GalerySale cupones={data.cupones.vigentes} />
+		</div>
+	{/if}
 
 	<Tabs.Root value="info" class="w-full space-y-12">
 		<Tabs.List class="w-full md:max-w-max">
@@ -189,10 +194,6 @@
 					<h3 class="font-display text-3xl font-bold">Descripción</h3>
 					<p class="text-lg text-muted-foreground">{establecimiento.descripcion}</p>
 				</div>
-
-				{#if Array.isArray(data?.cupones?.vigentes) && (data?.cupones?.vigentes || []).length > 0}
-					<GalerySale cupones={data.cupones.vigentes} />
-				{/if}
 
 				<div class="space-y-6">
 					<h3 class="font-display text-3xl font-bold">Galeria</h3>

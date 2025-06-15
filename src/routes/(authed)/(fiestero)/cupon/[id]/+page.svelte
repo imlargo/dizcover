@@ -67,7 +67,7 @@
 				<img class="w-full rounded-lg" alt="" src={cupon.imagen} />
 				<div class="flex items-center justify-between">
 					<p class="font-display text-2xl">Descuento</p>
-					<p class="font-display text-2xl">%{cupon.porcentaje_descuento}</p>
+					<p class="font-display text-2xl">{cupon.porcentaje_descuento}%</p>
 				</div>
 			</div>
 		</div>

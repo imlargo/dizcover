@@ -55,6 +55,10 @@ export class CuponController {
 	}
 
 	async getCuponesFiestero() {
-		return await api.get<Cupon>(`/api/establecimiento/v1/cupones/listar`, {}, this.token);
+		return await api.get<Cupon>(`/api/establecimiento/v1/consumo_cupon/`, {}, this.token);
+	}
+
+	async getAllAvailableCupons() {
+		return await api.get<Cupon[]>(`/api/establecimiento/v1/cupones/listar`, {}, this.token);
 	}
 }
