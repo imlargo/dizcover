@@ -40,15 +40,9 @@
 	let galleryImages = $state<File[]>([]);
 	let menuPdf = $state<File | null>(null);
 
-	let availableTags = $state<Tag[]>([]);
+	let availableTags = $state<Tag[]>(data.tags || []);
 
 	const DAYS_OF_WEEK = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
-	const tagsController = new TagsController();
-	onMount(() => {
-		tagsController.getAvailableTags().then((tags) => {
-			availableTags = tags;
-		});
-	});
 
 	function handleTagToggle(tag: Tag) {
 		if (selectedTagsIds.includes(tag.id)) {
@@ -186,7 +180,7 @@
 								<div class="flex min-w-[120px] items-center space-x-2">
 									<Checkbox
 										id={`${day}-open`}
-										bind:checked={operatingHours[day].isOpen}
+										checked={operatingHours[day]?.isOpen}
 										onCheckedChange={(checked) => {
 											operatingHours[day] = {
 												isOpen: checked,
@@ -200,7 +194,7 @@
 									</Label>
 								</div>
 
-								{#if operatingHours[day].isOpen}
+								{#if operatingHours[day]?.isOpen}
 									<div class="flex flex-1 items-center gap-2">
 										<Input type="time" bind:value={operatingHours[day].openTime} class="w-32" />
 										<span class="text-gray-500">a</span>
@@ -208,7 +202,7 @@
 									</div>
 								{/if}
 
-								{#if !operatingHours[day].isOpen}
+								{#if !operatingHours[day]?.isOpen}
 									<span class="italic text-gray-500">Cerrado</span>
 								{/if}
 							</div>
@@ -283,8 +277,8 @@
 						>
 							{#if mainImage}
 								<div class="space-y-2">
-									<Image class="mx-auto h-8 w-8 text-green-600" />
-									<p class="text-sm font-medium text-green-600">{mainImage.name}</p>
+									<Image class="mx-auto h-8 w-8 text-dizcover-primary" />
+									<p class="text-sm font-medium text-dizcover-primary">{mainImage.name}</p>
 									<Button
 										type="button"
 										variant="outline"
@@ -331,7 +325,7 @@
 								<div>
 									<Label
 										for="gallery-images"
-										class="cursor-pointer text-blue-600 hover:text-blue-500"
+										class="cursor-pointer"
 									>
 										Haz clic para subir imágenes de galería
 									</Label>
@@ -356,7 +350,15 @@
 										<div
 											class="flex aspect-square items-center justify-center rounded-lg bg-gray-100"
 										>
-											<Image class="h-8 w-8 text-gray-400" />
+											{#if file.type.startsWith('image/')}
+												<img
+													src={URL.createObjectURL(file)}
+													alt={file.name}
+													class="h-full w-full object-cover rounded-lg"
+												/>
+											{:else}
+												<FileText class="h-8 w-8 text-gray-400" />
+											{/if}
 										</div>
 										<p class="mt-1 truncate text-center text-xs">{file.name}</p>
 										<Button
@@ -384,8 +386,8 @@
 						>
 							{#if menuPdf}
 								<div class="space-y-2">
-									<FileText class="mx-auto h-8 w-8 text-red-600" />
-									<p class="text-sm font-medium text-red-600">{menuPdf.name}</p>
+									<FileText class="mx-auto h-8 w-8 text-dizcover-primary" />
+									<p class="text-sm font-medium text-dizcover-primary">{menuPdf.name}</p>
 									<Button
 										type="button"
 										variant="outline"
@@ -419,8 +421,7 @@
 			</Card.Root>
 
 			<div class="flex justify-end space-x-4">
-				<Button type="button" variant="outline" size="lg">Guardar Borrador</Button>
-				<Button type="submit" size="lg" class="min-w-[150px]">Crear Establecimiento</Button>
+				<Button type="submit" size="lg" class="min-w-[150px]">Crear</Button>
 			</div>
 		</form>
 	</div>
