@@ -13,8 +13,18 @@ export const handle: Handle = async ({ event, resolve }) => {
 		return await resolve(event);
 	}
 
+	const secFetchSite = event.request.headers.get('sec-fetch-site');
+	console.log('sec-fetch-site:', secFetchSite);
+	const isCrossSite = secFetchSite === 'cross-site';
+	console.log('Is cross-site:', isCrossSite);
+
+	const isPaymentsRedirect = isCrossSite && event.url.pathname.includes("payment-methods/create")
+	if (isPaymentsRedirect) {
+		return await resolve(event);
+	}
+
 	const hasAuthCookies = AuthCookies.hasAuthCookies(event.cookies);
-	if (!hasAuthCookies && event.url.pathname !== '/') {
+	if (!hasAuthCookies && event.url.pathname !== '/' && !isPaymentsRedirect) {
 		redirect(303, '/login');
 	}
 

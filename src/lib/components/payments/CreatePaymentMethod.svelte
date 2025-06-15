@@ -236,7 +236,7 @@
 					response = resp.data;
 				} else if (activeTab === 'bancolombia') {
 					const resp = await wompiPaymentService.tokenBancolombia({
-						redirect_url: '',
+						redirect_url: typeof window !== 'undefined' ? window.location.href : '', // Full url
 						type_auth: 'TOKEN'
 					});
 
@@ -262,7 +262,7 @@
 
 	async function getBancolombiaRedirect() {
 		const resp = await wompiPaymentService.tokenBancolombia({
-			redirect_url: 'http://localhost:5173/test',
+			redirect_url: typeof window !== 'undefined' ? window.location.href : '', // Full url
 			type_auth: 'TOKEN'
 		});
 
@@ -424,7 +424,12 @@
 						<p class="mb-4">
 							Serás redirigido a Bancolombia para autorizar el registro de tu método de pago.
 						</p>
-						<Button href={bancolombiaRedirectUrl} disabled={isLoading} class="w-full sm:w-auto" target="_blank">
+						<Button
+							href={bancolombiaRedirectUrl}
+							disabled={isLoading}
+							class="w-full sm:w-auto"
+							target="_blank"
+						>
 							{#if isLoading}
 								<Loader2 class="mr-2 size-4 animate-spin" />
 								Procesando...
