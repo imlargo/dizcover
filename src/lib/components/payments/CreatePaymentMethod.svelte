@@ -243,7 +243,9 @@
 		}
 	};
 
-	const canSubmit = privacyConsent && dataConsent && !isLoading;
+	const canSubmit = $derived(privacyConsent && dataConsent && !isLoading);
+
+	
 </script>
 
 <Card class="shadow-xl">
