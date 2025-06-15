@@ -323,10 +323,7 @@
 							<div class="space-y-2">
 								<Image class="mx-auto h-8 w-8 text-gray-400" />
 								<div>
-									<Label
-										for="gallery-images"
-										class="cursor-pointer"
-									>
+									<Label for="gallery-images" class="cursor-pointer">
 										Haz clic para subir imágenes de galería
 									</Label>
 									<p class="mt-1 text-xs text-gray-500">PNG, JPG hasta 10MB cada una</p>
@@ -354,7 +351,7 @@
 												<img
 													src={URL.createObjectURL(file)}
 													alt={file.name}
-													class="h-full w-full object-cover rounded-lg"
+													class="h-full w-full rounded-lg object-cover"
 												/>
 											{:else}
 												<FileText class="h-8 w-8 text-gray-400" />
@@ -392,7 +389,7 @@
 										type="button"
 										variant="outline"
 										size="sm"
-										onclick={() => menuPdf = null}
+										onclick={() => (menuPdf = null)}
 									>
 										Eliminar
 									</Button>
