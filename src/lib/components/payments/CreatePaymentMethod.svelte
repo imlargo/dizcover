@@ -115,9 +115,6 @@
 
 	const validatePhoneNumber = (phone: string): string | undefined => {
 		if (!phone) return 'El número de teléfono es requerido';
-		const cleaned = phone.replace(/\D/g, '');
-		if (cleaned.length !== 10) return 'El número debe tener 10 dígitos';
-		if (!cleaned.startsWith('3')) return 'Número de celular inválido';
 		return undefined;
 	};
 
@@ -147,10 +144,10 @@
 				break;
 		}
 
-        errors = {
-            ...errors,
-            [field]: error
-        }
+		errors = {
+			...errors,
+			[field]: error
+		};
 	};
 
 	// Format card number with spaces
@@ -249,304 +246,296 @@
 	const canSubmit = privacyConsent && dataConsent && !isLoading;
 </script>
 
-<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
-	<div class="mx-auto max-w-2xl">
-		<Card class="shadow-xl">
-			<CardHeader class="text-center">
-				<CardTitle class="text-2xl font-bold text-gray-900">Registrar Método de Pago</CardTitle>
-				<CardDescription class="text-gray-600">
-					Selecciona y configura tu método de pago preferido
-				</CardDescription>
-			</CardHeader>
-			<CardContent class="space-y-6">
-				<Tabs bind:value={activeTab} class="w-full">
-					<TabsList class="grid w-full grid-cols-3">
-						<TabsTrigger value="card" class="flex items-center gap-2">
-							<CreditCard class="h-4 w-4" />
-							<span class="hidden sm:inline">Tarjeta</span>
-						</TabsTrigger>
-						<TabsTrigger value="nequi" class="flex items-center gap-2">
-							<Smartphone class="h-4 w-4" />
-							<span class="hidden sm:inline">Nequi</span>
-						</TabsTrigger>
-						<TabsTrigger value="bancolombia" class="flex items-center gap-2">
-							<Building2 class="h-4 w-4" />
-							<span class="hidden sm:inline">Bancolombia</span>
-						</TabsTrigger>
-					</TabsList>
+<Card class="shadow-xl">
+	<CardHeader>
+		<CardTitle>Registrar Método de Pago</CardTitle>
+		<CardDescription>Selecciona y configura tu método de pago preferido</CardDescription>
+	</CardHeader>
+	<CardContent class="space-y-6">
+		<Tabs bind:value={activeTab} class="w-full space-y-6">
+			<TabsList class="w-full">
+				<TabsTrigger value="card" class="w-full flex gap-x-2">
+					<CreditCard class="size-4" />
+					<span class="hidden sm:inline">Tarjeta</span>
+				</TabsTrigger>
+				<TabsTrigger value="nequi" class="w-full flex gap-x-2">
+					<Smartphone class="size-4" />
+					<span class="hidden sm:inline">Nequi</span>
+				</TabsTrigger>
+				<TabsTrigger value="bancolombia" class="w-full flex gap-x-2">
+					<Building2 class="size-4" />
+					<span class="hidden sm:inline">Bancolombia</span>
+				</TabsTrigger>
+			</TabsList>
 
-					<TabsContent value="card" class="space-y-4">
-						<div class="grid gap-4">
-							<div class="space-y-2">
-								<Label for="cardNumber">Número de Tarjeta *</Label>
-								<Input
-									id="cardNumber"
-									placeholder="1234 5678 9012 3456"
-									value={formatCardNumber(formData.cardNumber)}
-									onchange={(e) =>
-										handleInputChange('cardNumber', (e?.target?.value || "").replace(/\s/g, ''))}
-									class={errors.cardNumber ? 'border-red-500' : ''}
-									maxlength={23}
-									aria-describedby={errors.cardNumber ? 'cardNumber-error' : undefined}
-								/>
-								{#if errors.cardNumber}
-									<p id="cardNumber-error" class="text-sm text-red-600" role="alert">
-										{errors.cardNumber}
-									</p>
-								{/if}
-							</div>
+			<TabsContent value="card" class="space-y-4">
+				<div class="grid gap-4">
+					<div class="space-y-2">
+						<Label for="cardNumber">Número de Tarjeta *</Label>
+						<Input
+							id="cardNumber"
+							placeholder="1234 5678 9012 3456"
+							value={formatCardNumber(formData.cardNumber)}
+							onchange={(e) =>
+								handleInputChange('cardNumber', (e?.target?.value || '').replace(/\s/g, ''))}
+							class={errors.cardNumber ? 'border-red-500' : ''}
+							maxlength={23}
+							aria-describedby={errors.cardNumber ? 'cardNumber-error' : undefined}
+						/>
+						{#if errors.cardNumber}
+							<p id="cardNumber-error" class="text-sm text-red-600" role="alert">
+								{errors.cardNumber}
+							</p>
+						{/if}
+					</div>
 
-							<div class="grid grid-cols-2 gap-4">
-								<div class="space-y-2">
-									<Label for="expirationMonth">Mes de Expiración *</Label>
-									<Input
-										id="expirationMonth"
-										placeholder="MM"
-										value={formData.expirationMonth}
-										onchange={(e) => handleInputChange('expirationMonth', (e?.target?.value || ""))}
-										class={errors.expirationMonth ? 'border-red-500' : ''}
-										maxlength={2}
-										aria-describedby={errors.expirationMonth ? 'expirationMonth-error' : undefined}
-									/>
-									{#if errors.expirationMonth}
-										<p id="expirationMonth-error" class="text-sm text-red-600" role="alert">
-											{errors.expirationMonth}
-										</p>
-									{/if}
-								</div>
-								<div class="space-y-2">
-									<Label for="expirationYear">Año de Expiración *</Label>
-									<Input
-										id="expirationYear"
-										placeholder="AAAA"
-										value={formData.expirationYear}
-										onchange={(e) => handleInputChange('expirationYear', (e?.target?.value || ""))}
-										class={errors.expirationYear ? 'border-red-500' : ''}
-										maxlength={4}
-										aria-describedby={errors.expirationYear ? 'expirationYear-error' : undefined}
-									/>
-									{#if errors.expirationYear}
-										<p id="expirationYear-error" class="text-sm text-red-600" role="alert">
-											{errors.expirationYear}
-										</p>
-									{/if}
-								</div>
-							</div>
-
-							<div class="grid grid-cols-2 gap-4">
-								<div class="space-y-2">
-									<Label for="cvc">CVC *</Label>
-									<Input
-										id="cvc"
-										placeholder="123"
-										value={formData.cvc}
-										onchange={(e) => handleInputChange('cvc', (e?.target?.value || ""))}
-										class={errors.cvc ? 'border-red-500' : ''}
-										maxlength={4}
-										aria-describedby={errors.cvc ? 'cvc-error' : undefined}
-									/>
-									{#if errors.cvc}
-										<p id="cvc-error" class="text-sm text-red-600" role="alert">
-											{errors.cvc}
-										</p>
-									{/if}
-								</div>
-								<div class="space-y-2">
-									<Label for="cardholderName">Nombre del Titular *</Label>
-									<Input
-										id="cardholderName"
-										placeholder="Juan Pérez"
-										value={formData.cardholderName}
-										onchange={(e) => handleInputChange('cardholderName', (e?.target?.value || ""))}
-										class={errors.cardholderName ? 'border-red-500' : ''}
-										aria-describedby={errors.cardholderName ? 'cardholderName-error' : undefined}
-									/>
-									{#if errors.cardholderName}
-										<p id="cardholderName-error" class="text-sm text-red-600" role="alert">
-											{errors.cardholderName}
-										</p>
-									{/if}
-								</div>
-							</div>
+					<div class="grid grid-cols-2 gap-4">
+						<div class="space-y-2">
+							<Label for="expirationMonth">Mes de Expiración *</Label>
+							<Input
+								id="expirationMonth"
+								placeholder="MM"
+								value={formData.expirationMonth}
+								onchange={(e) => handleInputChange('expirationMonth', e?.target?.value || '')}
+								class={errors.expirationMonth ? 'border-red-500' : ''}
+								maxlength={2}
+								aria-describedby={errors.expirationMonth ? 'expirationMonth-error' : undefined}
+							/>
+							{#if errors.expirationMonth}
+								<p id="expirationMonth-error" class="text-sm text-red-600" role="alert">
+									{errors.expirationMonth}
+								</p>
+							{/if}
 						</div>
-					</TabsContent>
+						<div class="space-y-2">
+							<Label for="expirationYear">Año de Expiración *</Label>
+							<Input
+								id="expirationYear"
+								placeholder="AAAA"
+								value={formData.expirationYear}
+								onchange={(e) => handleInputChange('expirationYear', e?.target?.value || '')}
+								class={errors.expirationYear ? 'border-red-500' : ''}
+								maxlength={4}
+								aria-describedby={errors.expirationYear ? 'expirationYear-error' : undefined}
+							/>
+							{#if errors.expirationYear}
+								<p id="expirationYear-error" class="text-sm text-red-600" role="alert">
+									{errors.expirationYear}
+								</p>
+							{/if}
+						</div>
+					</div>
 
-					<TabsContent value="nequi" class="space-y-4">
-						<div class="space-y-4">
-							<div class="space-y-2">
-								<Label for="phoneNumber">Número de Teléfono *</Label>
-								<Input
-									id="phoneNumber"
-									placeholder="300 123 4567"
-									value={formatPhoneNumber(formData.phoneNumber)}
-									onchange={(e) =>
-										handleInputChange('phoneNumber', (e?.target?.value || "").replace(/\D/g, ''))}
-									class={errors.phoneNumber ? 'border-red-500' : ''}
-									maxlength={12}
-									aria-describedby={errors.phoneNumber ? 'phoneNumber-error' : undefined}
-								/>
-								{#if errors.phoneNumber}
-									<p id="phoneNumber-error" class="text-sm text-red-600" role="alert">
-										{errors.phoneNumber}
-									</p>
-								{/if}
+					<div class="grid grid-cols-2 gap-4">
+						<div class="space-y-2">
+							<Label for="cvc">CVC *</Label>
+							<Input
+								id="cvc"
+								placeholder="123"
+								value={formData.cvc}
+								onchange={(e) => handleInputChange('cvc', e?.target?.value || '')}
+								class={errors.cvc ? 'border-red-500' : ''}
+								maxlength={4}
+								aria-describedby={errors.cvc ? 'cvc-error' : undefined}
+							/>
+							{#if errors.cvc}
+								<p id="cvc-error" class="text-sm text-red-600" role="alert">
+									{errors.cvc}
+								</p>
+							{/if}
+						</div>
+						<div class="space-y-2">
+							<Label for="cardholderName">Nombre del Titular *</Label>
+							<Input
+								id="cardholderName"
+								placeholder="Juan Pérez"
+								value={formData.cardholderName}
+								onchange={(e) => handleInputChange('cardholderName', e?.target?.value || '')}
+								class={errors.cardholderName ? 'border-red-500' : ''}
+								aria-describedby={errors.cardholderName ? 'cardholderName-error' : undefined}
+							/>
+							{#if errors.cardholderName}
+								<p id="cardholderName-error" class="text-sm text-red-600" role="alert">
+									{errors.cardholderName}
+								</p>
+							{/if}
+						</div>
+					</div>
+				</div>
+			</TabsContent>
+
+			<TabsContent value="nequi" class="space-y-4">
+				<div class="space-y-4">
+					<div class="space-y-2">
+						<Label for="phoneNumber">Número de Teléfono *</Label>
+						<Input
+							id="phoneNumber"
+							placeholder="300 123 4567"
+							value={formatPhoneNumber(formData.phoneNumber)}
+							onchange={(e) =>
+								handleInputChange('phoneNumber', (e?.target?.value || '').replace(/\D/g, ''))}
+							class={errors.phoneNumber ? 'border-red-500' : ''}
+							maxlength={12}
+							aria-describedby={errors.phoneNumber ? 'phoneNumber-error' : undefined}
+						/>
+						{#if errors.phoneNumber}
+							<p id="phoneNumber-error" class="text-sm text-red-600" role="alert">
+								{errors.phoneNumber}
+							</p>
+						{/if}
+					</div>
+
+					{#if formData.phoneNumber && !errors.phoneNumber}
+						<div class="space-y-3">
+							<div class="flex items-center justify-between">
+								<Label>Estado de Tokenización</Label>
+								<Button
+									variant="outline"
+									size="sm"
+									onclick={checkNequiStatus}
+									disabled={isCheckingStatus}
+									class="w-full"
+								>
+									{#if isCheckingStatus}
+										<Loader2 class="size-4 animate-spin" />
+									{:else}
+										<RefreshCw class="size-4" />
+									{/if}
+									Verificar Estado
+								</Button>
 							</div>
 
-							{#if formData.phoneNumber && !errors.phoneNumber}
-								<div class="space-y-3">
-									<div class="flex items-center justify-between">
-										<Label>Estado de Tokenización</Label>
-										<Button
-											variant="outline"
-											size="sm"
-											onclick={checkNequiStatus}
-											disabled={isCheckingStatus}
-											class="flex items-center gap-2"
-										>
-											{#if isCheckingStatus}
-												<Loader2 class="h-4 w-4 animate-spin" />
-											{:else}
-												<RefreshCw class="h-4 w-4" />
-											{/if}
-											Verificar Estado
-										</Button>
-									</div>
-
-									{#if nequiStatus}
-										<div class="flex items-center gap-2">
-											{#if nequiStatus === 'APPROVED'}
-												<CheckCircle class="h-5 w-5 text-green-600" />
-												<Badge variant="default" class="bg-green-100 text-green-800">
-													APROBADO
-												</Badge>
-											{:else}
-												<XCircle class="h-5 w-5 text-yellow-600" />
-												<Badge variant="secondary" class="bg-yellow-100 text-yellow-800">
-													PENDIENTE
-												</Badge>
-											{/if}
-										</div>
+							{#if nequiStatus}
+								<div class="w-full">
+									{#if nequiStatus === 'APPROVED'}
+										<CheckCircle class="h-5 w-5 text-green-600" />
+										<Badge variant="default" class="bg-green-100 text-green-800">APROBADO</Badge>
+									{:else}
+										<XCircle class="h-5 w-5 text-yellow-600" />
+										<Badge variant="secondary" class="bg-yellow-100 text-yellow-800">
+											PENDIENTE
+										</Badge>
 									{/if}
 								</div>
 							{/if}
 						</div>
-					</TabsContent>
+					{/if}
+				</div>
+			</TabsContent>
 
-					<TabsContent value="bancolombia" class="space-y-4">
-						<div class="space-y-4 text-center">
-							<div class="rounded-lg bg-blue-50 p-6">
-								<Building2 class="mx-auto mb-4 h-12 w-12 text-blue-600" />
-								<h3 class="mb-2 text-lg font-semibold text-gray-900">Tokenización Bancolombia</h3>
-								<p class="mb-4 text-gray-600">
-									Serás redirigido a Bancolombia para autorizar el registro de tu método de pago.
-								</p>
-								<Button
-									onclick={handleBancolombiaTokenization}
-									disabled={isLoading}
-									class="w-full sm:w-auto"
-								>
-									{#if isLoading}
-										<Loader2 class="mr-2 h-4 w-4 animate-spin" />
-										Procesando...
-									{:else}
-										<ExternalLink class="mr-2 h-4 w-4" />
-										Iniciar Tokenización
-									{/if}
-								</Button>
-							</div>
-						</div>
-					</TabsContent>
-				</Tabs>
+			<TabsContent value="bancolombia" class="space-y-4">
+				<div class="space-y-4 text-center">
+					<div class="rounded-lg bg-blue-50 p-6">
+						<Building2 class="mx-auto mb-4 h-12 w-12 text-blue-600" />
+						<h3 class="mb-2 text-lg font-semibold">Tokenización Bancolombia</h3>
+						<p class="mb-4">
+							Serás redirigido a Bancolombia para autorizar el registro de tu método de pago.
+						</p>
+						<Button
+							onclick={handleBancolombiaTokenization}
+							disabled={isLoading}
+							class="w-full sm:w-auto"
+						>
+							{#if isLoading}
+								<Loader2 class="mr-2 size-4 animate-spin" />
+								Procesando...
+							{:else}
+								<ExternalLink class="mr-2 size-4" />
+								Iniciar Tokenización
+							{/if}
+						</Button>
+					</div>
+				</div>
+			</TabsContent>
+		</Tabs>
 
-				<div class="space-y-4 border-t pt-6">
-					<h3 class="text-lg font-semibold text-gray-900">Consentimientos Requeridos</h3>
+		<div class="space-y-4 border-t pt-6">
+			<h3 class="text-lg font-semibold">Consentimientos Requeridos</h3>
 
-					<div class="space-y-3">
-						<div class="flex items-start space-x-3">
-							<Checkbox
-								id="privacy-consent"
-								bind:checked={privacyConsent}
-								aria-describedby="privacy-consent-description"
-							/>
-							<div class="space-y-1">
-								<Label
-									for="privacy-consent"
-									class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-								>
-									Acepto la Política de Privacidad *
-								</Label>
-								<p id="privacy-consent-description" class="text-sm text-gray-600">
-									He leído y acepto los términos de la{' '}
-									<a
-										href="/privacy-policy.pdf"
-										target="_blank"
-										rel="noopener noreferrer"
-										class="inline-flex items-center gap-1 text-blue-600 hover:underline"
-									>
-										Política de Privacidad
-										<ExternalLink class="h-3 w-3" />
-									</a>
-								</p>
-							</div>
-						</div>
-
-						<div class="flex items-start space-x-3">
-							<Checkbox
-								id="data-consent"
-								bind:checked={dataConsent}
-								aria-describedby="data-consent-description"
-							/>
-							<div class="space-y-1">
-								<Label
-									for="data-consent"
-									class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-								>
-									Autorizo el tratamiento de mis datos *
-								</Label>
-								<p id="data-consent-description" class="text-sm text-gray-600">
-									Autorizo el tratamiento de mis datos personales según el{' '}
-									<a
-										href="/data-consent.pdf"
-										target="_blank"
-										rel="noopener noreferrer"
-										class="inline-flex items-center gap-1 text-blue-600 hover:underline"
-									>
-										Consentimiento de Datos
-										<ExternalLink class="h-3 w-3" />
-									</a>
-								</p>
-							</div>
-						</div>
+			<div class="space-y-3">
+				<div class="flex items-start space-x-3">
+					<Checkbox
+						id="privacy-consent"
+						bind:checked={privacyConsent}
+						aria-describedby="privacy-consent-description"
+					/>
+					<div class="space-y-1">
+						<Label
+							for="privacy-consent"
+							class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+						>
+							Acepto la Política de Privacidad *
+						</Label>
+						<p id="privacy-consent-description" class="text-sm">
+							He leído y acepto los términos de la{' '}
+							<a
+								href="/privacy-policy.pdf"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex items-center gap-1 text-blue-600 hover:underline"
+							>
+								Política de Privacidad
+								<ExternalLink class="h-3 w-3" />
+							</a>
+						</p>
 					</div>
 				</div>
 
-				{#if submitStatus === 'success'}
-					<Alert class="border-green-200 bg-green-50">
-						<CheckCircle class="h-4 w-4 text-green-600" />
-						<AlertDescription class="text-green-800"
-							>¡Método de pago registrado exitosamente!</AlertDescription
+				<div class="flex items-start space-x-3">
+					<Checkbox
+						id="data-consent"
+						bind:checked={dataConsent}
+						aria-describedby="data-consent-description"
+					/>
+					<div class="space-y-1">
+						<Label
+							for="data-consent"
+							class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 						>
-					</Alert>
-				{/if}
+							Autorizo el tratamiento de mis datos *
+						</Label>
+						<p id="data-consent-description" class="text-sm">
+							Autorizo el tratamiento de mis datos personales según el{' '}
+							<a
+								href="/data-consent.pdf"
+								target="_blank"
+								rel="noopener noreferrer"
+								class="inline-flex items-center gap-1 text-blue-600 hover:underline"
+							>
+								Consentimiento de Datos
+								<ExternalLink class="h-3 w-3" />
+							</a>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-				{#if submitStatus === 'error'}
-					<Alert class="border-red-200 bg-red-50">
-						<XCircle class="h-4 w-4 text-red-600" />
-						<AlertDescription class="text-red-800">{errorMessage}</AlertDescription>
-					</Alert>
-				{/if}
+		{#if submitStatus === 'success'}
+			<Alert class="border-green-200 bg-green-50">
+				<CheckCircle class="size-4 text-green-600" />
+				<AlertDescription class="text-green-800"
+					>¡Método de pago registrado exitosamente!</AlertDescription
+				>
+			</Alert>
+		{/if}
 
-				<Button onclick={handleSubmit} disabled={!canSubmit} class="w-full" size="lg">
-					{#if isLoading}
-						<Loader2 class="mr-2 h-4 w-4 animate-spin" />
-						Registrando...
-					{:else}
-						Registrar Método de Pago
-					{/if}
-				</Button>
+		{#if submitStatus === 'error'}
+			<Alert class="border-red-200 bg-red-50">
+				<XCircle class="size-4 text-red-600" />
+				<AlertDescription class="text-red-800">{errorMessage}</AlertDescription>
+			</Alert>
+		{/if}
 
-				<p class="text-center text-xs text-gray-500">* Campos obligatorios</p>
-			</CardContent>
-		</Card>
-	</div>
-</div>
+		<Button onclick={handleSubmit} disabled={!canSubmit} class="w-full" size="lg">
+			{#if isLoading}
+				<Loader2 class="mr-2 size-4 animate-spin" />
+				Registrando...
+			{:else}
+				Registrar Método de Pago
+			{/if}
+		</Button>
+
+		<p class="text-center text-xs">* Campos obligatorios</p>
+	</CardContent>
+</Card>
