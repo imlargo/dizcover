@@ -363,7 +363,7 @@
 								value={formData.expirationYear}
 								onchange={(e) => handleInputChange('expirationYear', e?.target?.value || '')}
 								class={errors.expirationYear ? 'border-red-500' : ''}
-								maxlength={4}
+								maxlength={2}
 								aria-describedby={errors.expirationYear ? 'expirationYear-error' : undefined}
 							/>
 							{#if errors.expirationYear}
@@ -437,7 +437,7 @@
 
 			<TabsContent value="bancolombia" class="space-y-4">
 				<div class="space-y-4 text-center">
-					<div class="rounded-lg bg-blue-50 p-6">
+					<div class="rounded-lg bg-dizcover-primary/5 p-6">
 						<Building2 class="mx-auto mb-4 h-12 w-12 font-semibold" />
 						<h3 class="mb-2 text-lg font-semibold">Autorizacion Bancolombia</h3>
 						<p class="mb-4">
@@ -446,6 +446,7 @@
 						<Button
 							href={bancolombiaRedirectUrl}
 							disabled={isLoading}
+							variant="link"
 							class="w-full sm:w-auto"
 							target="_blank"
 						>
