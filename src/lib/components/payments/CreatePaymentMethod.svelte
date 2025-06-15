@@ -37,7 +37,7 @@
 	}
 
 	const [activeTab, setActiveTab] = $state('card');
-	const [formData, setFormData] = $state<FormData>({
+	const formData = $state<FormData>({
 		cardNumber: '',
 		expirationMonth: '',
 		expirationYear: '',
@@ -45,14 +45,15 @@
 		cardholderName: '',
 		phoneNumber: ''
 	});
-	const [errors, setErrors] = $state<ValidationErrors>({});
-	const [isLoading, setIsLoading] = $state(false);
-	const [nequiStatus, setNequiStatus] = $state<'PENDING' | 'APPROVED' | null>(null);
-	const [isCheckingStatus, setIsCheckingStatus] = $state(false);
-	const [privacyConsent, setPrivacyConsent] = $state(false);
-	const [dataConsent, setDataConsent] = $state(false);
-	const [submitStatus, setSubmitStatus] = $state<'idle' | 'success' | 'error'>('idle');
-	const [errorMessage, setErrorMessage] = $state('');
+
+	let errors = $state<ValidationErrors>({});
+	let isLoading = $state(false);
+	let nequiStatus = $state<'PENDING' | 'APPROVED' | null>(null);
+	let isCheckingStatus = $state(false);
+	let [privacyConsent, setPrivacyConsent] = $state(false);
+	let [dataConsent, setDataConsent] = $state(false);
+	let submitStatus = $state<'idle' | 'success' | 'error'>('idle');
+	let errorMessage = $state('');
 
 	// Real-time validation functions
 	const validateCardNumber = (cardNumber: string): string | undefined => {
@@ -122,7 +123,7 @@
 
 	// Real-time validation handlers
 	const handleInputChange = (field: keyof FormData, value: string) => {
-		setFormData((prev) => ({ ...prev, [field]: value }));
+		formData[field] = value;
 
 		let error: string | undefined;
 		switch (field) {
@@ -146,7 +147,10 @@
 				break;
 		}
 
-		setErrors((prev) => ({ ...prev, [field]: error }));
+        errors = {
+            ...errors,
+            [field]: error
+        }
 	};
 
 	// Format card number with spaces
@@ -166,24 +170,24 @@
 
 	// Check Nequi tokenization status
 	const checkNequiStatus = async () => {
-		setIsCheckingStatus(true);
+		isCheckingStatus = true;
 		try {
 			// Simulate API call
 			await new Promise((resolve) => setTimeout(resolve, 2000));
-			setNequiStatus(Math.random() > 0.5 ? 'APPROVED' : 'PENDING');
+			nequiStatus = Math.random() > 0.5 ? 'APPROVED' : 'PENDING';
 		} catch (error) {
 			console.error('Error checking status:', error);
 		} finally {
-			setIsCheckingStatus(false);
+			isCheckingStatus = false;
 		}
 	};
 
 	// Handle Bancolombia tokenization
 	const handleBancolombiaTokenization = () => {
-		setIsLoading(true);
+		isLoading = true;
 		// Simulate redirection delay
 		setTimeout(() => {
-			setIsLoading(false);
+			isLoading = false;
 			alert('Redirigiendo a Bancolombia para autorización...');
 		}, 1000);
 	};
@@ -192,8 +196,8 @@
 	const handleSubmit = async () => {
 		if (!privacyConsent || !dataConsent) return;
 
-		setIsLoading(true);
-		setSubmitStatus('idle');
+		isLoading = true;
+		submitStatus = 'idle';
 
 		try {
 			// Validate current tab
@@ -216,11 +220,11 @@
 				hasErrors = newErrors.phoneNumber !== undefined || nequiStatus !== 'APPROVED';
 			}
 
-			setErrors(newErrors);
+			errors = newErrors;
 
 			if (hasErrors) {
-				setSubmitStatus('error');
-				setErrorMessage('Por favor corrige los errores en el formulario');
+				submitStatus = 'error';
+				errorMessage = 'Por favor corrige los errores en el formulario';
 				return;
 			}
 
@@ -229,16 +233,16 @@
 
 			if (Math.random() > 0.2) {
 				// 80% success rate
-				setSubmitStatus('success');
+				submitStatus = 'success';
 			} else {
-				setSubmitStatus('error');
-				setErrorMessage('Error al registrar el método de pago. Inténtalo de nuevo.');
+				submitStatus = 'error';
+				errorMessage = 'Error al registrar el método de pago. Inténtalo de nuevo.';
 			}
 		} catch (error) {
-			setSubmitStatus('error');
-			setErrorMessage('Error inesperado. Inténtalo de nuevo.');
+			submitStatus = 'error';
+			errorMessage = 'Error inesperado. Inténtalo de nuevo.';
 		} finally {
-			setIsLoading(false);
+			isLoading = false;
 		}
 	};
 
