@@ -6,7 +6,7 @@
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from '$components/ui/tabs';
 	import { Checkbox } from '$components/ui/checkbox';
 	import { Badge } from '$components/ui/badge';
-	import { Alert, AlertDescription } from '$components/ui/alert';
+	import { Alert, AlertTitle, AlertDescription } from '$components/ui/alert';
 	import {
 		Loader2,
 		CreditCard,
@@ -17,6 +17,8 @@
 		RefreshCw,
 		ExternalLink
 	} from 'lucide-svelte';
+	import { WompiService } from '$lib/controllers/payments';
+	import { onMount } from 'svelte';
 
 	interface ValidationErrors {
 		cardNumber?: string;
@@ -245,7 +247,16 @@
 
 	const canSubmit = $derived(privacyConsent && dataConsent && !isLoading);
 
-	
+	let acceptanceTokensResponse = $state<AcceptanceTokensResponse>();
+	const wompiPaymentService = new WompiService('pub_test_ie637PXpS3Z6YuEEk7utQ3RQFXmoNDel');
+	async function getAcceptanceTokens() {
+		const response = await wompiPaymentService.getAcceptanceTokens();
+		acceptanceTokensResponse = response;
+	}
+
+	onMount(() => {
+		getAcceptanceTokens();
+	});
 </script>
 
 <Card class="shadow-xl">
@@ -256,15 +267,15 @@
 	<CardContent class="space-y-6">
 		<Tabs bind:value={activeTab} class="w-full space-y-6">
 			<TabsList class="w-full">
-				<TabsTrigger value="card" class="w-full flex gap-x-2">
+				<TabsTrigger value="card" class="flex w-full gap-x-2">
 					<CreditCard class="size-4" />
 					<span class="hidden sm:inline">Tarjeta</span>
 				</TabsTrigger>
-				<TabsTrigger value="nequi" class="w-full flex gap-x-2">
+				<TabsTrigger value="nequi" class="flex w-full gap-x-2">
 					<Smartphone class="size-4" />
 					<span class="hidden sm:inline">Nequi</span>
 				</TabsTrigger>
-				<TabsTrigger value="bancolombia" class="w-full flex gap-x-2">
+				<TabsTrigger value="bancolombia" class="flex w-full gap-x-2">
 					<Building2 class="size-4" />
 					<span class="hidden sm:inline">Bancolombia</span>
 				</TabsTrigger>
@@ -428,7 +439,7 @@
 			<TabsContent value="bancolombia" class="space-y-4">
 				<div class="space-y-4 text-center">
 					<div class="rounded-lg bg-blue-50 p-6">
-						<Building2 class="mx-auto mb-4 h-12 w-12 text-blue-600" />
+						<Building2 class="mx-auto mb-4 h-12 w-12 font-semibold" />
 						<h3 class="mb-2 text-lg font-semibold">Tokenización Bancolombia</h3>
 						<p class="mb-4">
 							Serás redirigido a Bancolombia para autorizar el registro de tu método de pago.
@@ -468,13 +479,14 @@
 						>
 							Acepto la Política de Privacidad *
 						</Label>
+
 						<p id="privacy-consent-description" class="text-sm">
 							He leído y acepto los términos de la{' '}
 							<a
-								href="/privacy-policy.pdf"
+								href={acceptanceTokensResponse?.data?.presigned_acceptance?.permalink}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center gap-1 text-blue-600 hover:underline"
+								class="inline-flex items-center gap-1 font-semibold hover:underline"
 							>
 								Política de Privacidad
 								<ExternalLink class="h-3 w-3" />
@@ -499,10 +511,10 @@
 						<p id="data-consent-description" class="text-sm">
 							Autorizo el tratamiento de mis datos personales según el{' '}
 							<a
-								href="/data-consent.pdf"
+								href={acceptanceTokensResponse?.data?.presigned_personal_data_auth?.permalink}
 								target="_blank"
 								rel="noopener noreferrer"
-								class="inline-flex items-center gap-1 text-blue-600 hover:underline"
+								class="inline-flex items-center gap-1 font-semibold hover:underline"
 							>
 								Consentimiento de Datos
 								<ExternalLink class="h-3 w-3" />
@@ -523,9 +535,10 @@
 		{/if}
 
 		{#if submitStatus === 'error'}
-			<Alert class="border-red-200 bg-red-50">
-				<XCircle class="size-4 text-red-600" />
-				<AlertDescription class="text-red-800">{errorMessage}</AlertDescription>
+			<Alert variant="destructive">
+				<XCircle class="size-4" />
+				<AlertTitle>Error</AlertTitle>
+				<AlertDescription>{errorMessage}</AlertDescription>
 			</Alert>
 		{/if}
 
