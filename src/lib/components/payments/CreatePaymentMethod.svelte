@@ -19,6 +19,11 @@
 	} from 'lucide-svelte';
 	import { WompiService } from '$lib/controllers/payments';
 	import { onMount } from 'svelte';
+	import type {
+		BancolombiaTokenResponseData,
+		CardTokenResponseData,
+		NequiTokenResponseData
+	} from '$lib/types/payments/tokenize';
 
 	interface ValidationErrors {
 		cardNumber?: string;
@@ -48,14 +53,22 @@
 		phoneNumber: ''
 	});
 
+	let acceptanceTokensResponse = $state<AcceptanceTokensResponse>();
+	const wompiPaymentService = new WompiService('pub_test_ie637PXpS3Z6YuEEk7utQ3RQFXmoNDel');
+	async function getAcceptanceTokens() {
+		const response = await wompiPaymentService.getAcceptanceTokens();
+		acceptanceTokensResponse = response;
+	}
+
 	let errors = $state<ValidationErrors>({});
 	let isLoading = $state(false);
-	let nequiStatus = $state<'PENDING' | 'APPROVED' | null>(null);
 	let isCheckingStatus = $state(false);
 	let privacyConsent = $state(false);
 	let dataConsent = $state(false);
 	let submitStatus = $state<'idle' | 'success' | 'error'>('idle');
 	let errorMessage = $state('');
+
+	let bancolombiaRedirectUrl = $state<string>('');
 
 	// Real-time validation functions
 	const validateCardNumber = (cardNumber: string): string | undefined => {
@@ -167,30 +180,6 @@
 		return `${cleaned.slice(0, 3)} ${cleaned.slice(3, 6)} ${cleaned.slice(6, 10)}`;
 	};
 
-	// Check Nequi tokenization status
-	const checkNequiStatus = async () => {
-		isCheckingStatus = true;
-		try {
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 2000));
-			nequiStatus = Math.random() > 0.5 ? 'APPROVED' : 'PENDING';
-		} catch (error) {
-			console.error('Error checking status:', error);
-		} finally {
-			isCheckingStatus = false;
-		}
-	};
-
-	// Handle Bancolombia tokenization
-	const handleBancolombiaTokenization = () => {
-		isLoading = true;
-		// Simulate redirection delay
-		setTimeout(() => {
-			isLoading = false;
-			alert('Redirigiendo a Bancolombia para autorización...');
-		}, 1000);
-	};
-
 	// Handle form submission
 	const handleSubmit = async () => {
 		if (!privacyConsent || !dataConsent) return;
@@ -216,7 +205,7 @@
 				hasErrors = Object.values(newErrors).some((error) => error !== undefined);
 			} else if (activeTab === 'nequi') {
 				newErrors.phoneNumber = validatePhoneNumber(formData.phoneNumber);
-				hasErrors = newErrors.phoneNumber !== undefined || nequiStatus !== 'APPROVED';
+				hasErrors = newErrors.phoneNumber !== undefined;
 			}
 
 			errors = newErrors;
@@ -227,16 +216,40 @@
 				return;
 			}
 
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 2000));
+			let response: CardTokenResponseData | NequiTokenResponseData | BancolombiaTokenResponseData;
 
-			if (Math.random() > 0.2) {
-				// 80% success rate
+			try {
+				if (activeTab === 'card') {
+					const resp = await wompiPaymentService.tokenCard({
+						number: formData.cardNumber,
+						cvc: formData.cvc,
+						exp_month: formData.expirationMonth,
+						exp_year: formData.expirationYear,
+						card_holder: formData.cardholderName
+					});
+
+					response = resp.data;
+				} else if (activeTab === 'nequi') {
+					const resp = await wompiPaymentService.tokenNequi({
+						phone_number: formData.phoneNumber
+					});
+					response = resp.data;
+				} else if (activeTab === 'bancolombia') {
+					const resp = await wompiPaymentService.tokenBancolombia({
+						redirect_url: 'http://localhost:5173/test',
+						type_auth: 'TOKEN'
+					});
+
+					response = resp.data;
+				}
+
 				submitStatus = 'success';
-			} else {
+			} catch (error) {
 				submitStatus = 'error';
 				errorMessage = 'Error al registrar el método de pago. Inténtalo de nuevo.';
 			}
+
+			console.log(response);
 		} catch (error) {
 			submitStatus = 'error';
 			errorMessage = 'Error inesperado. Inténtalo de nuevo.';
@@ -247,15 +260,18 @@
 
 	const canSubmit = $derived(privacyConsent && dataConsent && !isLoading);
 
-	let acceptanceTokensResponse = $state<AcceptanceTokensResponse>();
-	const wompiPaymentService = new WompiService('pub_test_ie637PXpS3Z6YuEEk7utQ3RQFXmoNDel');
-	async function getAcceptanceTokens() {
-		const response = await wompiPaymentService.getAcceptanceTokens();
-		acceptanceTokensResponse = response;
+	async function getBancolombiaRedirect() {
+		const resp = await wompiPaymentService.tokenBancolombia({
+			redirect_url: 'http://localhost:5173/test',
+			type_auth: 'TOKEN'
+		});
+
+		bancolombiaRedirectUrl = resp?.data?.authorization_url || '';
 	}
 
 	onMount(() => {
 		getAcceptanceTokens();
+		getBancolombiaRedirect();
 	});
 </script>
 
@@ -397,42 +413,6 @@
 							</p>
 						{/if}
 					</div>
-
-					{#if formData.phoneNumber && !errors.phoneNumber}
-						<div class="space-y-3">
-							<div class="flex items-center justify-between">
-								<Label>Estado de Tokenización</Label>
-								<Button
-									variant="outline"
-									size="sm"
-									onclick={checkNequiStatus}
-									disabled={isCheckingStatus}
-									class="w-full"
-								>
-									{#if isCheckingStatus}
-										<Loader2 class="size-4 animate-spin" />
-									{:else}
-										<RefreshCw class="size-4" />
-									{/if}
-									Verificar Estado
-								</Button>
-							</div>
-
-							{#if nequiStatus}
-								<div class="w-full">
-									{#if nequiStatus === 'APPROVED'}
-										<CheckCircle class="h-5 w-5 text-green-600" />
-										<Badge variant="default" class="bg-green-100 text-green-800">APROBADO</Badge>
-									{:else}
-										<XCircle class="h-5 w-5 text-yellow-600" />
-										<Badge variant="secondary" class="bg-yellow-100 text-yellow-800">
-											PENDIENTE
-										</Badge>
-									{/if}
-								</div>
-							{/if}
-						</div>
-					{/if}
 				</div>
 			</TabsContent>
 
@@ -440,21 +420,17 @@
 				<div class="space-y-4 text-center">
 					<div class="rounded-lg bg-blue-50 p-6">
 						<Building2 class="mx-auto mb-4 h-12 w-12 font-semibold" />
-						<h3 class="mb-2 text-lg font-semibold">Tokenización Bancolombia</h3>
+						<h3 class="mb-2 text-lg font-semibold">Autorizacion Bancolombia</h3>
 						<p class="mb-4">
 							Serás redirigido a Bancolombia para autorizar el registro de tu método de pago.
 						</p>
-						<Button
-							onclick={handleBancolombiaTokenization}
-							disabled={isLoading}
-							class="w-full sm:w-auto"
-						>
+						<Button href={bancolombiaRedirectUrl} disabled={isLoading} class="w-full sm:w-auto" target="_blank">
 							{#if isLoading}
 								<Loader2 class="mr-2 size-4 animate-spin" />
 								Procesando...
 							{:else}
 								<ExternalLink class="mr-2 size-4" />
-								Iniciar Tokenización
+								Iniciar Autorizacion
 							{/if}
 						</Button>
 					</div>
@@ -526,11 +502,9 @@
 		</div>
 
 		{#if submitStatus === 'success'}
-			<Alert class="border-green-200 bg-green-50">
-				<CheckCircle class="size-4 text-green-600" />
-				<AlertDescription class="text-green-800"
-					>¡Método de pago registrado exitosamente!</AlertDescription
-				>
+			<Alert class="border-dizcover-secondary/50 bg-dizcover-secondary/5">
+				<CheckCircle class="size-4" />
+				<AlertTitle>¡Método de pago registrado exitosamente!</AlertTitle>
 			</Alert>
 		{/if}
 
