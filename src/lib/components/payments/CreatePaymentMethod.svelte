@@ -17,13 +17,15 @@
 		RefreshCw,
 		ExternalLink
 	} from 'lucide-svelte';
-	import { WompiService } from '$lib/controllers/payments';
+	import { PaymentController, WompiService } from '$lib/controllers/payments';
 	import { onMount } from 'svelte';
 	import type {
 		BancolombiaTokenResponseData,
 		CardTokenResponseData,
 		NequiTokenResponseData
 	} from '$lib/types/payments/tokenize';
+	import { PaymentMethodType } from '$lib/types/models/payments';
+	import { storeAuth } from '$lib/store/auth.svelte';
 
 	interface ValidationErrors {
 		cardNumber?: string;
@@ -218,6 +220,8 @@
 
 			let response: CardTokenResponseData | NequiTokenResponseData | BancolombiaTokenResponseData;
 
+			const paymentController = new PaymentController();
+
 			try {
 				if (activeTab === 'card') {
 					const resp = await wompiPaymentService.tokenCard({
@@ -228,17 +232,42 @@
 						card_holder: formData.cardholderName
 					});
 
+					const created = await paymentController.createPaymentMethod(
+						PaymentMethodType.Card,
+						resp.data.id,
+						storeAuth.user?.email as unknown as string,
+						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+					);
+
 					response = resp.data;
 				} else if (activeTab === 'nequi') {
 					const resp = await wompiPaymentService.tokenNequi({
 						phone_number: formData.phoneNumber
 					});
+
+					const created = await paymentController.createPaymentMethod(
+						PaymentMethodType.Nequi,
+						resp.data.id,
+						storeAuth.user?.email as unknown as string,
+						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+					);
+
 					response = resp.data;
 				} else if (activeTab === 'bancolombia') {
 					const resp = await wompiPaymentService.tokenBancolombia({
 						redirect_url: typeof window !== 'undefined' ? window.location.href : '', // Full url
 						type_auth: 'TOKEN'
 					});
+
+					const created = await paymentController.createPaymentMethod(
+						PaymentMethodType.Bancolombia,
+						resp.data.id,
+						storeAuth.user?.email as unknown as string,
+						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+					);
 
 					response = resp.data;
 				}
@@ -248,8 +277,6 @@
 				submitStatus = 'error';
 				errorMessage = 'Error al registrar el método de pago. Inténtalo de nuevo.';
 			}
-
-			console.log(response);
 		} catch (error) {
 			submitStatus = 'error';
 			errorMessage = 'Error inesperado. Inténtalo de nuevo.';

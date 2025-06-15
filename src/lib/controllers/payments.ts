@@ -1,4 +1,5 @@
 import { dev } from '$app/environment';
+import api from '$lib/services/api';
 import { PaymentMethodType } from '$lib/types/models/payments';
 import type {
 	CardTokenRequest,
@@ -17,7 +18,18 @@ export class PaymentController {
 		this.token = token;
 	}
 
-	async createPaymentMethod(type: PaymentMethodType) {}
+	async createPaymentMethod(type: PaymentMethodType, token: string, email: string, acceptance_token: string, accept_personal_auth: string) {
+		const payload = {
+			type: type,
+			token: token,
+			payment_description: "",
+			customer_email: email,
+			acceptance_token: acceptance_token,
+			accept_personal_auth: accept_personal_auth,
+		}
+
+		return await api.post("/api/fiestero/v1/metodos-pago/crear", payload)
+	}
 }
 
 export class WompiService {
