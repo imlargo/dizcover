@@ -18,8 +18,6 @@ export class PaymentController {
 	}
 
 	async createPaymentMethod(type: PaymentMethodType) {}
-
-	
 }
 
 export class WompiService {

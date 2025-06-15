@@ -5,6 +5,4 @@
 	import CreatePaymentMethod from '$lib/components/payments/CreatePaymentMethod.svelte';
 </script>
 
-<CreatePaymentMethod>
-	
-</CreatePaymentMethod>
+<CreatePaymentMethod></CreatePaymentMethod>
