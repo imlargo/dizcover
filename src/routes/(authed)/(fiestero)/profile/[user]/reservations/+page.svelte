@@ -18,8 +18,12 @@
 		</CardDescription>
 	</CardHeader>
 	<CardContent class="space-y-6">
-		{#each cupones as cupon}
-			<CuponReservation {cupon} />
-		{/each}
+		{#if cupones.length > 0}
+			{#each cupones as cupon (cupon.id)}
+				<CuponReservation {cupon} />
+			{/each}
+		{:else}
+			<p class="text-center text-muted-foreground">No tienes cupones vigentes.</p>
+		{/if}
 	</CardContent>
 </Card>
