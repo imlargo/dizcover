@@ -42,11 +42,13 @@
 	</div>
 
 	<div class="flex h-full flex-col items-center justify-center gap-2">
+		<!--
 		<Button
 			variant="ghost"
 			class="size-10"
 			href="/profile/{storeAuth.user?.id}/payment-methods/method"><Pen /></Button
 		>
+			-->
 		<Button variant="ghost" class="size-10"><Trash2 /></Button>
 	</div>
 </div>
