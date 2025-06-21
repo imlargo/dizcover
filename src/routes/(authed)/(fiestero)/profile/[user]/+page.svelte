@@ -4,10 +4,9 @@
 	import Share from '$lib/components/kit/Share.svelte';
 	import { page } from '$app/state';
 	import type { User } from '$lib/types/models/user';
+	import { storeAuth } from '$lib/store/auth.svelte';
 
 	let { data }: { data: PageData } = $props();
-
-	const authedUser = data.user as User;
 
 	type UserProfile = {
 		name: string;
@@ -32,13 +31,13 @@
 
 	const fields = [
 		{
-			label: 'Nombres',
-			field: 'name',
+			label: 'Nombre de usuario',
+			field: 'nombre_usuario',
 			type: 'text'
 		},
 		{
-			label: 'Apellidos',
-			field: 'lastname',
+			label: 'Nombre completo',
+			field: 'nombre_completo',
 			type: 'text'
 		},
 		{
@@ -47,51 +46,11 @@
 			type: 'email'
 		},
 		{
-			label: 'Contraseña',
-			field: 'password',
-			type: 'password'
-		},
-		{
-			label: 'Fecha de nacimiento',
-			field: 'birthdate',
-			type: 'date'
-		},
-		{
-			label: 'País',
-			field: 'country',
-			type: 'text'
-		},
-		{
-			label: 'Departamento',
-			field: 'subdivision',
-			type: 'text'
-		},
-		{
-			label: 'Ciudad',
-			field: 'city',
-			type: 'text'
-		},
-		{
-			label: 'Teléfono',
-			field: 'phone',
+			label: 'Numero de identificacion',
+			field: 'fiestero.num_identificacion',
 			type: 'text'
 		}
 	];
-
-	const userProfile: UserProfile = {
-		name: 'Juan',
-		lastname: 'Perez',
-		email: authedUser?.email,
-		password: '123',
-		birthdate: '1990-01-01',
-		country: 'Colombia',
-		subdivision: 'Antioquia',
-		city: 'Medellin',
-		phone: '1234567890',
-
-		profile_image: authedUser?.foto_perfil,
-		username: authedUser?.nombre_usuario
-	};
 </script>
 
 {JSON.stringify(data.user)}
@@ -102,18 +61,18 @@
 		<div class="grid grid-cols-12 rounded-lg bg-neutral-900 p-6">
 			<div class="col-span-2">
 				<img
-					src={userProfile.profile_image}
-					alt={userProfile.username}
+					src={storeAuth.user?.foto_perfil}
+					alt={storeAuth.user?.nombre_usuario}
 					class="size-44 rounded-full object-cover"
 				/>
 			</div>
 			<div class="col-span-10 flex flex-col gap-2">
 				<div class="items-top flex justify-between">
-					<h4 class="font-display text-3xl font-semibold">@{userProfile.username}</h4>
+					<h4 class="font-display text-3xl font-semibold">@{storeAuth.user?.nombre_usuario}</h4>
 					<Share
 						title="Mira este perfil en dizcover: "
 						description=""
-						shareUrl={`${page.url.origin}/profile/${data.userId}/${userProfile.username}`}
+						shareUrl={`${page.url.origin}/profile/${storeAuth.user?.nombre_usuario}`}
 					/>
 				</div>
 			</div>
@@ -124,7 +83,7 @@
 				<div class="profile-data-field">
 					<span class="text-neutral-600">{field.label}</span>
 					<Input
-						value={userProfile[field.field]}
+						value={storeAuth.user[field.field]}
 						type={field.type}
 						placeholder={field.label}
 						class="rounded-lg border-0 bg-transparent focus:border-white/5"
