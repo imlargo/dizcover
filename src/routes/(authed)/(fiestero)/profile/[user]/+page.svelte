@@ -53,7 +53,6 @@
 	];
 </script>
 
-{JSON.stringify(data.user)}
 <div class="flex flex-col gap-8">
 	<h3 class="font-display text-3xl font-bold">Mi perfil</h3>
 
