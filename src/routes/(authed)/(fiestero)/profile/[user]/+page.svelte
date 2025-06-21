@@ -5,6 +5,7 @@
 	import { page } from '$app/state';
 	import type { User } from '$lib/types/models/user';
 	import { storeAuth } from '$lib/store/auth.svelte';
+	import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '$components/ui/card';
 
 	let { data }: { data: PageData } = $props();
 
@@ -53,45 +54,49 @@
 	];
 </script>
 
-<div class="flex flex-col gap-8">
-	<h3 class="font-display text-3xl font-bold">Mi perfil</h3>
-
-	<div class="flex flex-col gap-1">
-		<div class="grid grid-cols-12 rounded-lg bg-neutral-900 p-6">
-			<div class="col-span-2">
-				<img
-					src={storeAuth.user?.foto_perfil}
-					alt={storeAuth.user?.nombre_usuario}
-					class="size-44 rounded-full object-cover"
-				/>
-			</div>
-			<div class="col-span-10 flex flex-col gap-2">
-				<div class="items-top flex justify-between">
-					<h4 class="font-display text-3xl font-semibold">@{storeAuth.user?.nombre_usuario}</h4>
-					<Share
-						title="Mira este perfil en dizcover: "
-						description=""
-						shareUrl={`${page.url.origin}/profile/${storeAuth.user?.nombre_usuario}`}
+<Card class="shadow-xl">
+	<CardHeader>
+		<CardTitle>Mi perfil</CardTitle>
+		<CardDescription>En esta seccion puedes ver y editar tu perfil.</CardDescription>
+	</CardHeader>
+	<CardContent class="space-y-6">
+		<div class="flex flex-col gap-1">
+			<div class="grid grid-cols-12 rounded-lg bg-neutral-900 p-6">
+				<div class="col-span-2">
+					<img
+						src={storeAuth.user?.foto_perfil}
+						alt={storeAuth.user?.nombre_usuario}
+						class="size-44 rounded-full object-cover"
 					/>
 				</div>
+				<div class="col-span-10 flex flex-col gap-2">
+					<div class="items-top flex justify-between">
+						<h4 class="font-display text-3xl font-semibold">@{storeAuth.user?.nombre_usuario}</h4>
+						<Share
+							title="Mira este perfil en dizcover: "
+							description=""
+							shareUrl={`${page.url.origin}/profile/${storeAuth.user?.nombre_usuario}`}
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 gap-1 lg:grid-cols-2">
+				{#each fields as field}
+					<div class="profile-data-field">
+						<span class="text-neutral-600">{field.label}</span>
+						<Input
+							value={storeAuth.user[field.field]}
+							type={field.type}
+							placeholder={field.label}
+							class="rounded-lg border-0 bg-transparent focus:border-white/5"
+						/>
+					</div>
+				{/each}
 			</div>
 		</div>
-
-		<div class="grid grid-cols-1 gap-1 lg:grid-cols-2">
-			{#each fields as field}
-				<div class="profile-data-field">
-					<span class="text-neutral-600">{field.label}</span>
-					<Input
-						value={storeAuth.user[field.field]}
-						type={field.type}
-						placeholder={field.label}
-						class="rounded-lg border-0 bg-transparent focus:border-white/5"
-					/>
-				</div>
-			{/each}
-		</div>
-	</div>
-</div>
+	</CardContent>
+</Card>
 
 <style lang="scss">
 	.profile-data-field {

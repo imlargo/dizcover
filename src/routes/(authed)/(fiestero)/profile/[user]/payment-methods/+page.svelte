@@ -6,25 +6,33 @@
 	import { storeAuth } from '$lib/store/auth.svelte';
 	import type { PaymentMethod } from '$lib/types/models/payments';
 	import PaymentMethodComponent from '$lib/components/payments/PaymentMethod.svelte';
+	import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '$components/ui/card';
 
 	let { data }: { data: PageData } = $props();
 
 	const userPaymentMethods: PaymentMethod[] = $state(data.userPaymentMethods || []);
 </script>
 
-<div class="flex flex-col gap-8">
-	<div class="flex w-full items-center justify-between">
-		<h3 class="font-display text-3xl font-bold">Métodos de pago</h3>
+<Card class="shadow-xl">
+	<CardHeader>
+		<div class="flex w-full items-center justify-between">
+			<CardTitle>Métodos de pago</CardTitle>
 
-		<Button href="/profile/{storeAuth.user?.id}/payment-methods/create">
-			<CreditCard />
-			<span>Registrar</span>
-		</Button>
-	</div>
-
-	<div class="flex flex-col gap-6">
-		{#each userPaymentMethods as paymentMethod}
-			<PaymentMethodComponent {paymentMethod} />
-		{/each}
-	</div>
-</div>
+			<Button href="/profile/{storeAuth.user?.id}/payment-methods/create">
+				<CreditCard />
+				<span>Registrar</span>
+			</Button>
+		</div>
+		<CardDescription>
+			En esta sección puedes ver y administrar tus métodos de pago registrados. Si deseas agregar un
+			nuevo método, haz clic en el botón "Registrar".
+		</CardDescription>
+	</CardHeader>
+	<CardContent class="space-y-6">
+		<div class="flex flex-col gap-6">
+			{#each userPaymentMethods as paymentMethod}
+				<PaymentMethodComponent {paymentMethod} />
+			{/each}
+		</div>
+	</CardContent>
+</Card>
