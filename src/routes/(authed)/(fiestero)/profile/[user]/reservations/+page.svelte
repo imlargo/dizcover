@@ -23,7 +23,7 @@
 				<CuponReservation {cupon} />
 			{/each}
 		{:else}
-			<p class="text-center text-muted-foreground">No tienes cupones vigentes.</p>
+			<p class="text-muted-foreground">No tienes cupones vigentes...</p>
 		{/if}
 	</CardContent>
 </Card>
