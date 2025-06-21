@@ -10,7 +10,7 @@ export const load = (async ({ data }) => {
 	if (browser) {
 		storeAuth.loadFromStorage();	
 
-		if (user === undefined && accessToken === undefined || storeAuth.isAuthenticated() === false) {
+		if ((user === undefined || accessToken === undefined) || !storeAuth.isAuthenticated()) {
 			storeAuth.logout();
 			storeAuth.persistAuthData();
 		} else {

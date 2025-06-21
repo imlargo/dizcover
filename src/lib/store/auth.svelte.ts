@@ -8,6 +8,10 @@ class AuthStore {
 	private access_token_storage_key = 'session_access_token';
 
 	persistAuthData() {
+		console.log("Persisting auth data to local storage");
+		console.log("User:", this.user);
+		
+		
 		if (this.user) {
 			localStorage.setItem(this.user_storage_key, JSON.stringify(this.user));
 		} else {
