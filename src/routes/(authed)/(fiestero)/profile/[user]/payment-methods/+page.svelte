@@ -13,28 +13,7 @@
 		last_digits: string;
 	};
 
-	const userPaymentMethods: PaymentMethod[] = [
-		{
-			image: '',
-			name: 'Visa',
-			last_digits: '333'
-		},
-		{
-			image: '',
-			name: 'Mastercard',
-			last_digits: '333'
-		},
-		{
-			image: '',
-			name: 'Nequi',
-			last_digits: '333'
-		},
-		{
-			image: '',
-			name: 'Bancolombia',
-			last_digits: '333'
-		}
-	];
+	const userPaymentMethods: PaymentMethod[] = $state(data.userPaymentMethods || []);
 </script>
 
 <div class="flex flex-col gap-8">

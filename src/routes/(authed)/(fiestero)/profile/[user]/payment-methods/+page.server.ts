@@ -4,7 +4,9 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ locals }) => {
 
     const paymentControllers = new PaymentController(locals.accessToken);
-    // const payments = await paymentControllers.getPaymentMethods(locals.accessToken);
+    const userPaymentMethods = await paymentControllers.getPaymentMethods(locals.accessToken);
 
-    return {};
+    return {
+        userPaymentMethods: userPaymentMethods
+    };
 }) satisfies PageServerLoad;

@@ -12,11 +12,11 @@ export const load = (async ({ data }) => {
 
 		if ((user === undefined || accessToken === undefined) || !storeAuth.isAuthenticated()) {
 			storeAuth.logout();
-			storeAuth.persistAuthData();
+			// storeAuth.persistAuthData();
 		} else {
 			storeAuth.setUser(user);
 			storeAuth.setAccessToken(accessToken);
-			storeAuth.persistAuthData();
+			// storeAuth.persistAuthData();
 		}
 	}
 
