@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Button } from '$lib/components/ui/button/index.js';
-	import { Pen, Trash2 } from 'lucide-svelte';
+	import { CreditCard, Pen, Trash2 } from 'lucide-svelte';
 	import { storeAuth } from '$lib/store/auth.svelte';
 	import type { PaymentMethod } from '$lib/types/models/payments';
 	import PaymentMethodComponent from '$lib/components/payments/PaymentMethod.svelte';
@@ -16,7 +16,10 @@
 	<div class="flex w-full items-center justify-between">
 		<h3 class="font-display text-3xl font-bold">Métodos de pago</h3>
 
-		<Button href="/profile/{storeAuth.user?.id}/payment-methods/create">Crear</Button>
+		<Button href="/profile/{storeAuth.user?.id}/payment-methods/create">
+			<CreditCard />
+			<span>Registrar</span>
+		</Button>
 	</div>
 
 	<div class="flex flex-col gap-6">
