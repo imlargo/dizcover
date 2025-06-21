@@ -8,11 +8,15 @@ export const load = (async ({ data }) => {
 	const accessToken: string | any = data?.accessToken;
 
 	if (browser) {
-		if (user === undefined || accessToken === undefined) {
+		storeAuth.loadFromStorage();	
+
+		if (user === undefined && accessToken === undefined || storeAuth.isAuthenticated() === false) {
 			storeAuth.logout();
+			storeAuth.persistAuthData();
 		} else {
 			storeAuth.setUser(user);
 			storeAuth.setAccessToken(accessToken);
+			storeAuth.persistAuthData();
 		}
 	}
 
