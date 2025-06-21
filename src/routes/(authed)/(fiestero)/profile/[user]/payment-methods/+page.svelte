@@ -12,8 +12,6 @@
 	const userPaymentMethods: PaymentMethod[] = $state(data.userPaymentMethods || []);
 </script>
 
-{JSON.stringify(userPaymentMethods)}
-
 <div class="flex flex-col gap-8">
 	<div class="flex w-full items-center justify-between">
 		<h3 class="font-display text-3xl font-bold">Métodos de pago</h3>
