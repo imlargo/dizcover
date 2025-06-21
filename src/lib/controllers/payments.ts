@@ -30,6 +30,14 @@ export class PaymentController {
 
 		return await api.post("/api/fiestero/v1/metodos-pago/crear", payload)
 	}
+
+	async getPaymentMethods(token?: string) {
+		if (!token) {
+			token = this.token;
+		}
+
+		return await api.get("/api/fiestero/v1/metodos-pago/", {}, token);
+	}
 }
 
 export class WompiService {
