@@ -407,7 +407,6 @@
 			</Card>
 
 			<div class="flex justify-end space-x-4">
-				<Button type="button" variant="outline" size="lg">Guardar Borrador</Button>
 				<Button type="submit" size="lg" class="min-w-[150px]">Crear Evento</Button>
 			</div>
 		</form>
