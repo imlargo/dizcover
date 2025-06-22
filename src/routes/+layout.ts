@@ -10,7 +10,7 @@ export const load = (async ({ data }) => {
 	if (browser) {
 		storeAuth.loadFromStorage();	
 
-		if ((user === undefined || accessToken === undefined)) {
+		if (user === undefined || accessToken === undefined) {
 			console.log("Logging out user due to missing data");
 			
 			storeAuth.logout();
