@@ -8,13 +8,7 @@
 	import { Input } from '$components/ui/input';
 	import { Label } from '$components/ui/label';
 	import { Textarea } from '$components/ui/textarea';
-	import {
-		Select,
-		SelectContent,
-		SelectItem,
-		SelectTrigger,
-		SelectValue
-	} from '$components/ui/select';
+
 	import { Badge } from '$components/ui/badge';
 	import {
 		X,
@@ -29,7 +23,8 @@
 		Ticket,
 		Upload
 	} from '@lucide/svelte';
-	import Events from '$lib/components/establecimiento/Events.svelte';
+	import Select from '$lib/components/kit/Select.svelte';
+	import { formatCurrency } from '$lib/utils/tools';
 
 	interface SeatingSection {
 		id: string;
@@ -70,7 +65,7 @@
 	};
 
 	const removeEventImage = (index: number) => {
-		  eventImages =  eventImages.filter((_, i) => i !== index);
+		eventImages = eventImages.filter((_, i) => i !== index);
 	};
 
 	// Manejo de secciones de asientos
@@ -123,13 +118,14 @@
 			artists
 		});
 	};
+	
 </script>
 
-<div class="min-h-screen bg-gray-50 px-4 py-8">
+<div class="min-h-screen px-4 py-8">
 	<div class="mx-auto max-w-4xl">
-		<div class="mb-8 text-center">
-			<h1 class="mb-2 text-3xl font-bold text-gray-900">Crear Nuevo Evento</h1>
-			<p class="text-gray-600">Completa todos los detalles para crear tu evento</p>
+		<div class="mb-8 text-start">
+			<h1 class="mb-2 text-3xl font-bold">Crear Nuevo Evento</h1>
+			<p class="text-muted-foreground">Completa todos los detalles para crear tu evento</p>
 		</div>
 
 		<form onsubmit={handleSubmit} class="space-y-8">
@@ -149,18 +145,12 @@
 						</div>
 						<div class="space-y-2">
 							<Label for="venue">Establecimiento *</Label>
-							<Select required>
-								<SelectTrigger>
-									<SelectValue placeholder="Selecciona el establecimiento" />
-								</SelectTrigger>
-								<SelectContent>
-									{#each VENUES as venue}
-										<SelectItem key={venue} value={venue.toLowerCase().replace(' ', '-')}>
-											{venue}
-										</SelectItem>
-									{/each}
-								</SelectContent>
-							</Select>
+							<Select
+								options={VENUES.map((venue) => ({
+									value: venue.toLowerCase().replace(' ', '-'),
+									label: venue
+								}))}
+							/>
 						</div>
 					</div>
 
@@ -218,35 +208,24 @@
 					<CardDescription>Configura las secciones y precios para tu evento</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-6">
-					<div class="rounded-lg border bg-gray-50 p-4">
-						<h3 class="mb-4 text-sm font-medium text-gray-900">Agregar Nueva Sección</h3>
+					<div class="rounded-lg border bg-primary-foreground p-4">
+						<h3 class="mb-4 text-sm font-medium">Agregar Nueva Sección</h3>
 						<div class="grid grid-cols-1 gap-4 md:grid-cols-4">
 							<div class="space-y-2">
-								<Label class="text-sm">Nombre de la Sección</Label>
-								<Input
-									placeholder="Ej: VIP, General, Palco"
-									bind:value={newSection.name}
-								/>
+								<Label class="text-sm text-muted-foreground">Nombre de la Sección</Label>
+								<Input placeholder="Ej: VIP, General, Palco" bind:value={newSection.name} />
 							</div>
 							<div class="space-y-2">
-								<Label class="text-sm">Precio ($)</Label>
-								<Input
-									type="number"
-									placeholder="500"
-									bind:value={newSection.price}
-								/>
+								<Label class="text-sm text-muted-foreground">Precio ($)</Label>
+								<Input type="number" placeholder="500" bind:value={newSection.price} />
 							</div>
 							<div class="space-y-2">
-								<Label class="text-sm">Capacidad</Label>
-								<Input
-									type="number"
-									placeholder="50"
-									bind:value={newSection.capacity}
-								/>
+								<Label class="text-sm text-muted-foreground">Capacidad</Label>
+								<Input type="number" placeholder="50" bind:value={newSection.capacity} />
 							</div>
 							<div class="flex items-end">
 								<Button type="button" onclick={addSeatingSection} class="w-full">
-									<Plus class="mr-2 h-4 w-4" />
+									<Plus class="mr-1 size-4" />
 									Agregar
 								</Button>
 							</div>
@@ -262,7 +241,7 @@
 										<div>
 											<div class="font-medium">{section.name}</div>
 											<div class="text-sm text-gray-500">
-												{section.capacity} asientos • ${section.price} por boleto
+												{section.capacity} asientos • {formatCurrency(section.price)} por boleto
 											</div>
 										</div>
 										<div class="flex items-center gap-2">
@@ -295,18 +274,15 @@
 					<CardDescription>Agrega los artistas que participarán en tu evento</CardDescription>
 				</CardHeader>
 				<CardContent class="space-y-6">
-					<div class="rounded-lg border bg-gray-50 p-4">
-						<h3 class="mb-4 text-sm font-medium text-gray-900">Agregar Nuevo Artista</h3>
+					<div class="rounded-lg border bg-primary-foreground p-4">
+						<h3 class="mb-4 text-sm font-medium">Agregar Nuevo Artista</h3>
 						<div class="grid grid-cols-1 gap-4 md:grid-cols-3">
 							<div class="space-y-2">
-								<Label class="text-sm">Nombre del Artista</Label>
-								<Input
-									placeholder="Ej: DJ Snake, Bad Bunny"
-									bind:value={newArtist.name}
-								/>
+								<Label class="text-sm text-muted-foreground">Nombre del Artista</Label>
+								<Input placeholder="Ej: DJ Snake, Bad Bunny" bind:value={newArtist.name} />
 							</div>
 							<div class="space-y-2">
-								<Label class="text-sm">Imagen del Artista</Label>
+								<Label class="text-sm text-muted-foreground">Imagen del Artista</Label>
 								<Input type="file" accept="image/*" onchange={handleArtistImageUpload} />
 							</div>
 							<div class="flex items-end">
@@ -402,11 +378,15 @@
 							<Label class="text-sm font-medium">Imágenes Cargadas ({eventImages.length}/6)</Label>
 							<div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
 								{#each eventImages as imagen, indice}
-									<div  class="group relative">
+									<div class="group relative">
 										<div
 											class="flex aspect-square items-center justify-center rounded-lg bg-gray-100"
 										>
-											<ImageIcon class="h-8 w-8 text-gray-400" />
+											<img
+												src={URL.createObjectURL(imagen)}
+												alt={imagen.name}
+												class="h-full w-full rounded-lg object-cover"
+											/>
 										</div>
 										<p class="mt-1 truncate text-center text-xs">{imagen.name}</p>
 										<Button
