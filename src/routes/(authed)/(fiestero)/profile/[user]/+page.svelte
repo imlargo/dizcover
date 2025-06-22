@@ -86,7 +86,7 @@
 					<div class="profile-data-field">
 						<span class="text-neutral-600">{field.label}</span>
 						<Input
-							value={storeAuth.user[field.field]}
+							value={(storeAuth?.user || {})[field.field]}
 							type={field.type}
 							placeholder={field.label}
 							class="rounded-lg border-0 bg-transparent focus:border-white/5"
