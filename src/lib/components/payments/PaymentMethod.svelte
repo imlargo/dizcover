@@ -2,7 +2,7 @@
 	import { getPaymentMethodTypeLabel, PaymentMethodType, type PaymentMethod } from '$lib/types/models/payments';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { storeAuth } from '$lib/store/auth.svelte';
-	import { Pen, Trash2 } from 'lucide-svelte';
+	import { CreditCard, Pen, Trash2 } from 'lucide-svelte';
 
 	type Props = {
 		paymentMethod: PaymentMethod;
@@ -20,7 +20,7 @@
 				</div>
 			{:else if paymentMethod.tipo === PaymentMethodType.Card}
 				<div class="flex h-full w-full items-center justify-center bg-white p-2">
-					<img src="/assets/nequi.svg" alt={paymentMethod.tipo} />
+					<CreditCard class="h-8 w-8 text-black" />
 				</div>
 			{:else if paymentMethod.tipo === PaymentMethodType.Bancolombia}
 				<div class="flex h-full w-full items-center justify-center bg-white px-2">
