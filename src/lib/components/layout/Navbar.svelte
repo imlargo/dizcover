@@ -75,7 +75,7 @@
 				</a>
 			</div>
 
-			{#if storeAuth.isAuthenticated()}
+			{#if storeAuth.user}
 				<DropdownMenu.Root>
 					<DropdownMenu.Trigger>
 						<Button variant="ghost" size="icon" class="relative size-10 rounded-full">
