@@ -2,6 +2,7 @@
 	import type { ReviewEstablecimiento } from '$lib/types/models/review';
 	import * as Card from '$lib/components/ui/card/index.js';
 	import Stars from './Stars.svelte';
+	import * as Avatar from '$lib/components/ui/avatar/index.js';
 
 	type Props = {
 		review: ReviewEstablecimiento;
@@ -20,8 +21,15 @@
 </script>
 
 <Card.Root>
-	<Card.Content>
-		<Card.Title class="text-base">{review.fiestero}</Card.Title>
+	<Card.Content class="space-y-4">
+		<div class="flex items-center gap-4">
+			<Avatar.Root>
+				<Avatar.Image src={review.fiestero.user.foto_perfil} alt="@shadcn" />
+				<Avatar.Fallback>JC</Avatar.Fallback>
+			</Avatar.Root>
+			<Card.Title class="text-base text-white">{review.fiestero.user.nombre_completo}</Card.Title>
+		</div>
+
 		<div class="flex flex-col gap-1">
 			<div class="flex items-center gap-2">
 				<Stars rate={review.calificacion} />
