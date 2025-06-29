@@ -200,12 +200,6 @@
 			</p>
 		</div>
 
-		{JSON.stringify(formData, null, 2)}
-
-		<hr />
-
-		<hr />
-
 		<Card.Root>
 			<Card.Header>
 				<Card.Title class="flex items-center gap-2">
