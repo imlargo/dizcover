@@ -182,6 +182,8 @@
 		</div>
 	{/if}
 
+	{JSON.stringify(establecimiento, null, 2)}
+
 	<Tabs.Root value="info" class="w-full space-y-12">
 		<Tabs.List class="w-full md:max-w-max">
 			<Tabs.Trigger class="w-full" value="info">Info</Tabs.Trigger>

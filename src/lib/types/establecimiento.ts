@@ -12,6 +12,14 @@ export type Establecimiento = {
 	imagenes: string[];
 	primera_imagen: string;
 	ubicacion: Coordinates;
+	menu_pdf_url: string | null;
+	direccion: string;
+	telefono: string;
+	email: string;
+	departamento: string;
+	municipio: string;
+	menu_pdf: string | null;
+	id_discotequero: number;
 };
 
 export type CoordsEstablecimiento = {
@@ -28,3 +36,5 @@ export type Horario = {
 	hora_apertura: string;
 	hora_cierre: string;
 };
+
+
