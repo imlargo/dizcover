@@ -549,7 +549,7 @@
 		<div class="flex justify-end space-x-4">
 			<Button disabled={isLoading} onclick={handleSubmit} size="lg" class="w-full">
 				{#if isLoading}
-					<Loader2 class="size-4" />
+					<Loader2 class="size-4 animate-spin" />
 					<span>Creando...</span>
 				{:else}
 					Crear
