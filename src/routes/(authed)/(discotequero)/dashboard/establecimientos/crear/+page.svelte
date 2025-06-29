@@ -117,77 +117,88 @@
 
 	const establecimientoController = new EstablecimientoController();
 	async function handleSubmit() {
-		isLoading = true;
-		// Validar campos obligatorios
-		if (Object.values(formData).some((value) => !value)) {
-			toast.error('Por favor, completa todos los campos obligatorios.');
-			return;
-		}
-
-		toast.loading('Creando establecimiento...');
-		const establecimiento = await establecimientoController.createEstablecimiento(formData);
-
-		// Validar horarios
-		const horarios: Record<string, { hora_apertura: string; hora_cierre: string }> = {};
-		for (const day in operatingHours) {
-			const { isOpen, openTime, closeTime } = operatingHours[day];
-			if (isOpen) {
-				if (!openTime || !closeTime) {
-					toast.error(`Por favor, completa el horario de ${day}.`);
-					return;
-				}
-				horarios[day] = { hora_apertura: openTime, hora_cierre: closeTime };
+		try {
+			isLoading = true;
+			// Validar campos obligatorios
+			if (Object.values(formData).some((value) => !value)) {
+				toast.error('Por favor, completa todos los campos obligatorios.');
+				isLoading = false;
+				return;
 			}
+
+			toast.loading('Creando establecimiento...');
+			const establecimiento = await establecimientoController.createEstablecimiento(formData);
+
+			// Validar horarios
+			const horarios: Record<string, { hora_apertura: string; hora_cierre: string }> = {};
+			for (const day in operatingHours) {
+				const { isOpen, openTime, closeTime } = operatingHours[day];
+				if (isOpen) {
+					if (!openTime || !closeTime) {
+						toast.error(`Por favor, completa el horario de ${day}.`);
+						return;
+					}
+					horarios[day] = { hora_apertura: openTime, hora_cierre: closeTime };
+				}
+			}
+
+			if (Object.keys(horarios).length === 0) {
+				toast.error('Por favor, selecciona al menos un día con horario de apertura.');
+				isLoading = false;
+				return;
+			}
+
+			toast.loading('Guardando horarios...');
+			await establecimientoController.createHorarioEstablecimiento(
+				establecimiento.id as unknown as number,
+				horarios
+			);
+
+			// Validar etiquetas
+			if (selectedTags.length < 3) {
+				toast.error('Por favor, selecciona al menos 3 etiquetas.');
+				isLoading = false;
+				return;
+			}
+
+			toast.loading('Guardando etiquetas...');
+			await establecimientoController.createEtiquetasEstablecimiento(
+				establecimiento.id as unknown as number,
+				selectedTags.map((tag) => tag.id)
+			);
+
+			// Imagenes
+			if (!mainImage) {
+				toast.error('Por favor, sube una imagen principal.');
+				isLoading = false;
+				return;
+			}
+
+			if (galleryImages.length == 1) {
+				toast.error('Por favor, sube al menos una imagen de galería.');
+				isLoading = false;
+				return;
+			}
+
+			if (galleryImages.length > 5) {
+				toast.error('Solo puedes subir hasta 5 imágenes de galería.');
+				isLoading = false;
+				return;
+			}
+
+			toast.loading('Subiendo imágenes...');
+			const images = [mainImage, ...galleryImages];
+			await establecimientoController.createImagenesEstablecimiento(
+				establecimiento.id as unknown as number,
+				images
+			);
+
+			toast.success('Establecimiento creado exitosamente!.');
+		} catch (error) {
+			toast.error('Error al crear el establecimiento. Por favor, inténtalo de nuevo.');
+		} finally {
+			isLoading = false;
 		}
-
-		if (Object.keys(horarios).length === 0) {
-			toast.error('Por favor, selecciona al menos un día con horario de apertura.');
-			return;
-		}
-
-		toast.loading('Guardando horarios...');
-		await establecimientoController.createHorarioEstablecimiento(
-			establecimiento.id as unknown as number,
-			horarios
-		);
-
-		// Validar etiquetas
-		if (selectedTags.length < 3) {
-			toast.error('Por favor, selecciona al menos 3 etiquetas.');
-			return;
-		}
-
-		toast.loading('Guardando etiquetas...');
-		await establecimientoController.createEtiquetasEstablecimiento(
-			establecimiento.id as unknown as number,
-			selectedTags.map((tag) => tag.id)
-		);
-
-		// Imagenes
-		if (!mainImage) {
-			toast.error('Por favor, sube una imagen principal.');
-			return;
-		}
-
-		if (galleryImages.length == 1) {
-			toast.error('Por favor, sube al menos una imagen de galería.');
-			return;
-		}
-
-		if (galleryImages.length > 5) {
-			toast.error('Solo puedes subir hasta 5 imágenes de galería.');
-			return;
-		}
-
-		toast.loading('Subiendo imágenes...');
-		const images = [mainImage, ...galleryImages];
-		await establecimientoController.createImagenesEstablecimiento(
-			establecimiento.id as unknown as number,
-			images
-		);
-
-		isLoading = false;
-		toast.success('Establecimiento creado exitosamente!.');
 	}
 </script>
 
