@@ -12,6 +12,9 @@
 
 	const featuredEstablecimiento =
 		establecimientos[Math.floor(Math.random() * establecimientos.length)];
+
+	console.log("establecimiento:", featuredEstablecimiento);
+	
 </script>
 
 <Hero establecimiento={featuredEstablecimiento} />
