@@ -31,10 +31,10 @@
 	<CardContent class="space-y-6">
 		{#if userPaymentMethods.length > 0}
 			<div class="flex flex-col gap-6">
-			{#each userPaymentMethods as paymentMethod}
-				<PaymentMethodComponent {paymentMethod} />
-			{/each}
-		</div>
+				{#each userPaymentMethods as paymentMethod}
+					<PaymentMethodComponent {paymentMethod} />
+				{/each}
+			</div>
 		{:else}
 			<div class="text-center text-muted-foreground">
 				No tienes métodos de pago registrados. Haz clic en "Registrar" para agregar uno nuevo.

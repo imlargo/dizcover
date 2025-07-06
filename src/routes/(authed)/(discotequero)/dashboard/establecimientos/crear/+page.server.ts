@@ -8,6 +8,6 @@ export const load = (async ({ locals }) => {
 
 	return {
 		tags: await tagsController.getAvailableTags(),
-		discotequeros: await discotequerosController.getDiscotequeros(),
+		discotequeros: await discotequerosController.getDiscotequeros()
 	};
 }) satisfies PageServerLoad;

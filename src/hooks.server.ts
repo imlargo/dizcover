@@ -16,7 +16,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 	const secFetchSite = event.request.headers.get('sec-fetch-site');
 	const isCrossSite = secFetchSite === 'cross-site';
 
-	const isPaymentsRedirect = isCrossSite && event.url.pathname.includes("payment-methods/create")
+	const isPaymentsRedirect = isCrossSite && event.url.pathname.includes('payment-methods/create');
 	if (isPaymentsRedirect) {
 		return await resolve(event);
 	}

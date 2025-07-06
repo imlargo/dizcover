@@ -125,7 +125,7 @@
 						bind:value={paymentMethod[field.field]}
 						type={field.type}
 						placeholder={field.label}
-						class="rounded-lg border-0 bg-transparent bg-transparent focus:border-white/5"
+						class="rounded-lg border-0 bg-transparent focus:border-white/5"
 					/>
 				</div>
 			{/each}

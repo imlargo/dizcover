@@ -18,17 +18,23 @@ export class PaymentController {
 		this.token = token;
 	}
 
-	async createPaymentMethod(type: PaymentMethodType, token: string, email: string, acceptance_token: string, accept_personal_auth: string) {
+	async createPaymentMethod(
+		type: PaymentMethodType,
+		token: string,
+		email: string,
+		acceptance_token: string,
+		accept_personal_auth: string
+	) {
 		const payload = {
 			type: type,
 			token: token,
-			payment_description: "",
+			payment_description: '',
 			customer_email: email,
 			acceptance_token: acceptance_token,
-			accept_personal_auth: accept_personal_auth,
-		}
+			accept_personal_auth: accept_personal_auth
+		};
 
-		return await api.post("/api/fiestero/v1/metodos-pago/crear", payload)
+		return await api.post('/api/fiestero/v1/metodos-pago/crear', payload);
 	}
 
 	async getPaymentMethods(token?: string) {
@@ -36,7 +42,7 @@ export class PaymentController {
 			token = this.token;
 		}
 
-		return await api.get("/api/fiestero/v1/metodos-pago/", {}, token);
+		return await api.get('/api/fiestero/v1/metodos-pago/', {}, token);
 	}
 }
 

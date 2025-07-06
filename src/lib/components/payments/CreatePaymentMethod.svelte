@@ -228,8 +228,10 @@
 						PaymentMethodType.Card,
 						resp.data.id,
 						storeAuth.user?.email as unknown as string,
-						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
-						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+						acceptanceTokensResponse?.data.presigned_acceptance
+							.acceptance_token as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth
+							.acceptance_token as unknown as string
 					);
 
 					response = resp.data;
@@ -242,8 +244,10 @@
 						PaymentMethodType.Nequi,
 						resp.data.id,
 						storeAuth.user?.email as unknown as string,
-						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
-						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+						acceptanceTokensResponse?.data.presigned_acceptance
+							.acceptance_token as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth
+							.acceptance_token as unknown as string
 					);
 
 					response = resp.data;
@@ -257,8 +261,10 @@
 						PaymentMethodType.Bancolombia,
 						resp.data.id,
 						storeAuth.user?.email as unknown as string,
-						acceptanceTokensResponse?.data.presigned_acceptance.acceptance_token  as unknown as string,
-						acceptanceTokensResponse?.data.presigned_personal_data_auth.acceptance_token  as unknown as string
+						acceptanceTokensResponse?.data.presigned_acceptance
+							.acceptance_token as unknown as string,
+						acceptanceTokensResponse?.data.presigned_personal_data_auth
+							.acceptance_token as unknown as string
 					);
 
 					response = resp.data;

@@ -118,7 +118,6 @@
 			artists
 		});
 	};
-	
 </script>
 
 <div class="min-h-screen px-4 py-8">

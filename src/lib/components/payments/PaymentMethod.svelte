@@ -1,5 +1,9 @@
 <script lang="ts">
-	import { getPaymentMethodTypeLabel, PaymentMethodType, type PaymentMethod } from '$lib/types/models/payments';
+	import {
+		getPaymentMethodTypeLabel,
+		PaymentMethodType,
+		type PaymentMethod
+	} from '$lib/types/models/payments';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { storeAuth } from '$lib/store/auth.svelte';
 	import { CreditCard, Pen, Trash2 } from 'lucide-svelte';

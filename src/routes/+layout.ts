@@ -8,11 +8,11 @@ export const load = (async ({ data }) => {
 	const accessToken: string | any = data?.accessToken;
 
 	if (browser) {
-		storeAuth.loadFromStorage();	
+		storeAuth.loadFromStorage();
 
 		if (user === undefined || accessToken === undefined) {
-			console.log("Logging out user due to missing data");
-			
+			console.log('Logging out user due to missing data');
+
 			storeAuth.logout();
 			storeAuth.persistAuthData();
 		} else {

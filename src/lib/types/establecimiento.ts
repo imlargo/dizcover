@@ -36,5 +36,3 @@ export type Horario = {
 	hora_apertura: string;
 	hora_cierre: string;
 };
-
-

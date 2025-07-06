@@ -20,7 +20,7 @@ export type PaymentMethod = {
 	descripcion_pago_bancolombia: string | null;
 	fecha_creacion: string;
 	fiestero: number;
-}
+};
 
 export function getPaymentMethodTypeLabel(type: PaymentMethodType): string {
 	switch (type) {
