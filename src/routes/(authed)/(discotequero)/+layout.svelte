@@ -5,6 +5,6 @@
 	let { data, children }: { data: LayoutData; children: Snippet } = $props();
 </script>
 
-<main class="px-2 lg:px-24 py-24">
+<main class="px-2 py-24 lg:px-24">
 	{@render children()}
 </main>
