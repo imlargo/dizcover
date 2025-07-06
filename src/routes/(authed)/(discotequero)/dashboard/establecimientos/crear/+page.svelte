@@ -186,7 +186,7 @@
 			await establecimientoController.createCoordinatesEstablecimiento(
 				establecimiento.id as unknown as number,
 				coordinates.latitud,
-				coordinates.longitud,
+				coordinates.longitud
 			);
 
 			toast.loading('Guardando horarios...');
@@ -282,11 +282,23 @@
 				<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
 					<div class="space-y-2">
 						<Label for="latitude">Latitud</Label>
-						<Input id="latitude" bind:value={coordinates.latitud} type="number" step="any" placeholder="40.7128" />
+						<Input
+							id="latitude"
+							bind:value={coordinates.latitud}
+							type="number"
+							step="any"
+							placeholder="40.7128"
+						/>
 					</div>
 					<div class="space-y-2">
 						<Label for="longitude">Longitud</Label>
-						<Input id="longitude" type="number" bind:value={coordinates.longitud} step="any" placeholder="-74.0060" />
+						<Input
+							id="longitude"
+							type="number"
+							bind:value={coordinates.longitud}
+							step="any"
+							placeholder="-74.0060"
+						/>
 					</div>
 					<div class="space-y-2">
 						<Label for="email">Correo Electrónico</Label>

@@ -46,19 +46,15 @@ export class EstablecimientoController {
 		);
 		return response;
 	}
-	
-	async createCoordinatesEstablecimiento(
-		establecimientoID: number,
-		lat: number,
-		lon: number,
-	) {
+
+	async createCoordinatesEstablecimiento(establecimientoID: number, lat: number, lon: number) {
 		const response = await api.post(
 			`/api/establecimiento/${establecimientoID}/coordenadas/`,
 			{
 				latitud: lat,
 				longitud: lon,
-				hemisferio_lat: "N",
-				hemisferio_lon: "E"
+				hemisferio_lat: 'N',
+				hemisferio_lon: 'E'
 			},
 			{},
 			this.token
