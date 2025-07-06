@@ -53,6 +53,11 @@
 		descripcion: ''
 	});
 
+	const coordinates = $state<{ latitud: number; longitud: number }>({
+		latitud: 0,
+		longitud: 0
+	});
+
 	const operatingHours = $state<
 		Record<string, { isOpen: boolean; openTime: string; closeTime: string }>
 	>({});
@@ -124,6 +129,11 @@
 			return;
 		}
 
+		if (!coordinates.latitud || !coordinates.longitud) {
+			toast.error('Por favor, completa las coordenadas de latitud y longitud.');
+			return;
+		}
+
 		// Validar horarios
 		const horarios: Record<string, { hora_apertura: string; hora_cierre: string }> = {};
 		for (const day in operatingHours) {
@@ -171,6 +181,13 @@
 			toast.loading('Creando establecimiento...');
 			const establecimiento = await establecimientoController.createEstablecimiento(formData);
 			establecimientoID = establecimiento.id as unknown as number;
+
+			toast.loading('Guardando coordenadas...');
+			await establecimientoController.createCoordinatesEstablecimiento(
+				establecimiento.id as unknown as number,
+				coordinates.latitud,
+				coordinates.longitud,
+			);
 
 			toast.loading('Guardando horarios...');
 			await establecimientoController.createHorarioEstablecimiento(
@@ -265,11 +282,11 @@
 				<div class="grid grid-cols-1 gap-6 md:grid-cols-3">
 					<div class="space-y-2">
 						<Label for="latitude">Latitud</Label>
-						<Input id="latitude" type="number" step="any" placeholder="40.7128" />
+						<Input id="latitude" bind:value={coordinates.latitud} type="number" step="any" placeholder="40.7128" />
 					</div>
 					<div class="space-y-2">
 						<Label for="longitude">Longitud</Label>
-						<Input id="longitude" type="number" step="any" placeholder="-74.0060" />
+						<Input id="longitude" type="number" bind:value={coordinates.longitud} step="any" placeholder="-74.0060" />
 					</div>
 					<div class="space-y-2">
 						<Label for="email">Correo Electrónico</Label>
