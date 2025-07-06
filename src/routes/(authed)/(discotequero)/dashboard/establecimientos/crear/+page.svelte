@@ -225,7 +225,7 @@
 </script>
 
 <div class="min-h-screen px-4 py-8">
-	<div class="mx-auto max-w-4xl">
+	<div class="w-full lg:mx-auto lg:max-w-4xl">
 		<div class="mb-8">
 			<h1 class="mb-2 text-3xl font-bold">Crear Establecimiento</h1>
 			<p class="text-muted-foreground">
