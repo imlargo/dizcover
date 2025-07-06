@@ -32,7 +32,11 @@
 	const establecimiento: Establecimiento = data.establecimiento as Establecimiento;
 	const eventos: Evento[] = data.eventos as Evento[];
 	const imagenesEstablecimiento = data.imagenes.map((img) => img.imagen);
-	const cordenadas = data.cordenadas.length > 0 ? data.cordenadas[0] : null;
+	const cordenadas = Array.isArray(data.cordenadas)
+		? data.cordenadas.length > 0
+			? data.cordenadas[0]
+			: null
+		: data.cordenadas;
 	const cords: Coordinates = {
 		lat: cordenadas?.latitud || '',
 		lng: cordenadas?.longitud || ''

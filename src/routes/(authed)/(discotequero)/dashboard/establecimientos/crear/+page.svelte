@@ -210,7 +210,7 @@
 
 			toast.success('Establecimiento creado exitosamente!.');
 
-			toast.loading("Redirigiendo a tu establecimiento...");
+			toast.loading('Redirigiendo a tu establecimiento...');
 			await goto(`/establecimiento/${establecimiento.id}`);
 		} catch (error) {
 			toast.error('Error al crear el establecimiento. Por favor, inténtalo de nuevo.');
