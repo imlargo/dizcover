@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { storeAuth } from '$lib/store/auth.svelte';
 	import { LogOut, User } from 'lucide-svelte';
+	import * as Sheet from '$lib/components/ui/sheet/index.js';
 
 	let isOpenMenu = $state(false);
 	const currentRoute = $state($page.url.pathname);
@@ -37,9 +38,67 @@
 					<img src="/dizcover-logo.png" alt="" class="w-44" />
 				</a>
 				<div class="flex items-center md:hidden">
-					<Button variant="ghost" size="icon" class="md:hidden" onclick={() => (isOpenMenu = true)}>
-						<span><i class="bi bi-list"></i></span>
-					</Button>
+					<Sheet.Root>
+						<Sheet.Trigger>
+							<Button variant="ghost" size="icon" class="md:hidden">
+								<span><i class="bi bi-list"></i></span>
+							</Button></Sheet.Trigger
+						>
+						<Sheet.Content side="right" class="space-y-4">
+							<Sheet.Header>
+								<Sheet.Title class="text-start">Menú</Sheet.Title>
+								<Sheet.Description class="text-start">
+									Inicia sesión para acceder a más funciones.
+								</Sheet.Description>
+							</Sheet.Header>
+							{#if storeAuth.user?.id}
+								<div class="flex items-center px-4">
+									<div class="flex-shrink-0">
+										<Avatar.Root class="size-10">
+											<Avatar.Image
+												src={storeAuth.user?.foto_perfil}
+												alt={`@${storeAuth.user?.nombre_usuario}`}
+											/>
+											<Avatar.Fallback
+												>{getInitials(storeAuth.user?.nombre_completo)}</Avatar.Fallback
+											>
+										</Avatar.Root>
+									</div>
+									<div class="ml-3">
+										<div class="text-base font-medium">{storeAuth.user?.nombre_completo}</div>
+										<div class="text-sm font-medium text-gray-200">{storeAuth.user?.email}</div>
+									</div>
+								</div>
+
+								<div class="mt-3 space-y-1 px-2">
+									<Button variant="ghost" class="w-full text-left">
+										<a
+											href="/profile/{storeAuth.user?.id || '0'}"
+											class="flex w-full items-center gap-1"
+											data-sveltekit-reload
+										>
+											<User />
+											<span>Perfil</span>
+										</a>
+									</Button>
+									<Button variant="ghost" class="w-full text-left">
+										<a href="/logout" class="flex w-full items-center gap-1" data-sveltekit-reload>
+											<LogOut />
+											<span>Cerrar sesión</span>
+										</a>
+									</Button>
+								</div>
+							{:else}
+								<Button
+									href="/login"
+									data-sveltekit-reload
+									class="rounded-full bg-dizcover-primary px-6 py-2 text-sm font-semibold text-white transition-all hover:bg-dizcover-primary/80 hover:shadow-lg hover:shadow-dizcover-primary/20"
+								>
+									Iniciar sesión
+								</Button>
+							{/if}
+						</Sheet.Content>
+					</Sheet.Root>
 				</div>
 			</div>
 
@@ -57,64 +116,6 @@
 			</form>
 		</div>
 	</div>
-	{#if isOpenMenu}
-		<div class="md:hidden">
-			<div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-				<a
-					data-sveltekit-reload
-					href="/multimedia"
-					class="font-display block text-sm font-medium text-gray-200 hover:text-white"
-				>
-					Multimedia
-				</a>
-				<a
-					data-sveltekit-reload
-					href="/mapa"
-					class="font-display block text-sm font-medium text-gray-200 hover:text-white"
-				>
-					Mapa
-				</a>
-			</div>
-			<div class="border-t pb-3 pt-4">
-				{#if storeAuth.user?.id}
-					<div class="flex items-center px-4">
-						<div class="flex-shrink-0">
-							<Avatar.Root class="size-10">
-								<Avatar.Image
-									src={storeAuth.user?.foto_perfil}
-									alt={`@${storeAuth.user?.nombre_usuario}`}
-								/>
-								<Avatar.Fallback>{getInitials(storeAuth.user?.nombre_completo)}</Avatar.Fallback>
-							</Avatar.Root>
-						</div>
-						<div class="ml-3">
-							<div class="text-base font-medium">{storeAuth.user?.nombre_completo}</div>
-							<div class="text-sm font-medium text-gray-200">{storeAuth.user?.email}</div>
-						</div>
-					</div>
-
-					<div class="mt-3 space-y-1 px-2">
-						<Button variant="ghost" class="w-full text-left">
-							<a
-								href="/profile/{storeAuth.user?.id || '0'}"
-								class="flex w-full items-center gap-1"
-								data-sveltekit-reload
-							>
-								<User />
-								<span>Perfil</span>
-							</a>
-						</Button>
-						<Button variant="ghost" class="w-full text-left">
-							<a href="/logout" class="flex w-full items-center gap-1" data-sveltekit-reload>
-								<LogOut />
-								<span>Cerrar sesión</span>
-							</a>
-						</Button>
-					</div>
-				{/if}
-			</div>
-		</div>
-	{/if}
 </nav>
 
 <style>
