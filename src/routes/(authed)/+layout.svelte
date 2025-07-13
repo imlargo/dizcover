@@ -5,6 +5,7 @@
 	import Footer from '$components/layout/Footer.svelte';
 	import BottomNavigation from '$lib/components/layout/BottomNavigation.svelte';
 	import { Home, MapPin, User, type Icon as IconType } from 'lucide-svelte';
+	import NavbarMobile from '$lib/components/layout/NavbarMobile.svelte';
 
 	type NavLink = {
 		href: string;
@@ -35,6 +36,10 @@
 
 <div class="hidden md:block">
 	<Navbar />
+</div>
+
+<div class="block md:hidden">
+	<NavbarMobile />
 </div>
 
 <div class="pb-24 md:pb-12">
