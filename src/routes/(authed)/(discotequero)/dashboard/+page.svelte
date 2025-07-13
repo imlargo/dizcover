@@ -111,41 +111,48 @@
 	</div>
 
 	<div class="space-y-4">
-		<h5 class="font-display text-2xl">Establecimientos</h5>
+		<div class="flex items-center justify-between w-full">
+			<h5 class="font-display text-2xl">Establecimientos</h5>
+			<Button href="/dashboard/establecimientos/crear">Crear establecimiento</Button>
+		</div>
 		<div class="space-y-2">
-			{#each establecimientos as establecimiento}
-				<div class="flex max-h-max justify-between gap-6 rounded-lg bg-primary-foreground p-4">
-					<div class="flex items-center gap-6">
-						<div class="max-h-min">
-							<img
-								src={establecimiento.primera_imagen}
-								alt={establecimiento.nombre}
-								class="block h-[156px] w-72 rounded-lg object-cover"
-							/>
+			{#if establecimientos.length === 0}
+				<p class="text-neutral-400">No tienes establecimientos registrados.</p>
+			{:else}
+				{#each establecimientos as establecimiento}
+					<div class="flex max-h-max justify-between gap-6 rounded-lg bg-primary-foreground p-4">
+						<div class="flex items-center gap-6">
+							<div class="max-h-min">
+								<img
+									src={establecimiento.primera_imagen}
+									alt={establecimiento.nombre}
+									class="block h-[156px] w-72 rounded-lg object-cover"
+								/>
+							</div>
+							<div class="flex max-h-max max-w-max flex-col gap-1">
+								<a href="/dashboard/establecimiento/{establecimiento.id}">
+									<p class="font-display text-2xl font-semibold">{establecimiento.nombre}</p>
+								</a>
+								<p class="flex items-center gap-1 text-lg font-bold text-neutral-200">
+									<Eye />
+									<span>2.5k</span>
+								</p>
+								<p class="flex items-center gap-1 text-lg text-neutral-200">
+									<Star />
+									<span>{establecimiento.calificacion_promedio}</span>
+								</p>
+								<p class="flex items-center gap-1 text-lg text-neutral-200">Calle 123</p>
+							</div>
 						</div>
-						<div class="flex max-h-max max-w-max flex-col gap-1">
-							<a href="/dashboard/establecimiento/{establecimiento.id}">
-								<p class="font-display text-2xl font-semibold">{establecimiento.nombre}</p>
-							</a>
-							<p class="flex items-center gap-1 text-lg font-bold text-neutral-200">
-								<Eye />
-								<span>2.5k</span>
-							</p>
-							<p class="flex items-center gap-1 text-lg text-neutral-200">
-								<Star />
-								<span>{establecimiento.calificacion_promedio}</span>
-							</p>
-							<p class="flex items-center gap-1 text-lg text-neutral-200">Calle 123</p>
+						<div class="flex h-full max-w-max flex-col items-baseline justify-end">
+							<a
+								class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
+								href="/">Publicitar</a
+							>
 						</div>
 					</div>
-					<div class="flex h-full max-w-max flex-col items-baseline justify-end">
-						<a
-							class="inline-flex rounded-md border border-white px-4 py-2 font-semibold text-white"
-							href="/">Publicitar</a
-						>
-					</div>
-				</div>
-			{/each}
+				{/each}
+			{/if}
 		</div>
 	</div>
 
