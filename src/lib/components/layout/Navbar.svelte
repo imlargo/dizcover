@@ -118,64 +118,8 @@
 					Iniciar sesión
 				</Button>
 			{/if}
-
-			<Button variant="ghost" size="icon" onclick={() => (isOpenMenu = true)}>
-				<span><i class="bi bi-list"></i></span>
-			</Button>
 		</div>
 	</div>
-	{#if isOpenMenu}
-		<div class="md:hidden">
-			<div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-				<a
-					href="/caracteristicas"
-					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
-				>
-					Características
-				</a>
-				<a
-					href="/precios"
-					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
-				>
-					Precios
-				</a>
-				<a
-					href="/contacto"
-					class="block px-3 py-2 text-base font-medium text-gray-200 hover:text-white"
-				>
-					Contacto
-				</a>
-			</div>
-			<div class="border-t pb-3 pt-4">
-				<div class="flex items-center px-4">
-					<div class="flex-shrink-0">
-						<Avatar.Root class="h-8 w-8">
-							<Avatar.Image
-								src="https://avatars.githubusercontent.com/u/124599?v=4"
-								alt="@usuario"
-							/>
-							<Avatar.Fallback>U</Avatar.Fallback>
-						</Avatar.Root>
-					</div>
-					<div class="ml-3">
-						<div class="text-base font-medium">Usuario</div>
-						<div class="text-sm font-medium text-gray-200">usuario@ejemplo.com</div>
-					</div>
-				</div>
-				<div class="mt-3 space-y-1 px-2">
-					<Button variant="ghost" class="w-full justify-start">
-						<span>Perfil</span>
-					</Button>
-					<Button variant="ghost" class="w-full justify-start">
-						<span>Configuración</span>
-					</Button>
-					<Button variant="ghost" class="w-full justify-start">
-						<span>Cerrar sesión</span>
-					</Button>
-				</div>
-			</div>
-		</div>
-	{/if}
 </nav>
 
 <style>
